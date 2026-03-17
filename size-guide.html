@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Size Guide — ANISO</title>
+  <meta name="description" content="Find your perfect fit with the ANISO size guide. Detailed measurements, fit notes, and how-to-measure instructions.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .measure-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-top:40px; }
+    .measure-card { background:var(--cream); border:1px solid var(--border); padding:32px 28px; }
+    .measure-num { font-family:var(--font-display); font-size:48px; font-weight:400; color:var(--blush); line-height:1; margin-bottom:12px; }
+    .measure-title { font-size:12px; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:var(--black); margin-bottom:10px; }
+    .measure-desc { font-size:13px; font-weight:300; line-height:1.8; color:var(--muted); }
+    @media (max-width:640px) { .measure-grid { grid-template-columns:1fr; } }
+  </style>
+</head>
+<body>
+
+  <div class="announcement-bar" id="announcementBar">
+    <div class="announcement-inner">
+      <div class="announcement-track">
+        <span>Complimentary shipping on all orders above ₹1,499</span><span class="sep">·</span>
+        <span>New Drop — Ivory Reverie Collection is now live</span><span class="sep">·</span>
+        <span>Easy 14-day returns &amp; exchanges</span><span class="sep">·</span>
+        <span>Complimentary shipping on all orders above ₹1,499</span><span class="sep">·</span>
+        <span>New Drop — Ivory Reverie Collection is now live</span><span class="sep">·</span>
+        <span>Easy 14-day returns &amp; exchanges</span>
+      </div>
+    </div>
+    <button class="announcement-close" onclick="closeAnnouncement()">&#215;</button>
+  </div>
+
+  <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+      <button class="nav-hamburger" id="hamburger" onclick="toggleMobileMenu()"><span></span><span></span><span></span></button>
+      <ul class="nav-links nav-left">
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="shop.html#collections">Collections</a></li>
+        <li><a href="about.html">Our Story</a></li>
+      </ul>
+      <a href="index.html" class="nav-logo"><img src="brand_assets/Aniso_LOGO.png" alt="ANISO" class="nav-logo-img"></a>
+      <div class="nav-right">
+        <ul class="nav-links">
+          <li><a href="size-guide.html" class="active">Size Guide</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="nav-icons">
+          <button class="nav-icon-btn" aria-label="Search">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.4-4.4"/></svg>
+          </button>
+          <a href="cart.html" class="nav-icon-btn" aria-label="Cart">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+            <span class="cart-count" id="cartCount">0</span>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <ul>
+        <li><a href="shop.html" onclick="toggleMobileMenu()">Shop All</a></li>
+        <li><a href="about.html" onclick="toggleMobileMenu()">Our Story</a></li>
+        <li><a href="size-guide.html" onclick="toggleMobileMenu()">Size Guide</a></li>
+        <li><a href="faq.html" onclick="toggleMobileMenu()">FAQ</a></li>
+        <li><a href="contact.html" onclick="toggleMobileMenu()">Contact</a></li>
+        <li><a href="cart.html" onclick="toggleMobileMenu()">Your Bag</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main>
+    <!-- Page Hero -->
+    <div class="page-hero">
+      <div class="container">
+        <span class="section-label page-hero-label">Fit Guide</span>
+        <h1 class="page-hero-title">Size Guide</h1>
+        <p class="page-hero-sub">Find your perfect fit. Our sets are designed for a relaxed, effortless silhouette — not body-hugging, always comfortable.</p>
+      </div>
+    </div>
+
+    <div style="padding:80px 0;background:var(--cream);">
+      <div class="container">
+
+        <!-- Fit note -->
+        <div class="fade-in" style="background:var(--cream-warm);border:1px solid var(--border);padding:28px 32px;margin-bottom:56px;display:flex;gap:20px;align-items:flex-start;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--cocoa)" stroke-width="1.5" style="flex-shrink:0;margin-top:2px"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          <div>
+            <div style="font-size:11px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--cocoa);margin-bottom:8px">Fit Note</div>
+            <p style="font-size:13.5px;font-weight:300;line-height:1.8;color:var(--muted)">All ANISO sets run true to size with a relaxed, comfortable fit. If you prefer a more fluid silhouette, we recommend sizing up by one size. If between two sizes, consider your preference — snugger or roomier.</p>
+          </div>
+        </div>
+
+        <!-- Size table: top -->
+        <div class="fade-in" style="margin-bottom:48px">
+          <h2 style="font-family:var(--font-display);font-size:28px;font-weight:400;letter-spacing:var(--tracking-display);color:var(--black);margin-bottom:8px;">Top / Shirt Measurements</h2>
+          <p style="font-size:13px;font-weight:300;color:var(--muted);margin-bottom:24px;">All measurements in centimetres (cm)</p>
+          <div style="overflow-x:auto;">
+            <table class="size-table">
+              <thead>
+                <tr>
+                  <th>Size</th>
+                  <th>Chest (cm)</th>
+                  <th>Shoulder (cm)</th>
+                  <th>Length (cm)</th>
+                  <th>Sleeve (cm)</th>
+                  <th>Fits UK/EU</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>XS</td>
+                  <td>80 – 84</td>
+                  <td>36</td>
+                  <td>62</td>
+                  <td>57</td>
+                  <td class="size-highlight">UK 6–8 / EU 34–36</td>
+                </tr>
+                <tr>
+                  <td>S</td>
+                  <td>85 – 90</td>
+                  <td>38</td>
+                  <td>63</td>
+                  <td>58</td>
+                  <td class="size-highlight">UK 8–10 / EU 36–38</td>
+                </tr>
+                <tr>
+                  <td>M</td>
+                  <td>91 – 96</td>
+                  <td>40</td>
+                  <td>65</td>
+                  <td>59</td>
+                  <td class="size-highlight">UK 10–12 / EU 38–40</td>
+                </tr>
+                <tr>
+                  <td>L</td>
+                  <td>97 – 104</td>
+                  <td>42</td>
+                  <td>66</td>
+                  <td>60</td>
+                  <td class="size-highlight">UK 12–14 / EU 40–42</td>
+                </tr>
+                <tr>
+                  <td>XL</td>
+                  <td>105 – 112</td>
+                  <td>44</td>
+                  <td>68</td>
+                  <td>61</td>
+                  <td class="size-highlight">UK 14–16 / EU 42–44</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Size table: bottom -->
+        <div class="fade-in" style="margin-bottom:72px">
+          <h2 style="font-family:var(--font-display);font-size:28px;font-weight:400;letter-spacing:var(--tracking-display);color:var(--black);margin-bottom:8px;">Bottom / Trouser Measurements</h2>
+          <p style="font-size:13px;font-weight:300;color:var(--muted);margin-bottom:24px;">All measurements in centimetres (cm)</p>
+          <div style="overflow-x:auto;">
+            <table class="size-table">
+              <thead>
+                <tr>
+                  <th>Size</th>
+                  <th>Waist (cm)</th>
+                  <th>Hip (cm)</th>
+                  <th>Length (cm)</th>
+                  <th>Inseam (cm)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>XS</td>
+                  <td>62 – 66</td>
+                  <td>86 – 90</td>
+                  <td>96</td>
+                  <td>74</td>
+                </tr>
+                <tr>
+                  <td>S</td>
+                  <td>67 – 72</td>
+                  <td>91 – 96</td>
+                  <td>97</td>
+                  <td>75</td>
+                </tr>
+                <tr>
+                  <td>M</td>
+                  <td>73 – 78</td>
+                  <td>97 – 102</td>
+                  <td>98</td>
+                  <td>76</td>
+                </tr>
+                <tr>
+                  <td>L</td>
+                  <td>79 – 85</td>
+                  <td>103 – 108</td>
+                  <td>99</td>
+                  <td>77</td>
+                </tr>
+                <tr>
+                  <td>XL</td>
+                  <td>86 – 93</td>
+                  <td>109 – 116</td>
+                  <td>100</td>
+                  <td>78</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- How to measure -->
+        <div class="fade-in">
+          <h2 style="font-family:var(--font-display);font-size:32px;font-weight:400;letter-spacing:var(--tracking-display);color:var(--black);margin-bottom:8px;">How to Measure</h2>
+          <p style="font-size:13.5px;font-weight:300;color:var(--muted);margin-bottom:0;">Use a flexible measuring tape for the most accurate results. Measure directly on the body over light clothing.</p>
+          <div class="measure-grid">
+            <div class="measure-card">
+              <div class="measure-num">01</div>
+              <div class="measure-title">Chest</div>
+              <div class="measure-desc">Measure around the fullest part of your chest, keeping the tape parallel to the ground and your arms relaxed at your sides.</div>
+            </div>
+            <div class="measure-card">
+              <div class="measure-num">02</div>
+              <div class="measure-title">Waist</div>
+              <div class="measure-desc">Measure around your natural waistline — the narrowest part of your torso, usually about 2–3 cm above your navel.</div>
+            </div>
+            <div class="measure-card">
+              <div class="measure-num">03</div>
+              <div class="measure-title">Hip</div>
+              <div class="measure-desc">Measure around the fullest part of your hips and seat, approximately 20 cm below your natural waist.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Still unsure -->
+        <div class="fade-in" style="margin-top:64px;padding:48px;background:var(--black);text-align:center;">
+          <h3 style="font-family:var(--font-display);font-size:26px;font-weight:400;color:var(--cream);margin-bottom:14px;">Still unsure of your size?</h3>
+          <p style="font-size:14px;font-weight:300;color:rgba(250,248,245,0.55);margin-bottom:32px;max-width:440px;margin-left:auto;margin-right:auto;line-height:1.8;">Our team is happy to help you find the perfect fit. Reach out via WhatsApp or email — we'll guide you personally.</p>
+          <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+            <a href="contact.html" class="btn-hero">Contact Us</a>
+            <a href="faq.html" class="btn-hero-ghost">Read the FAQ</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <img src="brand_assets/Aniso_LOGO.png" alt="ANISO" class="footer-brand-logo">
+          <p class="footer-brand-text">Premium nightwear and loungewear for the modern woman.</p>
+          <div class="footer-newsletter">
+            <input type="email" class="footer-newsletter-input" placeholder="Your email address">
+            <button class="footer-newsletter-btn">Join</button>
+          </div>
+        </div>
+        <div>
+          <div class="footer-col-title">Shop</div>
+          <ul class="footer-links">
+            <li><a href="shop.html">All Products</a></li>
+            <li><a href="shop.html?cat=satin">Satin Sets</a></li>
+            <li><a href="shop.html?cat=cotton">Cotton Sets</a></li>
+            <li><a href="shop.html?cat=lounge">Lounge Sets</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col-title">Help</div>
+          <ul class="footer-links">
+            <li><a href="size-guide.html">Size Guide</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="#">Returns</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col-title">Brand</div>
+          <ul class="footer-links">
+            <li><a href="about.html">Our Story</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-bottom-left">© 2026 ANISO. All rights reserved.</div>
+        <div class="footer-payment">
+          <span class="footer-payment-badge">UPI</span>
+          <span class="footer-payment-badge">Cards</span>
+          <span class="footer-payment-badge">COD</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

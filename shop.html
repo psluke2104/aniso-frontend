@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shop All — ANISO</title>
+  <meta name="description" content="Browse the complete ANISO collection. Premium satin sets, cotton co-ords, and lounge sets for the modern woman.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .shop-layout { padding: 48px 0 100px; }
+  </style>
+</head>
+<body>
+
+  <div class="announcement-bar" id="announcementBar">
+    <div class="announcement-inner">
+      <div class="announcement-track">
+        <span>Complimentary shipping on all orders above ₹1,499</span>
+        <span class="sep">·</span>
+        <span>New Drop — Ivory Reverie Collection is now live</span>
+        <span class="sep">·</span>
+        <span>Easy 14-day returns &amp; exchanges</span>
+        <span class="sep">·</span>
+        <span>Complimentary shipping on all orders above ₹1,499</span>
+        <span class="sep">·</span>
+        <span>New Drop — Ivory Reverie Collection is now live</span>
+        <span class="sep">·</span>
+        <span>Easy 14-day returns &amp; exchanges</span>
+      </div>
+    </div>
+    <button class="announcement-close" onclick="closeAnnouncement()">&#215;</button>
+  </div>
+
+  <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+      <button class="nav-hamburger" id="hamburger" onclick="toggleMobileMenu()"><span></span><span></span><span></span></button>
+      <ul class="nav-links nav-left">
+        <li><a href="shop.html" class="active">Shop</a></li>
+        <li><a href="shop.html#collections">Collections</a></li>
+        <li><a href="about.html">Our Story</a></li>
+      </ul>
+      <a href="index.html" class="nav-logo"><img src="brand_assets/Aniso_LOGO.png" alt="ANISO" class="nav-logo-img"></a>
+      <div class="nav-right">
+        <ul class="nav-links">
+          <li><a href="size-guide.html">Size Guide</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="nav-icons">
+          <button class="nav-icon-btn" aria-label="Search">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.4-4.4"/></svg>
+          </button>
+          <a href="cart.html" class="nav-icon-btn" aria-label="Cart">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+            <span class="cart-count" id="cartCount">0</span>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <ul>
+        <li><a href="shop.html" onclick="toggleMobileMenu()">Shop All</a></li>
+        <li><a href="about.html" onclick="toggleMobileMenu()">Our Story</a></li>
+        <li><a href="size-guide.html" onclick="toggleMobileMenu()">Size Guide</a></li>
+        <li><a href="faq.html" onclick="toggleMobileMenu()">FAQ</a></li>
+        <li><a href="contact.html" onclick="toggleMobileMenu()">Contact</a></li>
+        <li><a href="cart.html" onclick="toggleMobileMenu()">Your Bag</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main>
+    <!-- Shop Hero -->
+    <div class="shop-hero">
+      <div class="container">
+        <span class="section-label">Spring '26 Collection</span>
+        <h1 class="shop-hero-title">The Collection</h1>
+        <p class="shop-hero-sub">Six carefully considered pieces. Each one designed to make your softest hours feel like the most beautiful ones.</p>
+      </div>
+    </div>
+
+    <!-- Collections Row -->
+    <section style="padding:64px 0; background:var(--cream-warm); border-bottom:1px solid var(--border);" id="collections">
+      <div class="container">
+        <div class="section-header centered fade-in" style="margin-bottom:44px">
+          <span class="section-label">Shop by Category</span>
+          <h2 class="section-title" style="font-size:clamp(24px,3vw,36px)">Find Your Collection</h2>
+        </div>
+        <div class="collections-grid" style="grid-template-columns:repeat(4,1fr); gap:12px;">
+          <a href="#" class="collection-card filter-btn-card" data-cat="all" style="display:block">
+            <div class="collection-img-wrap" style="aspect-ratio:1/1;">
+              <img src="https://placehold.co/300x300/1A1714/D4B896?font=playfair-display&text=All" alt="All" class="collection-img">
+              <div class="collection-overlay"></div>
+            </div>
+            <div class="collection-info"><h3 style="font-size:18px">All Pieces</h3><span>6 pieces</span></div>
+          </a>
+          <a href="#" class="collection-card filter-btn-card" data-cat="satin">
+            <div class="collection-img-wrap" style="aspect-ratio:1/1;">
+              <img src="https://placehold.co/300x300/2C2825/D4B896?font=playfair-display&text=Satin" alt="Satin" class="collection-img">
+              <div class="collection-overlay"></div>
+            </div>
+            <div class="collection-info"><h3 style="font-size:18px">Satin Sets</h3><span>3 pieces</span></div>
+          </a>
+          <a href="#" class="collection-card filter-btn-card" data-cat="cotton">
+            <div class="collection-img-wrap" style="aspect-ratio:1/1;">
+              <img src="https://placehold.co/300x300/EDE4DA/8B6147?font=playfair-display&text=Cotton" alt="Cotton" class="collection-img">
+              <div class="collection-overlay"></div>
+            </div>
+            <div class="collection-info"><h3 style="font-size:18px">Cotton Sets</h3><span>2 pieces</span></div>
+          </a>
+          <a href="#" class="collection-card filter-btn-card" data-cat="lounge">
+            <div class="collection-img-wrap" style="aspect-ratio:1/1;">
+              <img src="https://placehold.co/300x300/D4B896/2C2825?font=playfair-display&text=Lounge" alt="Lounge" class="collection-img">
+              <div class="collection-overlay"></div>
+            </div>
+            <div class="collection-info"><h3 style="font-size:18px">Lounge Sets</h3><span>1 piece</span></div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Shop Grid -->
+    <div class="shop-layout">
+      <div class="container">
+        <!-- Toolbar -->
+        <div class="shop-toolbar">
+          <div class="shop-filters">
+            <button class="filter-btn active" data-filter="all" onclick="filterProducts(this,'all')">All (6)</button>
+            <button class="filter-btn" data-filter="satin" onclick="filterProducts(this,'satin')">Satin Sets</button>
+            <button class="filter-btn" data-filter="cotton" onclick="filterProducts(this,'cotton')">Cotton Sets</button>
+            <button class="filter-btn" data-filter="lounge" onclick="filterProducts(this,'lounge')">Lounge Sets</button>
+            <button class="filter-btn" data-filter="bestseller" onclick="filterProducts(this,'bestseller')">Bestsellers</button>
+          </div>
+          <div style="display:flex;align-items:center;gap:20px;">
+            <span class="shop-count" id="shopCount">6 Pieces</span>
+            <div class="shop-sort">
+              <span style="white-space:nowrap;font-size:11px;color:var(--muted)">Sort by</span>
+              <select class="sort-select">
+                <option>Featured</option>
+                <option>Price: Low to High</option>
+                <option>Price: High to Low</option>
+                <option>Newest</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product Grid -->
+        <div class="products-grid" id="shopGrid" style="grid-template-columns:repeat(3,1fr);gap:28px;">
+
+          <div class="product-card fade-in" data-category="satin bestseller">
+            <div class="product-card-img-wrap">
+              <img src="https://placehold.co/480x640/EDE4DA/8B6147?font=playfair-display&text=Ivory+Reverie" alt="Ivory Reverie Set" class="product-card-img" loading="lazy">
+              <span class="product-card-badge new">New</span>
+              <div class="product-card-actions">
+                <a href="product.html?id=1" class="product-card-btn">Quick View</a>
+                <button class="product-card-btn primary" onclick="addToCart({id:'1',name:'Ivory Reverie Set',price:1799,image:'https://placehold.co/480x640/EDE4DA/8B6147',category:'Satin Set',size:'S'})">Add to Bag</button>
+              </div>
+            </div>
+            <div class="product-card-info">
+              <div class="product-card-category">Satin Set · XS–XL</div>
+              <div class="product-card-name"><a href="product.html?id=1">Ivory Reverie Set</a></div>
+              <div class="product-card-price"><span class="price-current">₹1,799</span></div>
+              <div class="product-card-colors">
+                <span class="color-dot active" style="background:#F5EDD8" title="Ivory"></span>
+                <span class="color-dot" style="background:#D4B896" title="Champagne"></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="product-card fade-in" data-category="satin bestseller" style="transition-delay:.07s">
+            <div class="product-card-img-wrap">
+              <img src="https://placehold.co/480x640/F5DDD3/8B6147?font=playfair-display&text=Blush+Hour" alt="Blush Hour Set" class="product-card-img" loading="lazy">
+              <span class="product-card-badge bestseller">Bestseller</span>
+              <div class="product-card-actions">
+                <a href="product.html?id=2" class="product-card-btn">Quick View</a>
+                <button class="product-card-btn primary" onclick="addToCart({id:'2',name:'Blush Hour Set',price:1999,image:'https://placehold.co/480x640/F5DDD3/8B6147',category:'Satin Set',size:'S'})">Add to Bag</button>
+              </div>
+            </div>
+            <div class="product-card-info">
+              <div class="product-card-category">Satin Set · XS–XL</div>
+              <div class="product-card-name"><a href="product.html?id=2">Blush Hour Set</a></div>
+              <div class="product-card-price"><span class="price-current">₹1,999</span></div>
+              <div class="product-card-colors">
+                <span class="color-dot active" style="background:#F5DDD3" title="Blush"></span>
+                <span class="color-dot" style="background:#E8B4A0" title="Rose"></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="product-card fade-in" data-category="satin" style="transition-delay:.14s">
+            <div class="product-card-img-wrap">
+              <img src="https://placehold.co/480x640/2C2825/D4B896?font=playfair-display&text=Midnight+Satin" alt="Midnight Satin Set" class="product-card-img" loading="lazy">
+              <span class="product-card-badge new">New</span>
+              <div class="product-card-actions">
+                <a href="product.html?id=6" class="product-card-btn">Quick View</a>
+                <button class="product-card-btn primary" onclick="addToCart({id:'6',name:'Midnight Satin Set',price:1899,image:'https://placehold.co/480x640/2C2825/D4B896',category:'Satin Set',size:'S'})">Add to Bag</button>
+              </div>
+            </div>
+            <div class="product-card-info">
+              <div class="product-card-category">Satin Set · XS–XL</div>
+              <div class="product-card-name"><a href="product.html?id=6">Midnight Satin Set</a></div>
+              <div class="product-card-price"><span class="price-current">₹1,899</span></div>
+              <div class="product-card-colors">
+                <span class="color-dot active" style="background:#2C2825" title="Midnight"></span>
+                <span class="color-dot" style="background:#4A4540" title="Charcoal"></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="product-card fade-in" data-category="cotton" style="transition-delay:.21s">
+            <div class="product-card-img-wrap">
+              <img src="https://placehold.co/480x640/E8E2DC/8B6147?font=playfair-display&text=Cotton+Morning" alt="Cotton Morning Set" class="product-card-img" loading="lazy">
+              <span class="product-card-badge new">New</span>
+              <div class="product-card-actions">
+                <a href="product.html?id=3" class="product-card-btn">Quick View</a>
+                <button class="product-card-btn primary" onclick="addToCart({id:'3',name:'Cotton Morning Set',price:1299,image:'https://placehold.co/480x640/E8E2DC/8B6147',category:'Cotton Set',size:'S'})">Add to Bag</button>
+              </div>
+            </div>
+            <div class="product-card-info">
+              <div class="product-card-category">Cotton Set · XS–XL</div>
+              <div class="product-card-name"><a href="product.html?id=3">Cotton Morning Set</a></div>
+              <div class="product-card-price"><span class="price-current">₹1,299</span></div>
+              <div class="product-card-colors">
+                <span class="color-dot active" style="background:#E8E2DC" title="Ivory"></span>
+                <span class="color-dot" style="background:#C8BFB6" title="Stone"></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="product-card fade-in" data-category="cotton bestseller" style="transition-delay:.28s">
+            <div class="product-card-img-wrap">
+              <img src="https://placehold.co/480x640/E0D9D4/8B6147?font=playfair-display&text=Soft+Stone" alt="Soft Stone Set" class="product-card-img" loading="lazy">
+              <span class="product-card-badge bestseller">Bestseller</span>
+              <div class="product-card-actions">
+                <a href="product.html?id=5" class="product-card-btn">Quick View</a>
+                <button class="product-card-btn primary" onclick="addToCart({id:'5',name:'Soft Stone Set',price:999,image:'https://placehold.co/480x640/E0D9D4/8B6147',category:'Cotton Set',size:'S'})">Add to Bag</button>
+              </div>
+            </div>
+            <div class="product-card-info">
+              <div class="product-card-category">Cotton Set · XS–XL</div>
+              <div class="product-card-name"><a href="product.html?id=5">Soft Stone Set</a></div>
+              <div class="product-card-price"><span class="price-current">₹999</span></div>
+            </div>
+          </div>
+
+          <div class="product-card fade-in" data-category="lounge bestseller" style="transition-delay:.35s">
+            <div class="product-card-img-wrap">
+              <img src="https://placehold.co/480x640/D4B896/2C2825?font=playfair-display&text=Cocoa+Lounge" alt="Cocoa Lounge Co-ord" class="product-card-img" loading="lazy">
+              <div class="product-card-actions">
+                <a href="product.html?id=4" class="product-card-btn">Quick View</a>
+                <button class="product-card-btn primary" onclick="addToCart({id:'4',name:'Cocoa Lounge Co-ord',price:1499,image:'https://placehold.co/480x640/D4B896/2C2825',category:'Lounge Set',size:'S'})">Add to Bag</button>
+              </div>
+            </div>
+            <div class="product-card-info">
+              <div class="product-card-category">Lounge Set · XS–XL</div>
+              <div class="product-card-name"><a href="product.html?id=4">Cocoa Lounge Co-ord</a></div>
+              <div class="product-card-price"><span class="price-current">₹1,499</span></div>
+              <div class="product-card-colors">
+                <span class="color-dot active" style="background:#D4B896" title="Cocoa"></span>
+                <span class="color-dot" style="background:#8B6147" title="Mocha"></span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- No results -->
+        <div id="noResults" style="display:none;text-align:center;padding:80px 0;">
+          <p style="font-family:var(--font-display);font-size:20px;color:var(--muted)">No pieces found in this category.</p>
+          <button onclick="filterProducts(document.querySelector('[data-filter=all]'),'all')" class="btn-secondary" style="margin-top:24px">View All</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <img src="brand_assets/Aniso_LOGO.png" alt="ANISO" class="footer-brand-logo">
+          <p class="footer-brand-text">Premium nightwear and loungewear for the modern woman.</p>
+          <div class="footer-newsletter">
+            <input type="email" class="footer-newsletter-input" placeholder="Your email address">
+            <button class="footer-newsletter-btn">Join</button>
+          </div>
+        </div>
+        <div>
+          <div class="footer-col-title">Shop</div>
+          <ul class="footer-links">
+            <li><a href="shop.html">All Products</a></li>
+            <li><a href="shop.html?cat=satin">Satin Sets</a></li>
+            <li><a href="shop.html?cat=cotton">Cotton Sets</a></li>
+            <li><a href="shop.html?cat=lounge">Lounge Sets</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col-title">Help</div>
+          <ul class="footer-links">
+            <li><a href="size-guide.html">Size Guide</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="#">Returns</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col-title">Brand</div>
+          <ul class="footer-links">
+            <li><a href="about.html">Our Story</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-bottom-left">© 2026 ANISO. All rights reserved.</div>
+        <div class="footer-social">
+          <a href="#" aria-label="Instagram"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+          <a href="#" aria-label="WhatsApp"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></a>
+        </div>
+        <div class="footer-payment">
+          <span class="footer-payment-badge">UPI</span>
+          <span class="footer-payment-badge">Cards</span>
+          <span class="footer-payment-badge">COD</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+    function filterProducts(btn, cat) {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+      const cards = document.querySelectorAll('#shopGrid .product-card');
+      let visible = 0;
+      cards.forEach(card => {
+        const cats = card.dataset.category || '';
+        const show = cat === 'all' || cats.includes(cat);
+        card.style.display = show ? '' : 'none';
+        if (show) visible++;
+      });
+      const noResults = document.getElementById('noResults');
+      if (noResults) noResults.style.display = visible === 0 ? 'block' : 'none';
+      const count = document.getElementById('shopCount');
+      if (count) count.textContent = `${visible} Piece${visible !== 1 ? 's' : ''}`;
+    }
+
+    // Handle URL params
+    const params = new URLSearchParams(window.location.search);
+    const cat = params.get('cat');
+    if (cat) {
+      const btn = document.querySelector(`[data-filter="${cat}"]`);
+      if (btn) filterProducts(btn, cat);
+    }
+
+    // Collection card clicks
+    document.querySelectorAll('.filter-btn-card').forEach(card => {
+      card.addEventListener('click', e => {
+        e.preventDefault();
+        const cat = card.dataset.cat;
+        const filterBtn = document.querySelector(`[data-filter="${cat}"]`);
+        filterProducts(filterBtn, cat);
+        document.getElementById('shopGrid')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+  </script>
+</body>
+</html>

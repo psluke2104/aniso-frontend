@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Bag — ANISO</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <div class="announcement-bar" id="announcementBar">
+    <div class="announcement-inner">
+      <div class="announcement-track">
+        <span>Complimentary shipping on all orders above ₹1,499</span><span class="sep">·</span>
+        <span>Easy 14-day returns &amp; exchanges</span><span class="sep">·</span>
+        <span>New Drop — Ivory Reverie Collection is now live</span><span class="sep">·</span>
+        <span>Complimentary shipping on all orders above ₹1,499</span><span class="sep">·</span>
+        <span>Easy 14-day returns &amp; exchanges</span><span class="sep">·</span>
+        <span>New Drop — Ivory Reverie Collection is now live</span>
+      </div>
+    </div>
+    <button class="announcement-close" onclick="closeAnnouncement()">&#215;</button>
+  </div>
+
+  <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+      <button class="nav-hamburger" id="hamburger" onclick="toggleMobileMenu()"><span></span><span></span><span></span></button>
+      <ul class="nav-links nav-left">
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="shop.html#collections">Collections</a></li>
+        <li><a href="about.html">Our Story</a></li>
+      </ul>
+      <a href="index.html" class="nav-logo"><img src="brand_assets/Aniso_LOGO.png" alt="ANISO" class="nav-logo-img"></a>
+      <div class="nav-right">
+        <ul class="nav-links">
+          <li><a href="size-guide.html">Size Guide</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="nav-icons">
+          <button class="nav-icon-btn" aria-label="Search">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.4-4.4"/></svg>
+          </button>
+          <a href="cart.html" class="nav-icon-btn" aria-label="Cart">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+            <span class="cart-count" id="cartCount">0</span>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <ul>
+        <li><a href="shop.html" onclick="toggleMobileMenu()">Shop All</a></li>
+        <li><a href="about.html" onclick="toggleMobileMenu()">Our Story</a></li>
+        <li><a href="size-guide.html" onclick="toggleMobileMenu()">Size Guide</a></li>
+        <li><a href="faq.html" onclick="toggleMobileMenu()">FAQ</a></li>
+        <li><a href="contact.html" onclick="toggleMobileMenu()">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main>
+    <div class="container">
+      <div class="cart-layout">
+
+        <!-- Cart Items -->
+        <div>
+          <h1 class="cart-page-title">Your Bag</h1>
+          <div id="cartItems">
+            <!-- Rendered by JS -->
+          </div>
+        </div>
+
+        <!-- Order Summary -->
+        <div>
+          <div class="cart-summary">
+            <div class="cart-summary-title">Order Summary</div>
+
+            <div class="cart-summary-row">
+              <span>Subtotal</span>
+              <span id="cartSubtotal">₹0</span>
+            </div>
+            <div class="cart-summary-row">
+              <span>Shipping</span>
+              <span id="cartShipping">—</span>
+            </div>
+
+            <div class="cart-shipping-note" id="cartShippingNote">
+              Add items to calculate shipping
+            </div>
+
+            <div class="cart-summary-row total">
+              <span>Total</span>
+              <span id="cartTotal">₹0</span>
+            </div>
+
+            <button class="cart-checkout-btn" onclick="alert('Checkout — payment integration coming soon')">
+              Proceed to Checkout
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </button>
+            <a href="shop.html" class="cart-continue">← Continue Shopping</a>
+
+            <!-- Trust block -->
+            <div style="margin-top:28px;padding-top:24px;border-top:1px solid var(--border);">
+              <div style="display:flex;flex-direction:column;gap:12px;">
+                <div style="display:flex;align-items:center;gap:10px;font-size:12px;font-weight:300;color:var(--muted);">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--cocoa)" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                  Secure, encrypted checkout
+                </div>
+                <div style="display:flex;align-items:center;gap:10px;font-size:12px;font-weight:300;color:var(--muted);">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--cocoa)" stroke-width="1.5"><polyline points="1,4 1,10 7,10"/><path d="M3.51 15a9 9 0 1 0 .49-4.02"/></svg>
+                  14-day hassle-free returns
+                </div>
+                <div style="display:flex;align-items:center;gap:10px;font-size:12px;font-weight:300;color:var(--muted);">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--cocoa)" stroke-width="1.5"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 4v3h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+                  Free shipping above ₹1,499
+                </div>
+              </div>
+            </div>
+
+            <!-- Payment methods -->
+            <div style="margin-top:20px;display:flex;gap:8px;flex-wrap:wrap;">
+              <span class="footer-payment-badge" style="color:var(--muted);border-color:var(--border-strong);">UPI</span>
+              <span class="footer-payment-badge" style="color:var(--muted);border-color:var(--border-strong);">Visa</span>
+              <span class="footer-payment-badge" style="color:var(--muted);border-color:var(--border-strong);">Mastercard</span>
+              <span class="footer-payment-badge" style="color:var(--muted);border-color:var(--border-strong);">COD</span>
+              <span class="footer-payment-badge" style="color:var(--muted);border-color:var(--border-strong);">EMI</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- You may also like -->
+    <section class="products-section" style="padding:60px 0;background:var(--cream-warm);">
+      <div class="container">
+        <div class="section-header fade-in">
+          <div>
+            <span class="section-label">While You're Here</span>
+            <h2 class="section-title">You May Also Like</h2>
+          </div>
+          <a href="shop.html" class="see-all">View All →</a>
+        </div>
+        <div class="products-grid" style="grid-template-columns:repeat(4,1fr);gap:20px;">
+          <div class="product-card fade-in">
+            <div class="product-card-img-wrap">
+              <img src="https://placehold.co/480x640/EDE4DA/8B6147?font=playfair-display&text=Ivory+Reverie" alt="Ivory Reverie Set" class="product-card-img" loading="lazy">
+              <span class="product-card-badge new">New</span>
+              <div class="product-card-actions">
+                <a href="product.html?id=1" class="product-card-btn">View</a>
+                <button class="product-card-btn primary" onclick="addToCart({id:'1',name:'Ivory Reverie Set',price:1799,image:'https://placehold.co/480x640/EDE4DA/8B6147',category:'Satin Set',size:'S'})">Add</button>
+              </div>
+            </div>
+            <div class="product-card-info">
+              <div class="product-card-category">Satin Set</div>
+              <div class="product-card-name"><a href="product.html?id=1">Ivory Reverie Set</a></div>
+              <div class="product-card-price"><span class="price-current">₹1,799</span></div>
+            </div>
+          </div>
+          <div class="product-card fade-in" style="transition-delay:.08s">
+            <div class="product-card-img-wrap">
+              <img src="https://placehold.co/480x640/F5DDD3/8B6147?font=playfair-display&text=Blush+Hour" alt="Blush Hour Set" class="product-card-img" loading="lazy">
+              <span class="product-card-badge bestseller">Bestseller</span>
+              <div class="product-card-actions">
+                <a href="product.html?id=2" class="product-card-btn">View</a>
+                <button class="product-card-btn primary" onclick="addToCart({id:'2',name:'Blush Hour Set',price:1999,image:'https://placehold.co/480x640/F5DDD3/8B6147',category:'Satin Set',size:'S'})">Add</button>
+              </div>
+            </div>
+            <div class="product-card-info">
+              <div class="product-card-category">Satin Set</div>
+              <div class="product-card-name"><a href="product.html?id=2">Blush Hour Set</a></div>
+              <div class="product-card-price"><span class="price-current">₹1,999</span></div>
+            </div>
+          </div>
+          <div class="product-card fade-in" style="transition-delay:.16s">
+            <div class="product-card-img-wrap">
+              <img src="https://placehold.co/480x640/E0D9D4/8B6147?font=playfair-display&text=Soft+Stone" alt="Soft Stone Set" class="product-card-img" loading="lazy">
+              <span class="product-card-badge bestseller">Bestseller</span>
+              <div class="product-card-actions">
+                <a href="product.html?id=5" class="product-card-btn">View</a>
+                <button class="product-card-btn primary" onclick="addToCart({id:'5',name:'Soft Stone Set',price:999,image:'https://placehold.co/480x640/E0D9D4/8B6147',category:'Cotton Set',size:'S'})">Add</button>
+              </div>
+            </div>
+            <div class="product-card-info">
+              <div class="product-card-category">Cotton Set</div>
+              <div class="product-card-name"><a href="product.html?id=5">Soft Stone Set</a></div>
+              <div class="product-card-price"><span class="price-current">₹999</span></div>
+            </div>
+          </div>
+          <div class="product-card fade-in" style="transition-delay:.24s">
+            <div class="product-card-img-wrap">
+              <img src="https://placehold.co/480x640/D4B896/2C2825?font=playfair-display&text=Cocoa+Lounge" alt="Cocoa Lounge Co-ord" class="product-card-img" loading="lazy">
+              <div class="product-card-actions">
+                <a href="product.html?id=4" class="product-card-btn">View</a>
+                <button class="product-card-btn primary" onclick="addToCart({id:'4',name:'Cocoa Lounge Co-ord',price:1499,image:'https://placehold.co/480x640/D4B896/2C2825',category:'Lounge Set',size:'S'})">Add</button>
+              </div>
+            </div>
+            <div class="product-card-info">
+              <div class="product-card-category">Lounge Set</div>
+              <div class="product-card-name"><a href="product.html?id=4">Cocoa Lounge Co-ord</a></div>
+              <div class="product-card-price"><span class="price-current">₹1,499</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom" style="border-top:1px solid rgba(250,248,245,0.07);padding-top:32px;">
+        <div class="footer-bottom-left">© 2026 ANISO. All rights reserved.</div>
+        <div class="footer-social">
+          <a href="#" aria-label="Instagram"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+        </div>
+        <div class="footer-payment">
+          <span class="footer-payment-badge">UPI</span>
+          <span class="footer-payment-badge">Cards</span>
+          <span class="footer-payment-badge">COD</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

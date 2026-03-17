@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ANISO — Premium Women's Nightwear</title>
+  <meta name="description" content="Elevated nightwear and loungewear for the modern woman. Soft fabrics, refined silhouettes, and quiet luxury.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Announcement Bar -->
+  <div class="announcement-bar" id="announcementBar">
+    <div class="announcement-inner">
+      <div class="announcement-track">
+        <span>Complimentary shipping on all orders above ₹1,499</span>
+        <span class="sep">·</span>
+        <span>New Drop — Ivory Reverie Collection is now live</span>
+        <span class="sep">·</span>
+        <span>Easy 14-day returns &amp; exchanges</span>
+        <span class="sep">·</span>
+        <span>Complimentary shipping on all orders above ₹1,499</span>
+        <span class="sep">·</span>
+        <span>New Drop — Ivory Reverie Collection is now live</span>
+        <span class="sep">·</span>
+        <span>Easy 14-day returns &amp; exchanges</span>
+      </div>
+    </div>
+    <button class="announcement-close" onclick="closeAnnouncement()" aria-label="Close">&#215;</button>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+      <button class="nav-hamburger" id="hamburger" onclick="toggleMobileMenu()" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links nav-left">
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="shop.html#collections">Collections</a></li>
+        <li><a href="about.html">Our Story</a></li>
+      </ul>
+      <a href="index.html" class="nav-logo">
+        <img src="brand_assets/Aniso_LOGO.png" alt="ANISO" class="nav-logo-img">
+      </a>
+      <div class="nav-right">
+        <ul class="nav-links">
+          <li><a href="size-guide.html">Size Guide</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="nav-icons">
+          <button class="nav-icon-btn" aria-label="Search">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.4-4.4"/></svg>
+          </button>
+          <a href="cart.html" class="nav-icon-btn" aria-label="Cart">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+            <span class="cart-count" id="cartCount">0</span>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <ul>
+        <li><a href="shop.html" onclick="toggleMobileMenu()">Shop All</a></li>
+        <li><a href="shop.html#collections" onclick="toggleMobileMenu()">Collections</a></li>
+        <li><a href="about.html" onclick="toggleMobileMenu()">Our Story</a></li>
+        <li><a href="size-guide.html" onclick="toggleMobileMenu()">Size Guide</a></li>
+        <li><a href="faq.html" onclick="toggleMobileMenu()">FAQ</a></li>
+        <li><a href="contact.html" onclick="toggleMobileMenu()">Contact</a></li>
+        <li><a href="cart.html" onclick="toggleMobileMenu()">Your Bag</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main>
+    <!-- ══ HERO ══════════════════════════════════════════════ -->
+    <section class="hero">
+      <div class="hero-content">
+        <p class="hero-eyebrow">New Collection — Spring '26</p>
+        <h1 class="hero-title">
+          Soft nights,<br>
+          <em>styled right.</em>
+        </h1>
+        <p class="hero-sub">
+          Premium nightwear for the woman who knows<br>
+          comfort is never an afterthought.
+        </p>
+        <div class="hero-actions">
+          <a href="shop.html" class="btn-hero">Shop the Collection</a>
+          <a href="about.html" class="btn-hero-ghost">Our Story</a>
+        </div>
+      </div>
+      <div class="hero-image-wrap">
+        <img src="https://placehold.co/900x1200/2C2825/D4B896?font=playfair-display&text=ANISO" alt="ANISO Spring Collection">
+        <div class="hero-image-overlay"></div>
+      </div>
+      <div class="hero-number">No. 01 — Spring '26</div>
+    </section>
+
+    <!-- ══ COLLECTIONS ════════════════════════════════════════ -->
+    <section class="collections-section" id="collections">
+      <div class="container">
+        <div class="section-header centered fade-in">
+          <span class="section-label">Curated for You</span>
+          <h2 class="section-title">Shop by Collection</h2>
+        </div>
+        <div class="collections-grid">
+          <a href="shop.html?cat=satin" class="collection-card fade-in">
+            <div class="collection-img-wrap">
+              <img src="https://placehold.co/560x700/2C2825/D4B896?font=playfair-display&text=Satin+Sets" alt="Satin Sets" class="collection-img" loading="lazy">
+              <div class="collection-overlay"></div>
+            </div>
+            <div class="collection-info">
+              <h3>Satin Sets</h3>
+              <span>3 Pieces · From ₹1,799</span>
+            </div>
+          </a>
+          <a href="shop.html?cat=cotton" class="collection-card fade-in" style="transition-delay:0.1s">
+            <div class="collection-img-wrap">
+              <img src="https://placehold.co/560x700/EDE4DA/8B6147?font=playfair-display&text=Cotton+Sets" alt="Cotton Sets" class="collection-img" loading="lazy">
+              <div class="collection-overlay"></div>
+            </div>
+            <div class="collection-info">
+              <h3>Cotton Sets</h3>
+              <span>2 Pieces · From ₹999</span>
+            </div>
+          </a>
+          <a href="shop.html?cat=lounge" class="collection-card fade-in" style="transition-delay:0.2s">
+            <div class="collection-img-wrap">
+              <img src="https://placehold.co/560x700/D4B896/2C2825?font=playfair-display&text=Lounge+Sets" alt="Lounge Sets" class="collection-img" loading="lazy">
+              <div class="collection-overlay"></div>
+            </div>
+            <div class="collection-info">
+              <h3>Lounge Sets</h3>
+              <span>1 Piece · From ₹1,499</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ SHOP THE DROP ══════════════════════════════════════ -->
+    <section class="products-section">
+      <div class="container">
+        <div class="section-header fade-in">
+          <div>
+            <span class="section-label">New Arrivals</span>
+            <h2 class="section-title">Shop the Drop</h2>
+          </div>
+          <a href="shop.html" class="see-all">View All Pieces →</a>
+        </div>
+        <div class="products-grid">
+
+          <!-- Product 1 -->
+          <div class="product-card fade-in">
+            <div class="product-card-img-wrap">
+              <img src="https://placehold.co/480x640/EDE4DA/8B6147?font=playfair-display&text=Ivory+Reverie" alt="Ivory Reverie Set" class="product-card-img" loading="lazy">
+              <span class="product-card-badge new">New</span>
+              <div class="product-card-actions">
+                <a href="product.html?id=1" class="product-card-btn">View Details</a>
+                <button class="product-card-btn primary" onclick="addToCart({id:'1',name:'Ivory Reverie Set',price:1799,image:'https://placehold.co/480x640/EDE4DA/8B6147?font=playfair-display&text=Ivory+Reverie',category:'Satin Set',size:'S'})">Quick Add</button>
+              </div>
+            </div>
+            <div class="product-card-info">
+              <div class="product-card-category">Satin Set</div>
+              <div class="product-card-name"><a href="product.html?id=1">Ivory Reverie Set</a></div>
+              <div class="product-card-price">
+                <span class="price-current">₹1,799</span>
+              </div>
+              <div class="product-card-colors">
+                <span class="color-dot active" style="background:#F5EDD8;" title="Ivory"></span>
+                <span class="color-dot" style="background:#D4B896;" title="Champagne"></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product 2 -->
+          <div class="product-card fade-in" style="transition-delay:0.08s">
+            <div class="product-card-img-wrap">
+              <img src="https://placehold.co/480x640/F5DDD3/8B6147?font=playfair-display&text=Blush+Hour" alt="Blush Hour Set" class="product-card-img" loading="lazy">
+              <span class="product-card-badge bestseller">Bestseller</span>
+              <div class="product-card-actions">
+                <a href="product.html?id=2" class="product-card-btn">View Details</a>
+                <button class="product-card-btn primary" onclick="addToCart({id:'2',name:'Blush Hour Set',price:1999,image:'https://placehold.co/480x640/F5DDD3/8B6147?font=playfair-display&text=Blush+Hour',category:'Satin Set',size:'S'})">Quick Add</button>
+              </div>
+            </div>
+            <div class="product-card-info">
+              <div class="product-card-category">Satin Set</div>
+              <div class="product-card-name"><a href="product.html?id=2">Blush Hour Set</a></div>
+              <div class="product-card-price">
+                <span class="price-current">₹1,999</span>
+              </div>
+              <div class="product-card-colors">
+                <span class="color-dot active" style="background:#F5DDD3;" title="Blush"></span>
+                <span class="color-dot" style="background:#E8B4A0;" title="Rose"></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product 3 -->
+          <div class="product-card fade-in" style="transition-delay:0.16s">
+            <div class="product-card-img-wrap">
+              <img src="https://placehold.co/480x640/E8E2DC/8B6147?font=playfair-display&text=Cotton+Morning" alt="Cotton Morning Set" class="product-card-img" loading="lazy">
+              <span class="product-card-badge new">New</span>
+              <div class="product-card-actions">
+                <a href="product.html?id=3" class="product-card-btn">View Details</a>
+                <button class="product-card-btn primary" onclick="addToCart({id:'3',name:'Cotton Morning Set',price:1299,image:'https://placehold.co/480x640/E8E2DC/8B6147?font=playfair-display&text=Cotton+Morning',category:'Cotton Set',size:'S'})">Quick Add</button>
+              </div>
+            </div>
+            <div class="product-card-info">
+              <div class="product-card-category">Cotton Set</div>
+              <div class="product-card-name"><a href="product.html?id=3">Cotton Morning Set</a></div>
+              <div class="product-card-price">
+                <span class="price-current">₹1,299</span>
+              </div>
+              <div class="product-card-colors">
+                <span class="color-dot active" style="background:#E8E2DC;" title="Ivory"></span>
+                <span class="color-dot" style="background:#C8BFB6;" title="Stone"></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product 4 -->
+          <div class="product-card fade-in" style="transition-delay:0.24s">
+            <div class="product-card-img-wrap">
+              <img src="https://placehold.co/480x640/D4B896/2C2825?font=playfair-display&text=Cocoa+Lounge" alt="Cocoa Lounge Co-ord" class="product-card-img" loading="lazy">
+              <div class="product-card-actions">
+                <a href="product.html?id=4" class="product-card-btn">View Details</a>
+                <button class="product-card-btn primary" onclick="addToCart({id:'4',name:'Cocoa Lounge Co-ord',price:1499,image:'https://placehold.co/480x640/D4B896/2C2825?font=playfair-display&text=Cocoa+Lounge',category:'Lounge Set',size:'S'})">Quick Add</button>
+              </div>
+            </div>
+            <div class="product-card-info">
+              <div class="product-card-category">Lounge Set</div>
+              <div class="product-card-name"><a href="product.html?id=4">Cocoa Lounge Co-ord</a></div>
+              <div class="product-card-price">
+                <span class="price-current">₹1,499</span>
+              </div>
+              <div class="product-card-colors">
+                <span class="color-dot active" style="background:#D4B896;" title="Cocoa"></span>
+                <span class="color-dot" style="background:#8B6147;" title="Mocha"></span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ BRAND VALUES ════════════════════════════════════════ -->
+    <section class="values-section">
+      <div class="container">
+        <div class="values-grid">
+          <div class="value-item fade-in">
+            <div class="value-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/>
+              </svg>
+            </div>
+            <h3 class="value-title">Cloud-Soft Fabrics</h3>
+            <p class="value-text">Sourced for their exceptional softness — our fabrics feel like a second skin, all night long.</p>
+          </div>
+          <div class="value-item fade-in" style="transition-delay:0.12s">
+            <div class="value-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+              </svg>
+            </div>
+            <h3 class="value-title">Designed with Care</h3>
+            <p class="value-text">Every seam, every silhouette — considered. ANISO is crafted for how women actually want to feel at home.</p>
+          </div>
+          <div class="value-item fade-in" style="transition-delay:0.24s">
+            <div class="value-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              </svg>
+            </div>
+            <h3 class="value-title">Premium, Always</h3>
+            <p class="value-text">No compromises on quality. From packaging to product, ANISO is built to feel as elevated as it looks.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ CAMPAIGN BANNER ════════════════════════════════════ -->
+    <section class="campaign-section">
+      <div class="campaign-bg">
+        <img src="https://placehold.co/1920x620/1A1714/D4B896?font=playfair-display&text=Elevated+Comfort+for+Slow+Mornings" alt="ANISO Campaign" loading="lazy">
+      </div>
+      <div class="campaign-overlay"></div>
+      <div class="campaign-content">
+        <p class="campaign-eyebrow">The ANISO Philosophy</p>
+        <h2 class="campaign-title">
+          Elevated comfort for<br>
+          <em>slow mornings</em> and<br>
+          beautiful evenings.
+        </h2>
+        <p class="campaign-sub">Nightwear that feels as good as it looks. Quietly luxurious, effortlessly you.</p>
+        <a href="about.html" class="btn-hero-ghost">Read Our Story</a>
+      </div>
+    </section>
+
+    <!-- ══ BESTSELLERS ════════════════════════════════════════ -->
+    <section class="products-section" style="background: var(--cream);">
+      <div class="container">
+        <div class="section-header fade-in">
+          <div>
+            <span class="section-label">Most Loved</span>
+            <h2 class="section-title">The Bestsellers</h2>
+          </div>
+          <a href="shop.html" class="see-all">Shop All →</a>
+        </div>
+        <div class="products-grid cols-3">
+
+          <!-- Product 5 -->
+          <div class="product-card fade-in">
+            <div class="product-card-img-wrap">
+              <img src="https://placehold.co/480x640/E0D9D4/8B6147?font=playfair-display&text=Soft+Stone" alt="Soft Stone Set" class="product-card-img" loading="lazy">
+              <span class="product-card-badge bestseller">Bestseller</span>
+              <div class="product-card-actions">
+                <a href="product.html?id=5" class="product-card-btn">View Details</a>
+                <button class="product-card-btn primary" onclick="addToCart({id:'5',name:'Soft Stone Set',price:999,image:'https://placehold.co/480x640/E0D9D4/8B6147?font=playfair-display&text=Soft+Stone',category:'Cotton Set',size:'S'})">Quick Add</button>
+              </div>
+            </div>
+            <div class="product-card-info">
+              <div class="product-card-category">Cotton Set</div>
+              <div class="product-card-name"><a href="product.html?id=5">Soft Stone Set</a></div>
+              <div class="product-card-price">
+                <span class="price-current">₹999</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product 6 -->
+          <div class="product-card fade-in" style="transition-delay:0.1s">
+            <div class="product-card-img-wrap">
+              <img src="https://placehold.co/480x640/2C2825/D4B896?font=playfair-display&text=Midnight+Satin" alt="Midnight Satin Set" class="product-card-img" loading="lazy">
+              <span class="product-card-badge new">New</span>
+              <div class="product-card-actions">
+                <a href="product.html?id=6" class="product-card-btn">View Details</a>
+                <button class="product-card-btn primary" onclick="addToCart({id:'6',name:'Midnight Satin Set',price:1899,image:'https://placehold.co/480x640/2C2825/D4B896?font=playfair-display&text=Midnight+Satin',category:'Satin Set',size:'S'})">Quick Add</button>
+              </div>
+            </div>
+            <div class="product-card-info">
+              <div class="product-card-category">Satin Set</div>
+              <div class="product-card-name"><a href="product.html?id=6">Midnight Satin Set</a></div>
+              <div class="product-card-price">
+                <span class="price-current">₹1,899</span>
+              </div>
+              <div class="product-card-colors">
+                <span class="color-dot active" style="background:#2C2825;" title="Midnight"></span>
+                <span class="color-dot" style="background:#4A4540;" title="Charcoal"></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product 1 repeat -->
+          <div class="product-card fade-in" style="transition-delay:0.2s">
+            <div class="product-card-img-wrap">
+              <img src="https://placehold.co/480x640/EDE4DA/8B6147?font=playfair-display&text=Ivory+Reverie" alt="Ivory Reverie Set" class="product-card-img" loading="lazy">
+              <span class="product-card-badge">New</span>
+              <div class="product-card-actions">
+                <a href="product.html?id=1" class="product-card-btn">View Details</a>
+                <button class="product-card-btn primary" onclick="addToCart({id:'1',name:'Ivory Reverie Set',price:1799,image:'https://placehold.co/480x640/EDE4DA/8B6147?font=playfair-display&text=Ivory+Reverie',category:'Satin Set',size:'S'})">Quick Add</button>
+              </div>
+            </div>
+            <div class="product-card-info">
+              <div class="product-card-category">Satin Set</div>
+              <div class="product-card-name"><a href="product.html?id=1">Ivory Reverie Set</a></div>
+              <div class="product-card-price">
+                <span class="price-current">₹1,799</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ REASSURANCE ════════════════════════════════════════ -->
+    <section class="reassurance-section">
+      <div class="container">
+        <div class="reassurance-grid">
+          <div class="reassurance-item fade-in">
+            <div class="reassurance-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M20 7H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+            </div>
+            <div class="reassurance-title">Premium Fabrics</div>
+            <div class="reassurance-text">Carefully sourced satin and cotton that feel luxurious against your skin</div>
+          </div>
+          <div class="reassurance-item fade-in" style="transition-delay:0.08s">
+            <div class="reassurance-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 4v3h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+            </div>
+            <div class="reassurance-title">Free Shipping</div>
+            <div class="reassurance-text">Complimentary delivery on all orders over ₹1,499 across India</div>
+          </div>
+          <div class="reassurance-item fade-in" style="transition-delay:0.16s">
+            <div class="reassurance-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><polyline points="1,4 1,10 7,10"/><path d="M3.51 15a9 9 0 1 0 .49-4.02"/></svg>
+            </div>
+            <div class="reassurance-title">Easy Returns</div>
+            <div class="reassurance-text">Hassle-free 14-day returns. No questions asked, always.</div>
+          </div>
+          <div class="reassurance-item fade-in" style="transition-delay:0.24s">
+            <div class="reassurance-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+            </div>
+            <div class="reassurance-title">Gift Packaging</div>
+            <div class="reassurance-text">Every order arrives in our signature keepsake packaging</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ BRAND STORY PREVIEW ════════════════════════════════ -->
+    <section class="story-preview">
+      <div class="story-preview-inner container">
+        <div class="story-preview-img-wrap fade-in">
+          <img src="https://placehold.co/560x700/EDE4DA/8B6147?font=playfair-display&text=The+ANISO+Story" alt="ANISO Brand Story" class="story-preview-img" loading="lazy">
+        </div>
+        <div class="story-preview-content fade-in" style="transition-delay:0.15s">
+          <span class="section-label">The Brand</span>
+          <h2 class="story-preview-title">
+            Born from the belief that<br>
+            <em>evenings deserve elegance.</em>
+          </h2>
+          <p class="story-preview-text">
+            ANISO began with a simple question: why should the hours at home be any less beautiful than the hours outside? We believe in nightwear that carries a woman through her softest moments — styled, intentional, and quietly luxurious.
+          </p>
+          <p class="story-preview-text">
+            Designed for the Gen Z woman who knows her own worth, our collections blend timeless silhouettes with premium fabrics and a palette that feels effortlessly refined.
+          </p>
+          <a href="about.html" class="btn-secondary">Read Our Story</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ FAQ PREVIEW ════════════════════════════════════════ -->
+    <section class="faq-section">
+      <div class="container">
+        <div class="section-header centered fade-in" style="margin-bottom:52px">
+          <span class="section-label">Common Questions</span>
+          <h2 class="section-title">We're here to help</h2>
+        </div>
+        <div class="faq-list">
+          <div class="faq-item fade-in">
+            <button class="faq-question">
+              How long does shipping take?
+              <span class="faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">Standard shipping is 4–7 business days. Express delivery (2–3 days) is available at checkout for select pincodes. Orders above ₹1,499 ship free.</div>
+            </div>
+          </div>
+          <div class="faq-item fade-in">
+            <button class="faq-question">
+              What is your return policy?
+              <span class="faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">We accept returns within 14 days of delivery. Items must be unused, unwashed, and in original packaging. Reach out to us at care@aniso.in to initiate your return.</div>
+            </div>
+          </div>
+          <div class="faq-item fade-in">
+            <button class="faq-question">
+              How do I find my size?
+              <span class="faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">Visit our <a href="size-guide.html" style="color:var(--cocoa);text-decoration:underline;text-underline-offset:3px">Size Guide</a> for detailed measurements. Our sets run true to size. If you're between sizes, we recommend sizing up for a relaxed, lounge-ready fit.</div>
+            </div>
+          </div>
+          <div class="faq-item fade-in">
+            <button class="faq-question">
+              What fabrics do you use?
+              <span class="faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">We use premium pima cotton for our cotton sets and high-grade charmeuse satin for our satin collection. All fabrics are OEKO-TEX certified, skin-friendly, and breathable. Detailed fabric notes are listed on each product page.</div>
+            </div>
+          </div>
+        </div>
+        <div style="text-align:center; margin-top:48px;" class="fade-in">
+          <a href="faq.html" class="btn-secondary">View All FAQs</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ══ FOOTER ════════════════════════════════════════════════ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <img src="brand_assets/Aniso_LOGO.png" alt="ANISO" class="footer-brand-logo">
+          <p class="footer-brand-text">Premium nightwear and loungewear for the modern woman. Soft fabrics, refined silhouettes, and quiet luxury — every evening.</p>
+          <div class="footer-newsletter">
+            <input type="email" class="footer-newsletter-input" placeholder="Your email address">
+            <button class="footer-newsletter-btn">Join</button>
+          </div>
+        </div>
+        <div>
+          <div class="footer-col-title">Shop</div>
+          <ul class="footer-links">
+            <li><a href="shop.html">All Products</a></li>
+            <li><a href="shop.html?cat=satin">Satin Sets</a></li>
+            <li><a href="shop.html?cat=cotton">Cotton Sets</a></li>
+            <li><a href="shop.html?cat=lounge">Lounge Sets</a></li>
+            <li><a href="shop.html?cat=bestsellers">Bestsellers</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col-title">Help</div>
+          <ul class="footer-links">
+            <li><a href="size-guide.html">Size Guide</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="#">Shipping & Delivery</a></li>
+            <li><a href="#">Returns & Exchanges</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col-title">Brand</div>
+          <ul class="footer-links">
+            <li><a href="about.html">Our Story</a></li>
+            <li><a href="#">Sustainability</a></li>
+            <li><a href="#">Press</a></li>
+            <li><a href="#">Terms of Service</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-bottom-left">© 2026 ANISO. All rights reserved. Made with care in India.</div>
+        <div class="footer-social">
+          <a href="#" aria-label="Instagram">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          </a>
+          <a href="#" aria-label="Pinterest">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.24 2.65 7.86 6.39 9.29-.09-.78-.17-1.98.04-2.83.18-.77 1.24-5.26 1.24-5.26s-.32-.63-.32-1.57c0-1.47.86-2.57 1.92-2.57.91 0 1.35.68 1.35 1.5 0 .91-.58 2.27-.88 3.54-.25 1.06.52 1.91 1.55 1.91 1.86 0 3.1-2.38 3.1-5.21 0-2.15-1.46-3.77-4.09-3.77-2.99 0-4.86 2.24-4.86 4.75 0 .86.25 1.47.64 1.94.18.21.2.3.14.54-.05.17-.15.59-.19.75-.06.24-.25.33-.46.24-1.3-.53-1.9-1.97-1.9-3.58 0-2.65 2.24-5.84 6.7-5.84 3.57 0 5.95 2.6 5.95 5.39 0 3.7-2.06 6.46-5.1 6.46-1.02 0-1.98-.55-2.31-1.17l-.63 2.42c-.23.87-.84 1.96-1.25 2.62.94.29 1.94.45 2.97.45 5.52 0 10-4.48 10-10S17.52 2 12 2z"/></svg>
+          </a>
+          <a href="#" aria-label="WhatsApp">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+          </a>
+        </div>
+        <div class="footer-payment">
+          <span class="footer-payment-badge">UPI</span>
+          <span class="footer-payment-badge">Cards</span>
+          <span class="footer-payment-badge">COD</span>
+          <span class="footer-payment-badge">EMI</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Story — ANISO</title>
+  <meta name="description" content="ANISO was born from the belief that evenings deserve elegance. Learn about our story, values, and the women we design for.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <div class="announcement-bar" id="announcementBar">
+    <div class="announcement-inner">
+      <div class="announcement-track">
+        <span>Complimentary shipping on all orders above ₹1,499</span><span class="sep">·</span>
+        <span>New Drop — Ivory Reverie Collection is now live</span><span class="sep">·</span>
+        <span>Easy 14-day returns &amp; exchanges</span><span class="sep">·</span>
+        <span>Complimentary shipping on all orders above ₹1,499</span><span class="sep">·</span>
+        <span>New Drop — Ivory Reverie Collection is now live</span><span class="sep">·</span>
+        <span>Easy 14-day returns &amp; exchanges</span>
+      </div>
+    </div>
+    <button class="announcement-close" onclick="closeAnnouncement()">&#215;</button>
+  </div>
+
+  <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+      <button class="nav-hamburger" id="hamburger" onclick="toggleMobileMenu()"><span></span><span></span><span></span></button>
+      <ul class="nav-links nav-left">
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="shop.html#collections">Collections</a></li>
+        <li><a href="about.html" class="active">Our Story</a></li>
+      </ul>
+      <a href="index.html" class="nav-logo"><img src="brand_assets/Aniso_LOGO.png" alt="ANISO" class="nav-logo-img"></a>
+      <div class="nav-right">
+        <ul class="nav-links">
+          <li><a href="size-guide.html">Size Guide</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="nav-icons">
+          <button class="nav-icon-btn" aria-label="Search">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.4-4.4"/></svg>
+          </button>
+          <a href="cart.html" class="nav-icon-btn" aria-label="Cart">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+            <span class="cart-count" id="cartCount">0</span>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <ul>
+        <li><a href="shop.html" onclick="toggleMobileMenu()">Shop All</a></li>
+        <li><a href="about.html" onclick="toggleMobileMenu()">Our Story</a></li>
+        <li><a href="size-guide.html" onclick="toggleMobileMenu()">Size Guide</a></li>
+        <li><a href="faq.html" onclick="toggleMobileMenu()">FAQ</a></li>
+        <li><a href="contact.html" onclick="toggleMobileMenu()">Contact</a></li>
+        <li><a href="cart.html" onclick="toggleMobileMenu()">Your Bag</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- About Hero -->
+    <div class="about-hero">
+      <div class="about-hero-bg">
+        <img src="https://placehold.co/1920x560/1A1714/D4B896?font=playfair-display&text=Our+Story" alt="ANISO Story">
+      </div>
+      <div class="container about-hero-content">
+        <span class="section-label" style="color:var(--champagne)">The Brand</span>
+        <h1 class="about-hero-title">Born from the belief<br>that <em>evenings deserve<br>elegance.</em></h1>
+      </div>
+    </div>
+
+    <!-- Brand story -->
+    <section class="about-section" style="background:var(--cream);">
+      <div class="container">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;" class="about-grid">
+          <div class="about-text-block fade-in">
+            <p>ANISO began with a simple question: why should the hours spent at home be any less beautiful than the hours spent outside?</p>
+            <p>We noticed that women invested deeply in how they presented themselves to the world — but the garments they reached for in their most personal moments were an afterthought. A mismatched set grabbed off a shelf. A faded t-shirt from years ago. Comfortable, yes. But never elevated.</p>
+            <p>We wanted to change that. We believed that the softest hours of the day — the mornings before the rush, the evenings after the world quietens down — deserved something more intentional.</p>
+            <p>Something that made you feel like yourself, at your best, even when no one else is watching.</p>
+          </div>
+          <div class="fade-in" style="transition-delay:0.15s;">
+            <img src="https://placehold.co/580x720/EDE4DA/8B6147?font=playfair-display&text=ANISO" alt="ANISO Brand" style="width:100%;aspect-ratio:4/5;object-fit:cover;" loading="lazy">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quote -->
+    <section style="background:var(--cream-warm);padding:0;">
+      <div class="container">
+        <blockquote class="about-quote fade-in">
+          "Nightwear that feels as good as it looks. Quietly luxurious, effortlessly you."
+        </blockquote>
+      </div>
+    </section>
+
+    <!-- Values -->
+    <section class="about-section" style="background:var(--cream-warm);">
+      <div class="container">
+        <div class="section-header centered fade-in" style="margin-bottom:56px">
+          <span class="section-label">What We Stand For</span>
+          <h2 class="section-title">The ANISO Way</h2>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:40px;">
+          <div class="fade-in" style="padding:40px 32px;background:var(--cream);border:1px solid var(--border);">
+            <div style="width:40px;height:40px;margin-bottom:20px;color:var(--champagne);">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            </div>
+            <h3 style="font-family:var(--font-display);font-size:20px;font-weight:400;color:var(--black);margin-bottom:14px;">Craft First</h3>
+            <p style="font-size:13.5px;font-weight:300;line-height:1.85;color:var(--muted);">Every detail matters. From the weight of the fabric to the finish of the hem — ANISO is built on the belief that craft is the highest form of care.</p>
+          </div>
+          <div class="fade-in" style="padding:40px 32px;background:var(--cream);border:1px solid var(--border);transition-delay:.1s">
+            <div style="width:40px;height:40px;margin-bottom:20px;color:var(--champagne);">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            </div>
+            <h3 style="font-family:var(--font-display);font-size:20px;font-weight:400;color:var(--black);margin-bottom:14px;">Quietly Luxurious</h3>
+            <p style="font-size:13.5px;font-weight:300;line-height:1.85;color:var(--muted);">No logos, no noise. We believe in luxury that whispers — pieces that feel expensive because they are considered, not because they're loud.</p>
+          </div>
+          <div class="fade-in" style="padding:40px 32px;background:var(--cream);border:1px solid var(--border);transition-delay:.2s">
+            <div style="width:40px;height:40px;margin-bottom:20px;color:var(--champagne);">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <h3 style="font-family:var(--font-display);font-size:20px;font-weight:400;color:var(--black);margin-bottom:14px;">Made for Women</h3>
+            <p style="font-size:13.5px;font-weight:300;line-height:1.85;color:var(--muted);">Designed by women, for women. ANISO is built around the real shapes, moments, and moods of the women who wear us — not an idealised version of them.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Dark campaign section -->
+    <section style="background:var(--black);padding:100px 0;position:relative;overflow:hidden;">
+      <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 30% 50%,rgba(212,184,150,.07) 0%,transparent 60%),radial-gradient(ellipse at 70% 50%,rgba(232,180,160,.05) 0%,transparent 60%);pointer-events:none;"></div>
+      <div class="container" style="position:relative;z-index:1;">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;">
+          <div class="fade-in">
+            <img src="https://placehold.co/580x720/2C2825/D4B896?font=playfair-display&text=Premium+Fabrics" alt="ANISO Fabrics" style="width:100%;aspect-ratio:4/5;object-fit:cover;" loading="lazy">
+          </div>
+          <div class="fade-in" style="transition-delay:0.15s;">
+            <span class="section-label" style="color:var(--champagne)">Our Materials</span>
+            <h2 style="font-family:var(--font-display);font-size:clamp(32px,3.5vw,52px);font-weight:400;letter-spacing:var(--tracking-display);line-height:1.15;color:var(--cream);margin-bottom:28px;">Fabric you'll feel<br><em style="color:var(--blush)">from the first touch.</em></h2>
+            <p style="font-size:14.5px;font-weight:300;line-height:1.9;color:rgba(250,248,245,0.55);margin-bottom:20px;">We source only two fabric categories: premium pima cotton for breathable, everyday softness, and charmeuse satin for our signature drape and lustre.</p>
+            <p style="font-size:14.5px;font-weight:300;line-height:1.9;color:rgba(250,248,245,0.55);margin-bottom:40px;">Every fabric is OEKO-TEX certified — free from harmful substances, gentle on sensitive skin, and designed to feel better with every wash.</p>
+            <a href="shop.html" class="btn-hero">Shop the Collection</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section style="padding:80px 0;background:var(--cream);text-align:center;">
+      <div class="container">
+        <span class="section-label fade-in">Ready to discover ANISO?</span>
+        <h2 style="font-family:var(--font-display);font-size:clamp(32px,4vw,56px);font-weight:400;letter-spacing:var(--tracking-display);color:var(--black);margin:16px 0 40px;line-height:1.1;" class="fade-in">Your softest evenings<br><em style="color:var(--cocoa)">start here.</em></h2>
+        <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;" class="fade-in">
+          <a href="shop.html" class="btn-primary">Shop the Collection</a>
+          <a href="contact.html" class="btn-secondary">Get in Touch</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <img src="brand_assets/Aniso_LOGO.png" alt="ANISO" class="footer-brand-logo">
+          <p class="footer-brand-text">Premium nightwear and loungewear for the modern woman.</p>
+          <div class="footer-newsletter">
+            <input type="email" class="footer-newsletter-input" placeholder="Your email address">
+            <button class="footer-newsletter-btn">Join</button>
+          </div>
+        </div>
+        <div>
+          <div class="footer-col-title">Shop</div>
+          <ul class="footer-links">
+            <li><a href="shop.html">All Products</a></li>
+            <li><a href="shop.html?cat=satin">Satin Sets</a></li>
+            <li><a href="shop.html?cat=cotton">Cotton Sets</a></li>
+            <li><a href="shop.html?cat=lounge">Lounge Sets</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col-title">Help</div>
+          <ul class="footer-links">
+            <li><a href="size-guide.html">Size Guide</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="#">Returns</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col-title">Brand</div>
+          <ul class="footer-links">
+            <li><a href="about.html">Our Story</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-bottom-left">© 2026 ANISO. All rights reserved. Made with care in India.</div>
+        <div class="footer-social">
+          <a href="#" aria-label="Instagram"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+        </div>
+        <div class="footer-payment">
+          <span class="footer-payment-badge">UPI</span>
+          <span class="footer-payment-badge">Cards</span>
+          <span class="footer-payment-badge">COD</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+  <style>
+    @media (max-width:768px) {
+      .about-grid { grid-template-columns:1fr !important; gap:40px !important; }
+    }
+  </style>
+</body>
+</html>
