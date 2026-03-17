@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="brand_assets/favicon.png" type="image/png">
   <title>Shop All — ANISO</title>
   <meta name="description" content="Browse the complete ANISO collection. Premium satin sets, cotton co-ords, and lounge sets for the modern woman.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -52,6 +53,25 @@
           <button class="nav-icon-btn" aria-label="Search">
             <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.4-4.4"/></svg>
           </button>
+          <div class="profile-dropdown-wrap" id="profileDropdownWrap">
+              <button class="nav-icon-btn" id="profileBtn" aria-label="Account">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              </button>
+              <div class="profile-dropdown" id="profileMenu">
+                <div id="profileSignedOut">
+                  <div class="profile-dropdown-header">Welcome to ANISO</div>
+                  <a href="#" class="profile-dropdown-link" onclick="openSignIn('signin');return false;">Sign In</a>
+                  <a href="#" class="profile-dropdown-link" onclick="openSignIn('register');return false;">Create Account</a>
+                </div>
+                <div id="profileSignedIn" style="display:none">
+                  <div class="profile-dropdown-header" id="profileGreeting">Hi, there</div>
+                  <a href="#" class="profile-dropdown-link">My Account</a>
+                  <a href="#" class="profile-dropdown-link">My Orders</a>
+                  <hr class="profile-dropdown-divider">
+                  <a href="#" class="profile-dropdown-link" onclick="signOut();return false;">Sign Out</a>
+                </div>
+              </div>
+            </div>
           <a href="cart.html" class="nav-icon-btn" aria-label="Cart">
             <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
             <span class="cart-count" id="cartCount">0</span>
@@ -91,7 +111,7 @@
         <div class="collections-grid" style="grid-template-columns:repeat(4,1fr); gap:12px;">
           <a href="#" class="collection-card filter-btn-card" data-cat="all" style="display:block">
             <div class="collection-img-wrap" style="aspect-ratio:1/1;">
-              <img src="https://images.unsplash.com/photo-1433424165784-75568b0aca13?w=600&h=800&fit=crop&crop=faces,entropy&q=85" alt="All" class="collection-img">
+              <img src="https://images.pexels.com/photos/920385/pexels-photo-920385.jpeg?auto=compress&cs=tinysrgb&w=600&h=800&fit=crop?w=600&h=800&fit=crop&crop=faces,entropy&q=85" alt="All" class="collection-img">
               <div class="collection-overlay"></div>
             </div>
             <div class="collection-info"><h3 style="font-size:18px">All Pieces</h3><span>9 pieces</span></div>
@@ -153,11 +173,11 @@
           <!-- Satin Sets -->
           <div class="product-card fade-in" data-category="satin bestseller">
             <div class="product-card-img-wrap">
-              <img src="https://images.unsplash.com/photo-1433424165784-75568b0aca13?w=600&h=800&fit=crop&crop=faces,entropy&q=85" alt="Ivory Reverie Set" class="product-card-img" loading="lazy">
+              <img src="https://images.pexels.com/photos/920385/pexels-photo-920385.jpeg?auto=compress&cs=tinysrgb&w=600&h=800&fit=crop?w=600&h=800&fit=crop&crop=faces,entropy&q=85" alt="Ivory Reverie Set" class="product-card-img" loading="lazy">
               <span class="product-card-badge new">New</span>
               <div class="product-card-actions">
                 <a href="product.html?id=1" class="product-card-btn">Quick View</a>
-                <button class="product-card-btn primary" onclick="addToCart({id:'1',name:'Ivory Reverie Set',price:1799,image:'https://images.unsplash.com/photo-1433424165784-75568b0aca13?w=600&h=800&fit=crop',category:'Satin Set',size:'S'})">Add to Bag</button>
+                <button class="product-card-btn primary" onclick="addToCart({id:'1',name:'Ivory Reverie Set',price:1799,image:'https://images.pexels.com/photos/920385/pexels-photo-920385.jpeg?auto=compress&cs=tinysrgb&w=600&h=800&fit=crop?w=600&h=800&fit=crop',category:'Satin Set',size:'S'})">Add to Bag</button>
               </div>
             </div>
             <div class="product-card-info">
@@ -165,8 +185,8 @@
               <div class="product-card-name"><a href="product.html?id=1">Ivory Reverie Set</a></div>
               <div class="product-card-price"><span class="price-current">₹1,799</span></div>
               <div class="product-card-colors">
-                <span class="color-dot active" style="background:#F5EDD8" title="Ivory"></span>
-                <span class="color-dot" style="background:#D4B896" title="Champagne"></span>
+                <span class="color-dot active" style="background:#F5EDD8" title="Ivory" data-img="https://images.pexels.com/photos/920385/pexels-photo-920385.jpeg?auto=compress&cs=tinysrgb&w=600&h=800&fit=crop"></span>
+                <span class="color-dot" style="background:#D4B896" title="Champagne" data-img="https://images.pexels.com/photos/3807543/pexels-photo-3807543.jpeg?auto=compress&cs=tinysrgb&w=600&h=800&fit=crop"></span>
               </div>
             </div>
           </div>
@@ -206,8 +226,8 @@
               <div class="product-card-name"><a href="product.html?id=7">Star Dreamer Nightsuit</a></div>
               <div class="product-card-price"><span class="price-current">₹1,199</span></div>
               <div class="product-card-colors">
-                <span class="color-dot active" style="background:#E8D5F0" title="Lavender"></span>
-                <span class="color-dot" style="background:#F5DDD3" title="Blush"></span>
+                <span class="color-dot active" style="background:#E8D5F0" title="Lavender" data-img="https://images.unsplash.com/photo-1755456785148-e567dbb6a034?w=600&h=800&fit=crop&q=85"></span>
+                <span class="color-dot" style="background:#F5DDD3" title="Blush" data-img="https://images.pexels.com/photos/6963182/pexels-photo-6963182.jpeg?auto=compress&cs=tinysrgb&w=600&h=800&fit=crop"></span>
               </div>
             </div>
           </div>
@@ -226,8 +246,8 @@
               <div class="product-card-name"><a href="product.html?id=8">Cloud Soft Nightsuit</a></div>
               <div class="product-card-price"><span class="price-current">₹1,099</span></div>
               <div class="product-card-colors">
-                <span class="color-dot active" style="background:#FAF0E6" title="Cream"></span>
-                <span class="color-dot" style="background:#C8BFB6" title="Stone"></span>
+                <span class="color-dot active" style="background:#FAF0E6" title="Cream" data-img="https://plus.unsplash.com/premium_photo-1663040451691-0c89005ce5cc?w=600&h=800&fit=crop&q=85"></span>
+                <span class="color-dot" style="background:#C8BFB6" title="Stone" data-img="https://images.pexels.com/photos/3807982/pexels-photo-3807982.jpeg?auto=compress&cs=tinysrgb&w=600&h=800&fit=crop"></span>
               </div>
             </div>
           </div>
@@ -246,19 +266,19 @@
               <div class="product-card-name"><a href="product.html?id=9">Blush Floral Nightsuit</a></div>
               <div class="product-card-price"><span class="price-current">₹999</span></div>
               <div class="product-card-colors">
-                <span class="color-dot active" style="background:#F5DDD3" title="Blush"></span>
-                <span class="color-dot" style="background:#E8B4A0" title="Peach"></span>
+                <span class="color-dot active" style="background:#F5DDD3" title="Blush" data-img="https://plus.unsplash.com/premium_photo-1664302034933-69eeafba6e18?w=600&h=800&fit=crop&q=85"></span>
+                <span class="color-dot" style="background:#E8B4A0" title="Peach" data-img="https://images.unsplash.com/photo-1755456785148-e567dbb6a034?w=600&h=800&fit=crop&q=85"></span>
               </div>
             </div>
           </div>
 
           <div class="product-card fade-in" data-category="nightsuit" style="transition-delay:.35s">
             <div class="product-card-img-wrap">
-              <img src="https://images.unsplash.com/photo-1714235058886-a0b38ad5066c?w=600&h=800&fit=crop&crop=faces,entropy&q=85" alt="Cotton Candy Stripe Nightsuit" class="product-card-img" loading="lazy">
+              <img src="https://images.pexels.com/photos/6963170/pexels-photo-6963170.jpeg?auto=compress&cs=tinysrgb&w=600&h=800&fit=crop?w=600&h=800&fit=crop&crop=faces,entropy&q=85" alt="Cotton Candy Stripe Nightsuit" class="product-card-img" loading="lazy">
               <span class="product-card-badge new">New</span>
               <div class="product-card-actions">
                 <a href="product.html?id=10" class="product-card-btn">Quick View</a>
-                <button class="product-card-btn primary" onclick="addToCart({id:'10',name:'Cotton Candy Stripe Nightsuit',price:1149,image:'https://images.unsplash.com/photo-1714235058886-a0b38ad5066c?w=600&h=800&fit=crop',category:'Cute Nightsuit',size:'S'})">Add to Bag</button>
+                <button class="product-card-btn primary" onclick="addToCart({id:'10',name:'Cotton Candy Stripe Nightsuit',price:1149,image:'https://images.pexels.com/photos/6963170/pexels-photo-6963170.jpeg?auto=compress&cs=tinysrgb&w=600&h=800&fit=crop?w=600&h=800&fit=crop',category:'Cute Nightsuit',size:'S'})">Add to Bag</button>
               </div>
             </div>
             <div class="product-card-info">
@@ -286,8 +306,8 @@
               <div class="product-card-name"><a href="product.html?id=4">Cocoa Lounge Co-ord</a></div>
               <div class="product-card-price"><span class="price-current">₹1,499</span></div>
               <div class="product-card-colors">
-                <span class="color-dot active" style="background:#D4B896" title="Cocoa"></span>
-                <span class="color-dot" style="background:#8B6147" title="Mocha"></span>
+                <span class="color-dot active" style="background:#D4B896" title="Cocoa" data-img="https://images.unsplash.com/photo-1759229874709-a8d0de083b91?w=600&h=800&fit=crop&q=85"></span>
+                <span class="color-dot" style="background:#8B6147" title="Mocha" data-img="https://images.unsplash.com/photo-1531353826977-0941b4779a1c?w=600&h=800&fit=crop&q=85"></span>
               </div>
             </div>
           </div>
@@ -314,11 +334,11 @@
 
           <div class="product-card fade-in" data-category="nightsuit" style="transition-delay:.56s">
             <div class="product-card-img-wrap">
-              <img src="https://plus.unsplash.com/premium_photo-1702531819085-4815383bd175?w=600&h=800&fit=crop&crop=faces,entropy&q=85" alt="Moonlit Dreams Nightsuit" class="product-card-img" loading="lazy">
+              <img src="https://images.pexels.com/photos/4473880/pexels-photo-4473880.jpeg?auto=compress&cs=tinysrgb&w=600&h=800&fit=crop?w=600&h=800&fit=crop&crop=faces,entropy&q=85" alt="Moonlit Dreams Nightsuit" class="product-card-img" loading="lazy">
               <span class="product-card-badge new">New</span>
               <div class="product-card-actions">
                 <a href="product.html?id=11" class="product-card-btn">Quick View</a>
-                <button class="product-card-btn primary" onclick="addToCart({id:'11',name:'Moonlit Dreams Nightsuit',price:1249,image:'https://plus.unsplash.com/premium_photo-1702531819085-4815383bd175?w=600&h=800&fit=crop',category:'Cute Nightsuit',size:'S'})">Add to Bag</button>
+                <button class="product-card-btn primary" onclick="addToCart({id:'11',name:'Moonlit Dreams Nightsuit',price:1249,image:'https://images.pexels.com/photos/4473880/pexels-photo-4473880.jpeg?auto=compress&cs=tinysrgb&w=600&h=800&fit=crop?w=600&h=800&fit=crop',category:'Cute Nightsuit',size:'S'})">Add to Bag</button>
               </div>
             </div>
             <div class="product-card-info">
@@ -435,5 +455,37 @@
       });
     });
   </script>
+
+  <!-- Sign In / Register Modal -->
+  <div class="signin-overlay" id="signinOverlay">
+    <div class="signin-modal">
+      <button class="signin-modal-close" onclick="closeSignIn()">&#215;</button>
+      <div class="signin-logo">
+        <img src="brand_assets/Aniso_LOGO.png" alt="ANISO">
+      </div>
+      <h2 class="signin-title">My Account</h2>
+      <div class="signin-tabs">
+        <button class="signin-tab active" data-tab="signin">Sign In</button>
+        <button class="signin-tab" data-tab="register">Create Account</button>
+      </div>
+      <div id="signinFormWrap">
+        <form class="signin-form" id="signinForm">
+          <input class="signin-input" type="email" placeholder="Email address" required>
+          <input class="signin-input" type="password" placeholder="Password" required>
+          <button type="submit" class="signin-submit">Sign In</button>
+        </form>
+        <div class="signin-footer">Don't have an account? <a href="#" onclick="openSignIn('register');return false;">Create one</a></div>
+      </div>
+      <div id="registerFormWrap" style="display:none">
+        <form class="signin-form" id="registerForm">
+          <input class="signin-input" type="text" name="fullname" placeholder="Full name" required>
+          <input class="signin-input" type="email" placeholder="Email address" required>
+          <input class="signin-input" type="password" placeholder="Create password" required>
+          <button type="submit" class="signin-submit">Create Account</button>
+        </form>
+        <div class="signin-footer">Already have an account? <a href="#" onclick="openSignIn('signin');return false;">Sign in</a></div>
+      </div>
+    </div>
+  </div>
 </body>
 </html>

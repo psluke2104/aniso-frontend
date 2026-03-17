@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="brand_assets/favicon.png" type="image/png">
   <title>Contact — ANISO</title>
   <meta name="description" content="Get in touch with the ANISO team. We're here to help with sizing, orders, returns, and anything else.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -44,6 +45,25 @@
           <button class="nav-icon-btn" aria-label="Search">
             <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.4-4.4"/></svg>
           </button>
+          <div class="profile-dropdown-wrap" id="profileDropdownWrap">
+              <button class="nav-icon-btn" id="profileBtn" aria-label="Account">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              </button>
+              <div class="profile-dropdown" id="profileMenu">
+                <div id="profileSignedOut">
+                  <div class="profile-dropdown-header">Welcome to ANISO</div>
+                  <a href="#" class="profile-dropdown-link" onclick="openSignIn('signin');return false;">Sign In</a>
+                  <a href="#" class="profile-dropdown-link" onclick="openSignIn('register');return false;">Create Account</a>
+                </div>
+                <div id="profileSignedIn" style="display:none">
+                  <div class="profile-dropdown-header" id="profileGreeting">Hi, there</div>
+                  <a href="#" class="profile-dropdown-link">My Account</a>
+                  <a href="#" class="profile-dropdown-link">My Orders</a>
+                  <hr class="profile-dropdown-divider">
+                  <a href="#" class="profile-dropdown-link" onclick="signOut();return false;">Sign Out</a>
+                </div>
+              </div>
+            </div>
           <a href="cart.html" class="nav-icon-btn" aria-label="Cart">
             <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
             <span class="cart-count" id="cartCount">0</span>
@@ -273,5 +293,37 @@
       .contact-grid { grid-template-columns: 1fr !important; gap: 48px !important; }
     }
   </style>
+
+  <!-- Sign In / Register Modal -->
+  <div class="signin-overlay" id="signinOverlay">
+    <div class="signin-modal">
+      <button class="signin-modal-close" onclick="closeSignIn()">&#215;</button>
+      <div class="signin-logo">
+        <img src="brand_assets/Aniso_LOGO.png" alt="ANISO">
+      </div>
+      <h2 class="signin-title">My Account</h2>
+      <div class="signin-tabs">
+        <button class="signin-tab active" data-tab="signin">Sign In</button>
+        <button class="signin-tab" data-tab="register">Create Account</button>
+      </div>
+      <div id="signinFormWrap">
+        <form class="signin-form" id="signinForm">
+          <input class="signin-input" type="email" placeholder="Email address" required>
+          <input class="signin-input" type="password" placeholder="Password" required>
+          <button type="submit" class="signin-submit">Sign In</button>
+        </form>
+        <div class="signin-footer">Don't have an account? <a href="#" onclick="openSignIn('register');return false;">Create one</a></div>
+      </div>
+      <div id="registerFormWrap" style="display:none">
+        <form class="signin-form" id="registerForm">
+          <input class="signin-input" type="text" name="fullname" placeholder="Full name" required>
+          <input class="signin-input" type="email" placeholder="Email address" required>
+          <input class="signin-input" type="password" placeholder="Create password" required>
+          <button type="submit" class="signin-submit">Create Account</button>
+        </form>
+        <div class="signin-footer">Already have an account? <a href="#" onclick="openSignIn('signin');return false;">Sign in</a></div>
+      </div>
+    </div>
+  </div>
 </body>
 </html>

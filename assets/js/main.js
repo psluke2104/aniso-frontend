@@ -287,6 +287,123 @@ const style = document.createElement('style');
 style.textContent = `@keyframes shake{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-6px)}40%,80%{transform:translateX(6px)}}`;
 document.head.appendChild(style);
 
+// ── Color Variant Image Swap ──────────────────────────────────
+function initColorSwap() {
+  document.querySelectorAll('.product-card').forEach(card => {
+    card.querySelectorAll('.color-dot[data-img]').forEach(dot => {
+      dot.addEventListener('click', () => {
+        card.querySelectorAll('.color-dot').forEach(d => d.classList.remove('active'));
+        dot.classList.add('active');
+        const img = card.querySelector('.product-card-img');
+        if (!img || !dot.dataset.img) return;
+        img.style.opacity = '0';
+        setTimeout(() => {
+          img.src = dot.dataset.img;
+          img.onload = () => { img.style.opacity = '1'; };
+          img.onerror = () => { img.style.opacity = '1'; };
+        }, 160);
+      });
+    });
+  });
+}
+
+// ── Auth / Profile ────────────────────────────────────────────
+const AUTH_KEY = 'aniso_user';
+function getUser() {
+  try { return JSON.parse(localStorage.getItem(AUTH_KEY)); } catch { return null; }
+}
+function saveUser(user) { localStorage.setItem(AUTH_KEY, JSON.stringify(user)); }
+function signOut() {
+  localStorage.removeItem(AUTH_KEY);
+  updateProfileUI();
+  document.getElementById('profileMenu')?.classList.remove('open');
+}
+window.signOut = signOut;
+
+function openSignIn(tab) {
+  const overlay = document.getElementById('signinOverlay');
+  if (!overlay) return;
+  overlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  if (tab) {
+    const btn = overlay.querySelector(`[data-tab="${tab}"]`);
+    btn && btn.click();
+  }
+}
+function closeSignIn() {
+  document.getElementById('signinOverlay')?.classList.remove('open');
+  document.body.style.overflow = '';
+}
+window.openSignIn = openSignIn;
+window.closeSignIn = closeSignIn;
+
+function updateProfileUI() {
+  const user = getUser();
+  document.querySelectorAll('#profileSignedIn').forEach(el => {
+    el.style.display = user ? '' : 'none';
+  });
+  document.querySelectorAll('#profileSignedOut').forEach(el => {
+    el.style.display = user ? 'none' : '';
+  });
+  document.querySelectorAll('#profileGreeting').forEach(el => {
+    el.textContent = user ? `Hi, ${user.name.split(' ')[0]}` : 'Welcome to ANISO';
+  });
+}
+
+function initAuth() {
+  const overlay = document.getElementById('signinOverlay');
+  if (!overlay) return;
+
+  overlay.addEventListener('click', e => { if (e.target === overlay) closeSignIn(); });
+
+  overlay.querySelectorAll('.signin-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      overlay.querySelectorAll('.signin-tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      const isSignIn = tab.dataset.tab === 'signin';
+      const swWrap = document.getElementById('signinFormWrap');
+      const rgWrap = document.getElementById('registerFormWrap');
+      if (swWrap) swWrap.style.display = isSignIn ? '' : 'none';
+      if (rgWrap) rgWrap.style.display = isSignIn ? 'none' : '';
+    });
+  });
+
+  document.getElementById('signinForm')?.addEventListener('submit', e => {
+    e.preventDefault();
+    const email = e.target.querySelector('[type=email]').value;
+    const name = email.split('@')[0].replace(/[._-]/g, ' ');
+    saveUser({ email, name: name.charAt(0).toUpperCase() + name.slice(1) });
+    closeSignIn();
+    updateProfileUI();
+  });
+
+  document.getElementById('registerForm')?.addEventListener('submit', e => {
+    e.preventDefault();
+    const name = e.target.querySelector('[name=fullname]').value;
+    const email = e.target.querySelector('[type=email]').value;
+    saveUser({ email, name });
+    closeSignIn();
+    updateProfileUI();
+  });
+
+  document.getElementById('profileBtn')?.addEventListener('click', e => {
+    e.stopPropagation();
+    const menu = document.getElementById('profileMenu');
+    if (!menu) return;
+    const willOpen = !menu.classList.contains('open');
+    menu.classList.toggle('open', willOpen);
+  });
+
+  document.addEventListener('click', e => {
+    const wrap = document.getElementById('profileDropdownWrap');
+    if (wrap && !wrap.contains(e.target)) {
+      document.getElementById('profileMenu')?.classList.remove('open');
+    }
+  });
+
+  updateProfileUI();
+}
+
 // ── Init ──────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
   if (sessionStorage.getItem('aniso_ann_closed')) {
@@ -303,4 +420,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initFadeIn();
   renderCart();
   setActiveNav();
+  initColorSwap();
+  initAuth();
 });
