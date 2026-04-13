@@ -4,419 +4,278 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" href="brand_assets/favicon.png" type="image/png">
-  <title>Ivory Reverie Set — ANISO</title>
-  <meta name="description" content="Whisper-soft satin that moves with you. Our signature sleep set in warm ivory — designed for slow mornings and beautiful evenings.">
+  <title>Product — ANISO</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/styles.css">
-  <style>
-    .pdp-gallery-thumbs { position:relative; left:auto; top:auto; transform:none; flex-direction:row; padding:12px 0 0; gap:8px; }
-    @media (min-width:1025px) {
-      .pdp-gallery-thumbs { position:absolute; left:16px; top:50%; transform:translateY(-50%); flex-direction:column; padding:0; }
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: { cocoa: '#8B6147', blush: '#E8B4A0', champagne: '#D4B896' },
+          fontFamily: { display: ['Playfair Display', 'Georgia', 'serif'], body: ['Montserrat', 'system-ui', 'sans-serif'] },
+        }
+      }
     }
+  </script>
+  <style>
+    @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+    .animate-scroll { animation: scroll 25s linear infinite; }
+    @keyframes shake { 0%,100% { transform: translateX(0); } 20%,60% { transform: translateX(-6px); } 40%,80% { transform: translateX(6px); } }
+    .pdp-acc-item .pdp-acc-body { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+    .pdp-acc-item.open .pdp-acc-body { max-height: 300px; }
+    .pdp-acc-item.open .pdp-acc-icon { transform: rotate(45deg); }
+    .pdp-acc-icon { transition: transform 0.3s ease; }
   </style>
 </head>
-<body>
+<body class="bg-white font-body text-gray-900">
 
-  <div class="announcement-bar" id="announcementBar">
-    <div class="announcement-inner">
-      <div class="announcement-track">
-        <span>Complimentary shipping on all orders above ₹1,499</span><span class="sep">·</span>
-        <span>Easy 14-day returns &amp; exchanges</span><span class="sep">·</span>
-        <span>New Drop — Ivory Reverie Collection is now live</span><span class="sep">·</span>
-        <span>Complimentary shipping on all orders above ₹1,499</span><span class="sep">·</span>
-        <span>Easy 14-day returns &amp; exchanges</span><span class="sep">·</span>
-        <span>New Drop — Ivory Reverie Collection is now live</span>
-      </div>
-    </div>
-    <button class="announcement-close" onclick="closeAnnouncement()">&#215;</button>
-  </div>
-
-  <nav class="navbar" id="navbar">
-    <div class="nav-inner">
-      <button class="nav-hamburger" id="hamburger" onclick="toggleMobileMenu()"><span></span><span></span><span></span></button>
-      <ul class="nav-links nav-left">
-        <li><a href="shop.html">Shop</a></li>
-        <li><a href="shop.html#collections">Collections</a></li>
-        <li><a href="about.html">Our Story</a></li>
-      </ul>
-      <a href="index.html" class="nav-logo"><img src="brand_assets/Aniso_LOGO.png" alt="ANISO" class="nav-logo-img"></a>
-      <div class="nav-right">
-        <ul class="nav-links">
-          <li><a href="size-guide.html">Size Guide</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-        <div class="nav-icons">
-          <button class="nav-icon-btn" aria-label="Search">
-            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.4-4.4"/></svg>
-          </button>
-          <div class="profile-dropdown-wrap" id="profileDropdownWrap">
-              <button class="nav-icon-btn" id="profileBtn" aria-label="Account">
-                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-              </button>
-              <div class="profile-dropdown" id="profileMenu">
-                <div id="profileSignedOut">
-                  <div class="profile-dropdown-header">Welcome to ANISO</div>
-                  <a href="#" class="profile-dropdown-link" onclick="openSignIn('signin');return false;">Sign In</a>
-                  <a href="#" class="profile-dropdown-link" onclick="openSignIn('register');return false;">Create Account</a>
-                </div>
-                <div id="profileSignedIn" style="display:none">
-                  <div class="profile-dropdown-header" id="profileGreeting">Hi, there</div>
-                  <a href="#" class="profile-dropdown-link">My Account</a>
-                  <a href="#" class="profile-dropdown-link">My Orders</a>
-                  <hr class="profile-dropdown-divider">
-                  <a href="#" class="profile-dropdown-link" onclick="signOut();return false;">Sign Out</a>
-                </div>
-              </div>
-            </div>
-          <a href="cart.html" class="nav-icon-btn" aria-label="Cart">
-            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-            <span class="cart-count" id="cartCount">0</span>
-          </a>
-        </div>
-      </div>
-    </div>
-    <div class="mobile-menu" id="mobileMenu">
-      <ul>
-        <li><a href="shop.html" onclick="toggleMobileMenu()">Shop All</a></li>
-        <li><a href="about.html" onclick="toggleMobileMenu()">Our Story</a></li>
-        <li><a href="size-guide.html" onclick="toggleMobileMenu()">Size Guide</a></li>
-        <li><a href="faq.html" onclick="toggleMobileMenu()">FAQ</a></li>
-        <li><a href="contact.html" onclick="toggleMobileMenu()">Contact</a></li>
-        <li><a href="cart.html" onclick="toggleMobileMenu()">Your Bag</a></li>
-      </ul>
-    </div>
-  </nav>
+  <div id="nav-mount"></div>
 
   <!-- Breadcrumb -->
-  <div style="padding:16px 0; border-bottom:1px solid var(--border); background:var(--cream);">
-    <div class="container">
-      <nav style="font-size:11px;font-weight:400;color:var(--taupe);letter-spacing:0.06em;display:flex;align-items:center;gap:8px;">
-        <a href="index.html" style="transition:color var(--t-base);" onmouseover="this.style.color='var(--black)'" onmouseout="this.style.color='var(--taupe)'">Home</a>
-        <span>›</span>
-        <a href="shop.html" style="transition:color var(--t-base);" onmouseover="this.style.color='var(--black)'" onmouseout="this.style.color='var(--taupe)'">Shop</a>
-        <span>›</span>
-        <span style="color:var(--charcoal)">Ivory Reverie Set</span>
+  <div class="border-b border-gray-100 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3">
+      <nav class="flex items-center gap-2 text-xs text-gray-500">
+        <a href="index.html" class="hover:text-gray-900 transition-colors">Home</a>
+        <span>&rsaquo;</span>
+        <a href="shop.html" class="hover:text-gray-900 transition-colors">Shop</a>
+        <span>&rsaquo;</span>
+        <span class="text-gray-900" id="breadcrumbName">Product</span>
       </nav>
     </div>
   </div>
 
   <main>
-    <div class="pdp-layout">
-
-      <!-- Gallery -->
-      <div class="pdp-gallery">
-        <div class="pdp-gallery-main">
-          <img id="pdpMainImg" src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=600&h=800&fit=crop&crop=faces,entropy&q=85" alt="Ivory Reverie Set" style="width:100%;height:100%;object-fit:cover;">
-        </div>
-        <div class="pdp-gallery-thumbs">
-          <div class="pdp-thumb active">
-            <img src="https://placehold.co/100x130/EDE4DA/8B6147?font=playfair-display&text=01" alt="View 1">
-          </div>
-          <div class="pdp-thumb">
-            <img src="https://placehold.co/100x130/F5EDD8/8B6147?font=playfair-display&text=02" alt="View 2">
-          </div>
-          <div class="pdp-thumb">
-            <img src="https://placehold.co/100x130/D4C9BC/2C2825?font=playfair-display&text=03" alt="View 3">
-          </div>
-          <div class="pdp-thumb">
-            <img src="https://placehold.co/100x130/2C2825/EDE4DA?font=playfair-display&text=04" alt="View 4">
-          </div>
-        </div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-8 md:py-12">
+      <div class="grid md:grid-cols-2 gap-8 md:gap-12" id="pdpContent">
+        <!-- Populated by JS -->
       </div>
-
-      <!-- Product Info -->
-      <div class="pdp-info">
-        <div class="pdp-category">Satin Set</div>
-        <h1 class="pdp-title">Ivory Reverie Set</h1>
-        <div class="pdp-price">
-          <span class="pdp-price-current">₹1,799</span>
-        </div>
-        <p class="pdp-short-desc">
-          Whisper-soft satin that moves with you. Our signature sleep set in warm ivory — crafted for slow mornings and beautiful evenings alike. The kind of piece you reach for, again and again.
-        </p>
-
-        <!-- Size Selector -->
-        <div style="margin-bottom:28px;">
-          <div class="pdp-option-label">
-            <span>Select Size</span>
-            <a href="size-guide.html">Size Guide →</a>
-          </div>
-          <div class="size-options">
-            <button class="size-option">XS</button>
-            <button class="size-option">S</button>
-            <button class="size-option">M</button>
-            <button class="size-option">L</button>
-            <button class="size-option">XL</button>
-          </div>
-        </div>
-
-        <!-- Colour -->
-        <div style="margin-bottom:28px;">
-          <div class="pdp-option-label"><span>Colour: Ivory</span></div>
-          <div style="display:flex;gap:10px;">
-            <span class="color-dot active" style="width:28px;height:28px;background:#F5EDD8;border:1.5px solid var(--border-strong)" title="Ivory"></span>
-            <span class="color-dot" style="width:28px;height:28px;background:#D4B896" title="Champagne"></span>
-          </div>
-        </div>
-
-        <!-- Quantity -->
-        <div class="pdp-option-label" style="margin-bottom:12px"><span>Quantity</span></div>
-        <div class="qty-selector" style="margin-bottom:24px">
-          <button class="qty-minus">−</button>
-          <input type="number" class="qty-input" value="1" min="1" max="10" readonly>
-          <button class="qty-plus">+</button>
-        </div>
-
-        <!-- CTA -->
-        <div class="pdp-cta">
-          <button class="btn-primary" id="pdpAddToCartBtn"
-            data-id="1"
-            data-name="Ivory Reverie Set"
-            data-price="1799"
-            data-image="https://placehold.co/480x640/EDE4DA/8B6147"
-            data-category="Satin Set"
-            style="width:100%;padding:17px;font-size:11.5px;letter-spacing:0.14em;">
-            Add to Bag
-          </button>
-          <button class="btn-secondary" style="width:100%;padding:16px;font-size:11px;" onclick="alert('Checkout UI — backend integration coming soon')">
-            Buy Now
-          </button>
-        </div>
-
-        <!-- Trust -->
-        <div class="pdp-trust">
-          <div class="pdp-trust-item">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 4v3h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
-            Free shipping above ₹1,499
-          </div>
-          <div class="pdp-trust-item">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="1,4 1,10 7,10"/><path d="M3.51 15a9 9 0 1 0 .49-4.02"/></svg>
-            14-day returns
-          </div>
-          <div class="pdp-trust-item">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-            Genuine quality
-          </div>
-        </div>
-
-        <!-- Detail Accordions -->
-        <div class="pdp-accordion">
-          <div class="pdp-acc-item open">
-            <button class="pdp-acc-trigger">
-              Fabric &amp; Feel
-              <svg class="pdp-acc-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-            </button>
-            <div class="pdp-acc-body">
-              <div class="pdp-acc-body-inner">
-                <ul>
-                  <li>100% premium charmeuse satin</li>
-                  <li>OEKO-TEX certified — skin-safe and breathable</li>
-                  <li>Smooth, lustrous finish with a subtle drape</li>
-                  <li>Naturally temperature-regulating</li>
-                  <li>Lightweight at 19mm weight — cloud-like to the touch</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="pdp-acc-item">
-            <button class="pdp-acc-trigger">
-              Fit Notes
-              <svg class="pdp-acc-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-            </button>
-            <div class="pdp-acc-body">
-              <div class="pdp-acc-body-inner">
-                <ul>
-                  <li>Relaxed, fluid silhouette — not body-hugging</li>
-                  <li>Set runs true to size</li>
-                  <li>For a more relaxed fit, size up</li>
-                  <li>Top: straight-cut with V-neckline and subtle cuff detail</li>
-                  <li>Bottom: wide-leg with elasticated waist</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="pdp-acc-item">
-            <button class="pdp-acc-trigger">
-              Care Instructions
-              <svg class="pdp-acc-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-            </button>
-            <div class="pdp-acc-body">
-              <div class="pdp-acc-body-inner">
-                <ul>
-                  <li>Hand wash in cold water or gentle machine cycle</li>
-                  <li>Use mild, pH-neutral detergent only</li>
-                  <li>Do not tumble dry — lay flat to dry in shade</li>
-                  <li>Iron on low heat with a pressing cloth</li>
-                  <li>Store folded in a cool, dry place</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="pdp-acc-item">
-            <button class="pdp-acc-trigger">
-              Shipping &amp; Returns
-              <svg class="pdp-acc-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-            </button>
-            <div class="pdp-acc-body">
-              <div class="pdp-acc-body-inner">
-                <ul>
-                  <li>Free shipping on orders above ₹1,499</li>
-                  <li>Standard delivery: 4–7 business days</li>
-                  <li>Express delivery: 2–3 business days (select pincodes)</li>
-                  <li>14-day hassle-free returns — no questions asked</li>
-                  <li>Exchanges available on size issues within 7 days</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
     </div>
 
     <!-- Related Products -->
-    <section class="products-section" style="background:var(--cream-warm);padding:80px 0;">
-      <div class="container">
-        <div class="section-header fade-in">
+    <section class="py-12 md:py-16 bg-gray-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6">
+        <div class="flex items-end justify-between mb-8">
           <div>
-            <span class="section-label">You Might Also Love</span>
-            <h2 class="section-title">Complete the Set</h2>
+            <p class="text-xs font-medium uppercase tracking-[0.15em] text-cocoa mb-2">You Might Also Love</p>
+            <h2 class="font-display text-2xl">Complete the Set</h2>
           </div>
-          <a href="shop.html" class="see-all">View All →</a>
+          <a href="shop.html" class="text-xs font-medium text-gray-600 hover:text-gray-900 tracking-wide transition-colors">View All &rarr;</a>
         </div>
-        <div class="products-grid" style="grid-template-columns:repeat(3,1fr);gap:24px;">
-          <div class="product-card fade-in">
-            <div class="product-card-img-wrap">
-              <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=800&fit=crop&crop=faces,entropy&q=85" alt="Blush Hour Set" class="product-card-img" loading="lazy">
-              <span class="product-card-badge bestseller">Bestseller</span>
-              <div class="product-card-actions">
-                <a href="product.html" class="product-card-btn">Quick View</a>
-                <button class="product-card-btn primary" onclick="addToCart({id:'2',name:'Blush Hour Set',price:1999,image:'https://placehold.co/480x640/F5DDD3/8B6147',category:'Satin Set',size:'S'})">Add to Bag</button>
-              </div>
-            </div>
-            <div class="product-card-info">
-              <div class="product-card-category">Satin Set</div>
-              <div class="product-card-name"><a href="product.html">Blush Hour Set</a></div>
-              <div class="product-card-price"><span class="price-current">₹1,999</span></div>
-            </div>
-          </div>
-          <div class="product-card fade-in" style="transition-delay:.1s">
-            <div class="product-card-img-wrap">
-              <img src="https://images.unsplash.com/photo-1541101767792-f9b2b1c4f127?w=600&h=800&fit=crop&crop=faces,entropy&q=85" alt="Midnight Satin Set" class="product-card-img" loading="lazy">
-              <span class="product-card-badge new">New</span>
-              <div class="product-card-actions">
-                <a href="product.html" class="product-card-btn">Quick View</a>
-                <button class="product-card-btn primary" onclick="addToCart({id:'6',name:'Midnight Satin Set',price:1899,image:'https://placehold.co/480x640/2C2825/D4B896',category:'Satin Set',size:'S'})">Add to Bag</button>
-              </div>
-            </div>
-            <div class="product-card-info">
-              <div class="product-card-category">Satin Set</div>
-              <div class="product-card-name"><a href="product.html">Midnight Satin Set</a></div>
-              <div class="product-card-price"><span class="price-current">₹1,899</span></div>
-            </div>
-          </div>
-          <div class="product-card fade-in" style="transition-delay:.2s">
-            <div class="product-card-img-wrap">
-              <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?w=600&h=800&fit=crop&crop=faces,entropy&q=85" alt="Cotton Morning Set" class="product-card-img" loading="lazy">
-              <div class="product-card-actions">
-                <a href="product.html" class="product-card-btn">Quick View</a>
-                <button class="product-card-btn primary" onclick="addToCart({id:'3',name:'Cotton Morning Set',price:1299,image:'https://placehold.co/480x640/E8E2DC/8B6147',category:'Cotton Set',size:'S'})">Add to Bag</button>
-              </div>
-            </div>
-            <div class="product-card-info">
-              <div class="product-card-category">Cotton Set</div>
-              <div class="product-card-name"><a href="product.html">Cotton Morning Set</a></div>
-              <div class="product-card-price"><span class="price-current">₹1,299</span></div>
-            </div>
-          </div>
-        </div>
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6" id="relatedGrid"></div>
       </div>
     </section>
   </main>
 
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-top">
-        <div class="footer-brand">
-          <img src="brand_assets/Aniso_LOGO.png" alt="ANISO" class="footer-brand-logo">
-          <p class="footer-brand-text">Premium nightwear and loungewear for the modern woman.</p>
-          <div class="footer-newsletter">
-            <input type="email" class="footer-newsletter-input" placeholder="Your email address">
-            <button class="footer-newsletter-btn">Join</button>
+  <div id="footer-mount"></div>
+
+  <script src="js/product-data.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/components.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const params = new URLSearchParams(window.location.search);
+      const id = params.get('id');
+      const product = getProductById(id);
+
+      if (!product) {
+        document.getElementById('pdpContent').innerHTML = '<div class="col-span-2 text-center py-16"><p class="font-display text-xl text-gray-500">Product not found</p><a href="shop.html" class="text-sm text-cocoa hover:underline mt-4 inline-block">Back to Shop</a></div>';
+        return;
+      }
+
+      document.title = `${product.title} — ANISO`;
+      document.getElementById('breadcrumbName').textContent = product.title;
+
+      const badgeMap = {
+        'new-arrival': { label: 'New', cls: 'bg-gray-900 text-white' },
+        'bestseller': { label: 'Bestseller', cls: 'bg-cocoa text-white' },
+        '100-cotton': { label: '100% Cotton', cls: 'bg-white/90 text-gray-900 backdrop-blur' },
+      };
+      const badges = product.tags.map(t => badgeMap[t] ? `<span class="text-[10px] font-medium tracking-wide px-2.5 py-1 rounded-sm ${badgeMap[t].cls}">${badgeMap[t].label}</span>` : '').filter(Boolean).join(' ');
+
+      document.getElementById('pdpContent').innerHTML = `
+        <!-- Gallery -->
+        <div>
+          <div class="relative rounded-lg overflow-hidden bg-gray-50">
+            <img id="pdpMainImg" src="${product.images[0].src}" alt="${product.title}" class="w-full aspect-[3/4] object-cover">
+            ${badges ? `<div class="absolute top-3 left-3 flex gap-1">${badges}</div>` : ''}
           </div>
+          ${product.colors && product.colors.length > 1 ? `
+          <div class="flex gap-2 mt-3">
+            ${product.colors.filter(c => c.image).map((c, i) => `
+              <button class="w-16 h-20 rounded border-2 overflow-hidden transition-colors ${i === 0 ? 'border-gray-900' : 'border-gray-200 hover:border-gray-400'}" onclick="document.getElementById('pdpMainImg').src='${c.image}';this.parentElement.querySelectorAll('button').forEach(b=>b.classList.replace('border-gray-900','border-gray-200'));this.classList.replace('border-gray-200','border-gray-900')">
+                <img src="${c.image}" alt="${c.name}" class="w-full h-full object-cover">
+              </button>`).join('')}
+          </div>` : ''}
         </div>
-        <div>
-          <div class="footer-col-title">Shop</div>
-          <ul class="footer-links">
-            <li><a href="shop.html">All Products</a></li>
-            <li><a href="shop.html?cat=satin">Satin Sets</a></li>
-            <li><a href="shop.html?cat=cotton">Cotton Sets</a></li>
-            <li><a href="shop.html?cat=lounge">Lounge Sets</a></li>
-          </ul>
-        </div>
-        <div>
-          <div class="footer-col-title">Help</div>
-          <ul class="footer-links">
-            <li><a href="size-guide.html">Size Guide</a></li>
-            <li><a href="faq.html">FAQ</a></li>
-            <li><a href="contact.html">Contact Us</a></li>
-            <li><a href="#">Returns</a></li>
-          </ul>
-        </div>
-        <div>
-          <div class="footer-col-title">Brand</div>
-          <ul class="footer-links">
-            <li><a href="about.html">Our Story</a></li>
-            <li><a href="#">Privacy Policy</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <div class="footer-bottom-left">© 2026 ANISO. All rights reserved.</div>
-        <div class="footer-payment">
-          <span class="footer-payment-badge">UPI</span>
-          <span class="footer-payment-badge">Cards</span>
-          <span class="footer-payment-badge">COD</span>
-        </div>
-      </div>
-    </div>
-  </footer>
 
-  <script src="assets/js/main.js"></script>
-  <script src="assets/js/effects.js"></script>
+        <!-- Product Info -->
+        <div>
+          <p class="text-xs text-gray-500 uppercase tracking-wide mb-1">${product.category}</p>
+          <h1 class="font-display text-2xl sm:text-3xl mb-3">${product.title}</h1>
+          <p class="text-lg font-medium mb-4">₹${product.price.toLocaleString('en-IN')}</p>
+          <p class="text-sm text-gray-600 leading-relaxed mb-6">${product.description}</p>
 
-  <!-- Sign In / Register Modal -->
-  <div class="signin-overlay" id="signinOverlay">
-    <div class="signin-modal">
-      <button class="signin-modal-close" onclick="closeSignIn()">&#215;</button>
-      <div class="signin-logo">
-        <img src="brand_assets/Aniso_LOGO.png" alt="ANISO">
-      </div>
-      <h2 class="signin-title">My Account</h2>
-      <div class="signin-tabs">
-        <button class="signin-tab active" data-tab="signin">Sign In</button>
-        <button class="signin-tab" data-tab="register">Create Account</button>
-      </div>
-      <div id="signinFormWrap">
-        <form class="signin-form" id="signinForm">
-          <input class="signin-input" type="email" placeholder="Email address" required>
-          <input class="signin-input" type="password" placeholder="Password" required>
-          <button type="submit" class="signin-submit">Sign In</button>
-        </form>
-        <div class="signin-footer">Don't have an account? <a href="#" onclick="openSignIn('register');return false;">Create one</a></div>
-      </div>
-      <div id="registerFormWrap" style="display:none">
-        <form class="signin-form" id="registerForm">
-          <input class="signin-input" type="text" name="fullname" placeholder="Full name" required>
-          <input class="signin-input" type="email" placeholder="Email address" required>
-          <input class="signin-input" type="password" placeholder="Create password" required>
-          <button type="submit" class="signin-submit">Create Account</button>
-        </form>
-        <div class="signin-footer">Already have an account? <a href="#" onclick="openSignIn('signin');return false;">Sign in</a></div>
-      </div>
-    </div>
-  </div>
+          <!-- Size Selector -->
+          <div class="mb-6">
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-xs font-medium uppercase tracking-wide">Select Size</span>
+              <a href="size-guide.html" class="text-xs text-cocoa hover:underline">Size Guide &rarr;</a>
+            </div>
+            <div class="flex gap-2" id="sizeOptions">
+              ${product.sizes.map(s => `<button class="size-btn w-12 h-10 text-xs font-medium border border-gray-200 rounded hover:border-gray-900 transition-colors">${s}</button>`).join('')}
+            </div>
+          </div>
+
+          <!-- Colors -->
+          ${product.colors && product.colors.length > 1 ? `
+          <div class="mb-6">
+            <span class="text-xs font-medium uppercase tracking-wide block mb-3">Colour</span>
+            <div class="flex gap-2">
+              ${product.colors.map((c, i) => `<span class="w-7 h-7 rounded-full border-2 cursor-pointer transition-colors ${i === 0 ? 'border-gray-900' : 'border-gray-200'}" style="background:${c.hex}" title="${c.name}"></span>`).join('')}
+            </div>
+          </div>` : ''}
+
+          <!-- Quantity -->
+          <div class="mb-6">
+            <span class="text-xs font-medium uppercase tracking-wide block mb-3">Quantity</span>
+            <div class="flex items-center border border-gray-200 rounded w-fit">
+              <button class="px-4 py-2 text-sm text-gray-600 hover:text-gray-900 transition-colors" id="qtyMinus">&minus;</button>
+              <input type="number" class="w-10 text-center text-sm font-medium outline-none bg-transparent" value="1" min="1" max="10" readonly id="qtyInput">
+              <button class="px-4 py-2 text-sm text-gray-600 hover:text-gray-900 transition-colors" id="qtyPlus">&plus;</button>
+            </div>
+          </div>
+
+          <!-- CTA -->
+          <div class="space-y-3 mb-6">
+            <button class="w-full bg-gray-900 text-white text-xs font-medium tracking-wider uppercase py-4 rounded hover:bg-gray-800 transition-colors" id="addToCartBtn">Add to Bag</button>
+            <a href="checkout.html" class="block w-full text-center border border-gray-300 text-gray-700 text-xs font-medium tracking-wider uppercase py-4 rounded hover:border-gray-900 hover:text-gray-900 transition-colors">Buy Now</a>
+          </div>
+
+          <!-- Trust -->
+          <div class="flex flex-col gap-2 py-4 border-t border-gray-100 text-xs text-gray-500">
+            <div class="flex items-center gap-2">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 4v3h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+              Free shipping above ₹1,499
+            </div>
+            <div class="flex items-center gap-2">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="1,4 1,10 7,10"/><path d="M3.51 15a9 9 0 1 0 .49-4.02"/></svg>
+              14-day returns
+            </div>
+            <div class="flex items-center gap-2">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              Genuine quality
+            </div>
+          </div>
+
+          <!-- Accordions -->
+          <div class="border-t border-gray-100">
+            <div class="pdp-acc-item open">
+              <button class="pdp-acc-trigger w-full flex items-center justify-between py-4 text-sm font-medium text-gray-900">
+                Fabric &amp; Feel
+                <svg class="pdp-acc-icon text-gray-400" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </button>
+              <div class="pdp-acc-body"><div class="pb-4 text-sm text-gray-600 leading-relaxed">
+                <ul class="list-disc list-inside space-y-1">
+                  <li>${product.material}</li>
+                  <li>OEKO-TEX certified — skin-safe and breathable</li>
+                  <li>Naturally temperature-regulating</li>
+                  <li>Lightweight, cloud-like to the touch</li>
+                </ul>
+              </div></div>
+            </div>
+            <div class="pdp-acc-item border-t border-gray-100">
+              <button class="pdp-acc-trigger w-full flex items-center justify-between py-4 text-sm font-medium text-gray-900">
+                Fit Notes
+                <svg class="pdp-acc-icon text-gray-400" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </button>
+              <div class="pdp-acc-body"><div class="pb-4 text-sm text-gray-600 leading-relaxed">
+                <ul class="list-disc list-inside space-y-1">
+                  <li>Relaxed, fluid silhouette</li>
+                  <li>Runs true to size</li>
+                  <li>For a more relaxed fit, size up</li>
+                </ul>
+              </div></div>
+            </div>
+            <div class="pdp-acc-item border-t border-gray-100">
+              <button class="pdp-acc-trigger w-full flex items-center justify-between py-4 text-sm font-medium text-gray-900">
+                Shipping &amp; Returns
+                <svg class="pdp-acc-icon text-gray-400" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </button>
+              <div class="pdp-acc-body"><div class="pb-4 text-sm text-gray-600 leading-relaxed">
+                <ul class="list-disc list-inside space-y-1">
+                  <li>Free shipping on orders above ₹1,499</li>
+                  <li>Standard delivery: 4–7 business days</li>
+                  <li>14-day hassle-free returns</li>
+                </ul>
+              </div></div>
+            </div>
+          </div>
+        </div>`;
+
+      // Size selector
+      document.querySelectorAll('.size-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.size-btn').forEach(b => { b.classList.remove('bg-gray-900', 'text-white', 'border-gray-900'); b.classList.add('border-gray-200'); });
+          btn.classList.add('bg-gray-900', 'text-white', 'border-gray-900');
+          btn.classList.remove('border-gray-200');
+        });
+      });
+
+      // Quantity
+      const qtyInput = document.getElementById('qtyInput');
+      document.getElementById('qtyMinus')?.addEventListener('click', () => { qtyInput.value = Math.max(1, parseInt(qtyInput.value) - 1); });
+      document.getElementById('qtyPlus')?.addEventListener('click', () => { qtyInput.value = Math.min(10, parseInt(qtyInput.value) + 1); });
+
+      // Add to cart
+      document.getElementById('addToCartBtn')?.addEventListener('click', () => {
+        const sizeEl = document.querySelector('.size-btn.bg-gray-900');
+        if (!sizeEl) {
+          const opts = document.querySelector('#sizeOptions');
+          if (opts) { opts.style.animation = 'none'; opts.offsetHeight; opts.style.animation = 'shake 0.4s ease'; }
+          return;
+        }
+        addToCart({
+          id: product.id,
+          name: product.title,
+          price: product.price,
+          image: product.images[0].src,
+          category: product.category,
+          size: sizeEl.textContent.trim(),
+          qty: parseInt(qtyInput.value),
+        });
+      });
+
+      // PDP accordions
+      initPdpAcc();
+
+      // Related products
+      const related = PRODUCTS.filter(p => p.id !== product.id).slice(0, 3);
+      const badgeMapLocal = {
+        'new-arrival': { label: 'New', cls: 'bg-gray-900 text-white' },
+        'bestseller': { label: 'Bestseller', cls: 'bg-cocoa text-white' },
+      };
+      document.getElementById('relatedGrid').innerHTML = related.map(p => {
+        const badge = p.tags.find(t => badgeMapLocal[t]);
+        const badgeHtml = badge && badgeMapLocal[badge] ? `<span class="absolute top-3 left-3 text-[10px] font-medium tracking-wide px-2.5 py-1 rounded-sm ${badgeMapLocal[badge].cls}">${badgeMapLocal[badge].label}</span>` : '';
+        return `
+        <div class="group">
+          <a href="product.html?id=${p.id}" class="block relative overflow-hidden rounded-lg bg-gray-100 mb-3">
+            <div class="aspect-[3/4] overflow-hidden">
+              <img src="${p.images[0].src}" alt="${p.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+            </div>
+            ${badgeHtml}
+            <div class="absolute inset-x-0 bottom-0 p-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <button class="w-full bg-white/95 backdrop-blur text-gray-900 text-xs font-medium py-2.5 rounded hover:bg-white transition-colors" onclick="event.preventDefault();addToCart({id:'${p.id}',name:'${p.title}',price:${p.price},image:'${p.images[0].src}',category:'${p.category}',size:'S'})">Add to Bag</button>
+            </div>
+          </a>
+          <p class="text-[11px] text-gray-500 uppercase tracking-wide">${p.category}</p>
+          <p class="text-sm font-medium text-gray-900 mt-0.5"><a href="product.html?id=${p.id}" class="hover:underline">${p.title}</a></p>
+          <p class="text-sm text-gray-600 mt-0.5">₹${p.price.toLocaleString('en-IN')}</p>
+        </div>`;
+      }).join('');
+    });
+  </script>
 </body>
 </html>

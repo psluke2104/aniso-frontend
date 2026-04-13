@@ -5,487 +5,168 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" href="brand_assets/favicon.png" type="image/png">
   <title>Shop All — ANISO</title>
-  <meta name="description" content="Browse the complete ANISO collection. Premium satin sets, cotton co-ords, and lounge sets for the modern woman.">
+  <meta name="description" content="Browse the complete ANISO collection. Premium satin sets, cotton nightsuits, and lounge sets.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/styles.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: { cocoa: '#8B6147', blush: '#E8B4A0', champagne: '#D4B896' },
+          fontFamily: { display: ['Playfair Display', 'Georgia', 'serif'], body: ['Montserrat', 'system-ui', 'sans-serif'] },
+        }
+      }
+    }
+  </script>
   <style>
-    .shop-layout { padding: 48px 0 100px; }
+    @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+    .animate-scroll { animation: scroll 25s linear infinite; }
+    .fabric-tag { max-width: 60px; overflow: hidden; white-space: nowrap; transition: max-width 0.35s cubic-bezier(0.22,1,0.36,1), padding 0.35s ease; }
+    .fabric-tag:hover { max-width: 200px; padding-left: 8px; padding-right: 8px; }
   </style>
 </head>
-<body>
+<body class="bg-white font-body text-gray-900">
 
-  <div class="announcement-bar" id="announcementBar">
-    <div class="announcement-inner">
-      <div class="announcement-track">
-        <span>Complimentary shipping on all orders above ₹1,499</span>
-        <span class="sep">·</span>
-        <span>New Drop — Ivory Reverie Collection is now live</span>
-        <span class="sep">·</span>
-        <span>Easy 14-day returns &amp; exchanges</span>
-        <span class="sep">·</span>
-        <span>Complimentary shipping on all orders above ₹1,499</span>
-        <span class="sep">·</span>
-        <span>New Drop — Ivory Reverie Collection is now live</span>
-        <span class="sep">·</span>
-        <span>Easy 14-day returns &amp; exchanges</span>
-      </div>
-    </div>
-    <button class="announcement-close" onclick="closeAnnouncement()">&#215;</button>
-  </div>
-
-  <nav class="navbar" id="navbar">
-    <div class="nav-inner">
-      <button class="nav-hamburger" id="hamburger" onclick="toggleMobileMenu()"><span></span><span></span><span></span></button>
-      <ul class="nav-links nav-left">
-        <li><a href="shop.html" class="active">Shop</a></li>
-        <li><a href="shop.html#collections">Collections</a></li>
-        <li><a href="about.html">Our Story</a></li>
-      </ul>
-      <a href="index.html" class="nav-logo"><img src="brand_assets/Aniso_LOGO.png" alt="ANISO" class="nav-logo-img"></a>
-      <div class="nav-right">
-        <ul class="nav-links">
-          <li><a href="size-guide.html">Size Guide</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-        <div class="nav-icons">
-          <button class="nav-icon-btn" aria-label="Search">
-            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.4-4.4"/></svg>
-          </button>
-          <div class="profile-dropdown-wrap" id="profileDropdownWrap">
-              <button class="nav-icon-btn" id="profileBtn" aria-label="Account">
-                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-              </button>
-              <div class="profile-dropdown" id="profileMenu">
-                <div id="profileSignedOut">
-                  <div class="profile-dropdown-header">Welcome to ANISO</div>
-                  <a href="#" class="profile-dropdown-link" onclick="openSignIn('signin');return false;">Sign In</a>
-                  <a href="#" class="profile-dropdown-link" onclick="openSignIn('register');return false;">Create Account</a>
-                </div>
-                <div id="profileSignedIn" style="display:none">
-                  <div class="profile-dropdown-header" id="profileGreeting">Hi, there</div>
-                  <a href="#" class="profile-dropdown-link">My Account</a>
-                  <a href="#" class="profile-dropdown-link">My Orders</a>
-                  <hr class="profile-dropdown-divider">
-                  <a href="#" class="profile-dropdown-link" onclick="signOut();return false;">Sign Out</a>
-                </div>
-              </div>
-            </div>
-          <a href="cart.html" class="nav-icon-btn" aria-label="Cart">
-            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-            <span class="cart-count" id="cartCount">0</span>
-          </a>
-        </div>
-      </div>
-    </div>
-    <div class="mobile-menu" id="mobileMenu">
-      <ul>
-        <li><a href="shop.html" onclick="toggleMobileMenu()">Shop All</a></li>
-        <li><a href="about.html" onclick="toggleMobileMenu()">Our Story</a></li>
-        <li><a href="size-guide.html" onclick="toggleMobileMenu()">Size Guide</a></li>
-        <li><a href="faq.html" onclick="toggleMobileMenu()">FAQ</a></li>
-        <li><a href="contact.html" onclick="toggleMobileMenu()">Contact</a></li>
-        <li><a href="cart.html" onclick="toggleMobileMenu()">Your Bag</a></li>
-      </ul>
-    </div>
-  </nav>
+  <div id="nav-mount"></div>
 
   <main>
-    <!-- Shop Hero -->
-    <div class="shop-hero">
-      <div class="container">
-        <span class="section-label">Spring '26 Collection</span>
-        <h1 class="shop-hero-title">The Collection</h1>
-        <p class="shop-hero-sub">Dreamy nightsuits &amp; refined nightwear — each piece designed to make your softest hours feel like the most beautiful ones.</p>
-      </div>
-    </div>
-
-    <!-- Collections Row -->
-    <section style="padding:64px 0; background:var(--cream-warm); border-bottom:1px solid var(--border);" id="collections">
-      <div class="container">
-        <div class="section-header centered fade-in" style="margin-bottom:44px">
-          <span class="section-label">Shop by Category</span>
-          <h2 class="section-title" style="font-size:clamp(24px,3vw,36px)">Find Your Collection</h2>
-        </div>
-        <div class="collections-grid" style="grid-template-columns:repeat(4,1fr); gap:12px;">
-          <a href="#" class="collection-card filter-btn-card" data-cat="all" style="display:block">
-            <div class="collection-img-wrap" style="aspect-ratio:1/1;">
-              <img src="https://images.pexels.com/photos/920385/pexels-photo-920385.jpeg?auto=compress&cs=tinysrgb&w=600&h=800&fit=crop?w=600&h=800&fit=crop&crop=faces,entropy&q=85" alt="All" class="collection-img">
-              <div class="collection-overlay"></div>
-            </div>
-            <div class="collection-info"><h3 style="font-size:18px">All Pieces</h3><span>9 pieces</span></div>
-          </a>
-          <a href="#" class="collection-card filter-btn-card" data-cat="satin">
-            <div class="collection-img-wrap" style="aspect-ratio:1/1;">
-              <img src="https://images.unsplash.com/photo-1750064139819-da3bf362e7b3?w=600&h=800&fit=crop&crop=faces,entropy&q=85" alt="Satin" class="collection-img">
-              <div class="collection-overlay"></div>
-            </div>
-            <div class="collection-info"><h3 style="font-size:18px">Satin Sets</h3><span>2 pieces</span></div>
-          </a>
-          <a href="#" class="collection-card filter-btn-card" data-cat="nightsuit">
-            <div class="collection-img-wrap" style="aspect-ratio:1/1;">
-              <img src="https://images.unsplash.com/photo-1755456785148-e567dbb6a034?w=600&h=800&fit=crop&crop=faces,entropy&q=85" alt="Nightsuits" class="collection-img">
-              <div class="collection-overlay"></div>
-            </div>
-            <div class="collection-info"><h3 style="font-size:18px">Cute Nightsuits</h3><span>4 pieces</span></div>
-          </a>
-          <a href="#" class="collection-card filter-btn-card" data-cat="lounge">
-            <div class="collection-img-wrap" style="aspect-ratio:1/1;">
-              <img src="https://images.unsplash.com/photo-1759229874709-a8d0de083b91?w=600&h=800&fit=crop&crop=faces,entropy&q=85" alt="Lounge" class="collection-img">
-              <div class="collection-overlay"></div>
-            </div>
-            <div class="collection-info"><h3 style="font-size:18px">Lounge Sets</h3><span>2 pieces</span></div>
-          </a>
-        </div>
+    <!-- Shop Header -->
+    <section class="bg-gray-50 py-10 md:py-14 border-b border-gray-100">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 text-center">
+        <p class="text-xs font-medium uppercase tracking-[0.15em] text-cocoa mb-2">Spring '26 Collection</p>
+        <h1 class="font-display text-3xl sm:text-4xl mb-3">The Collection</h1>
+        <p class="text-sm text-gray-500 max-w-lg mx-auto">Dreamy nightsuits &amp; refined nightwear — each piece designed to make your softest hours feel like the most beautiful ones.</p>
       </div>
     </section>
 
-    <!-- Shop Grid -->
-    <div class="shop-layout">
-      <div class="container">
-        <!-- Toolbar -->
-        <div class="shop-toolbar">
-          <div class="shop-filters">
-            <button class="filter-btn active" data-filter="all" onclick="filterProducts(this,'all')">All (9)</button>
-            <button class="filter-btn" data-filter="nightsuit" onclick="filterProducts(this,'nightsuit')">Cute Nightsuits</button>
-            <button class="filter-btn" data-filter="satin" onclick="filterProducts(this,'satin')">Satin Sets</button>
-            <button class="filter-btn" data-filter="lounge" onclick="filterProducts(this,'lounge')">Lounge Sets</button>
-            <button class="filter-btn" data-filter="bestseller" onclick="filterProducts(this,'bestseller')">Bestsellers</button>
+    <!-- Category Tabs + Grid -->
+    <section class="py-8 md:py-12">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6">
+        <!-- Tabs -->
+        <div class="flex items-center justify-between mb-8 flex-wrap gap-4">
+          <div class="flex gap-2 overflow-x-auto pb-1 -mx-1 px-1" id="categoryTabs">
+            <button class="cat-tab active whitespace-nowrap text-xs font-medium tracking-wide px-4 py-2 rounded-full border transition-colors" data-cat="all">All</button>
+            <button class="cat-tab whitespace-nowrap text-xs font-medium tracking-wide px-4 py-2 rounded-full border transition-colors" data-cat="satin">Satin Sets</button>
+            <button class="cat-tab whitespace-nowrap text-xs font-medium tracking-wide px-4 py-2 rounded-full border transition-colors" data-cat="nightsuit">Nightsuits</button>
+            <button class="cat-tab whitespace-nowrap text-xs font-medium tracking-wide px-4 py-2 rounded-full border transition-colors" data-cat="lounge">Lounge Sets</button>
           </div>
-          <div style="display:flex;align-items:center;gap:20px;">
-            <span class="shop-count" id="shopCount">9 Pieces</span>
-            <div class="shop-sort">
-              <span style="white-space:nowrap;font-size:11px;color:var(--muted)">Sort by</span>
-              <select class="sort-select">
-                <option>Featured</option>
-                <option>Price: Low to High</option>
-                <option>Price: High to Low</option>
-                <option>Newest</option>
-              </select>
-            </div>
+          <div class="flex items-center gap-4">
+            <span class="text-xs text-gray-500" id="shopCount"></span>
+            <select class="text-xs text-gray-700 border border-gray-200 rounded-lg px-3 py-2 outline-none bg-white" id="sortSelect">
+              <option value="featured">Featured</option>
+              <option value="price-asc">Price: Low to High</option>
+              <option value="price-desc">Price: High to Low</option>
+              <option value="newest">Newest</option>
+            </select>
           </div>
         </div>
 
         <!-- Product Grid -->
-        <div class="products-grid" id="shopGrid" style="grid-template-columns:repeat(3,1fr);gap:28px;">
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6" id="shopGrid"></div>
 
-          <!-- Satin Sets -->
-          <div class="product-card fade-in" data-category="satin bestseller">
-            <div class="product-card-img-wrap">
-              <img src="https://images.pexels.com/photos/920385/pexels-photo-920385.jpeg?auto=compress&cs=tinysrgb&w=600&h=800&fit=crop?w=600&h=800&fit=crop&crop=faces,entropy&q=85" alt="Ivory Reverie Set" class="product-card-img" loading="lazy">
-              <span class="product-card-badge new">New</span>
-              <div class="product-card-actions">
-                <a href="product.html?id=1" class="product-card-btn">Quick View</a>
-                <button class="product-card-btn primary" onclick="addToCart({id:'1',name:'Ivory Reverie Set',price:1799,image:'https://images.pexels.com/photos/920385/pexels-photo-920385.jpeg?auto=compress&cs=tinysrgb&w=600&h=800&fit=crop?w=600&h=800&fit=crop',category:'Satin Set',size:'S'})">Add to Bag</button>
-              </div>
-            </div>
-            <div class="product-card-info">
-              <div class="product-card-category">Satin Set · XS–XL</div>
-              <div class="product-card-name"><a href="product.html?id=1">Ivory Reverie Set</a></div>
-              <div class="product-card-price"><span class="price-current">₹1,799</span></div>
-              <div class="product-card-colors">
-                <span class="color-dot active" style="background:#F5EDD8" title="Ivory" data-img="https://images.pexels.com/photos/920385/pexels-photo-920385.jpeg?auto=compress&cs=tinysrgb&w=600&h=800&fit=crop"></span>
-                <span class="color-dot" style="background:#D4B896" title="Champagne" data-img="https://images.pexels.com/photos/3807543/pexels-photo-3807543.jpeg?auto=compress&cs=tinysrgb&w=600&h=800&fit=crop"></span>
-              </div>
-            </div>
-          </div>
-
-          <div class="product-card fade-in" data-category="satin" style="transition-delay:.07s">
-            <div class="product-card-img-wrap">
-              <img src="https://images.unsplash.com/photo-1750064139819-da3bf362e7b3?w=600&h=800&fit=crop&crop=faces,entropy&q=85" alt="Blush Hour Set" class="product-card-img" loading="lazy">
-              <span class="product-card-badge bestseller">Bestseller</span>
-              <div class="product-card-actions">
-                <a href="product.html?id=2" class="product-card-btn">Quick View</a>
-                <button class="product-card-btn primary" onclick="addToCart({id:'2',name:'Blush Hour Set',price:1999,image:'https://images.unsplash.com/photo-1750064139819-da3bf362e7b3?w=600&h=800&fit=crop',category:'Satin Set',size:'S'})">Add to Bag</button>
-              </div>
-            </div>
-            <div class="product-card-info">
-              <div class="product-card-category">Satin Set · XS–XL</div>
-              <div class="product-card-name"><a href="product.html?id=2">Blush Hour Set</a></div>
-              <div class="product-card-price"><span class="price-current">₹1,999</span></div>
-              <div class="product-card-colors">
-                <span class="color-dot active" style="background:#F5DDD3" title="Blush"></span>
-                <span class="color-dot" style="background:#E8B4A0" title="Rose"></span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Cute Nightsuits -->
-          <div class="product-card fade-in" data-category="nightsuit bestseller" style="transition-delay:.14s">
-            <div class="product-card-img-wrap">
-              <img src="https://images.unsplash.com/photo-1755456785148-e567dbb6a034?w=600&h=800&fit=crop&crop=faces,entropy&q=85" alt="Star Dreamer Nightsuit" class="product-card-img" loading="lazy">
-              <span class="product-card-badge new">New</span>
-              <div class="product-card-actions">
-                <a href="product.html?id=7" class="product-card-btn">Quick View</a>
-                <button class="product-card-btn primary" onclick="addToCart({id:'7',name:'Star Dreamer Nightsuit',price:1199,image:'https://images.unsplash.com/photo-1755456785148-e567dbb6a034?w=600&h=800&fit=crop',category:'Cute Nightsuit',size:'S'})">Add to Bag</button>
-              </div>
-            </div>
-            <div class="product-card-info">
-              <div class="product-card-category">Cute Nightsuit · XS–XL</div>
-              <div class="product-card-name"><a href="product.html?id=7">Star Dreamer Nightsuit</a></div>
-              <div class="product-card-price"><span class="price-current">₹1,199</span></div>
-              <div class="product-card-colors">
-                <span class="color-dot active" style="background:#E8D5F0" title="Lavender" data-img="https://images.unsplash.com/photo-1755456785148-e567dbb6a034?w=600&h=800&fit=crop&q=85"></span>
-                <span class="color-dot" style="background:#F5DDD3" title="Blush" data-img="https://images.pexels.com/photos/6963182/pexels-photo-6963182.jpeg?auto=compress&cs=tinysrgb&w=600&h=800&fit=crop"></span>
-              </div>
-            </div>
-          </div>
-
-          <div class="product-card fade-in" data-category="nightsuit bestseller" style="transition-delay:.21s">
-            <div class="product-card-img-wrap">
-              <img src="https://plus.unsplash.com/premium_photo-1663040451691-0c89005ce5cc?w=600&h=800&fit=crop&crop=faces,entropy&q=85" alt="Cloud Soft Nightsuit" class="product-card-img" loading="lazy">
-              <span class="product-card-badge bestseller">Bestseller</span>
-              <div class="product-card-actions">
-                <a href="product.html?id=8" class="product-card-btn">Quick View</a>
-                <button class="product-card-btn primary" onclick="addToCart({id:'8',name:'Cloud Soft Nightsuit',price:1099,image:'https://plus.unsplash.com/premium_photo-1663040451691-0c89005ce5cc?w=600&h=800&fit=crop',category:'Cute Nightsuit',size:'S'})">Add to Bag</button>
-              </div>
-            </div>
-            <div class="product-card-info">
-              <div class="product-card-category">Cute Nightsuit · XS–XL</div>
-              <div class="product-card-name"><a href="product.html?id=8">Cloud Soft Nightsuit</a></div>
-              <div class="product-card-price"><span class="price-current">₹1,099</span></div>
-              <div class="product-card-colors">
-                <span class="color-dot active" style="background:#FAF0E6" title="Cream" data-img="https://plus.unsplash.com/premium_photo-1663040451691-0c89005ce5cc?w=600&h=800&fit=crop&q=85"></span>
-                <span class="color-dot" style="background:#C8BFB6" title="Stone" data-img="https://images.pexels.com/photos/3807982/pexels-photo-3807982.jpeg?auto=compress&cs=tinysrgb&w=600&h=800&fit=crop"></span>
-              </div>
-            </div>
-          </div>
-
-          <div class="product-card fade-in" data-category="nightsuit bestseller" style="transition-delay:.28s">
-            <div class="product-card-img-wrap">
-              <img src="https://plus.unsplash.com/premium_photo-1664302034933-69eeafba6e18?w=600&h=800&fit=crop&crop=faces,entropy&q=85" alt="Blush Floral Nightsuit" class="product-card-img" loading="lazy">
-              <span class="product-card-badge bestseller">Bestseller</span>
-              <div class="product-card-actions">
-                <a href="product.html?id=9" class="product-card-btn">Quick View</a>
-                <button class="product-card-btn primary" onclick="addToCart({id:'9',name:'Blush Floral Nightsuit',price:999,image:'https://plus.unsplash.com/premium_photo-1664302034933-69eeafba6e18?w=600&h=800&fit=crop',category:'Cute Nightsuit',size:'S'})">Add to Bag</button>
-              </div>
-            </div>
-            <div class="product-card-info">
-              <div class="product-card-category">Cute Nightsuit · XS–XL</div>
-              <div class="product-card-name"><a href="product.html?id=9">Blush Floral Nightsuit</a></div>
-              <div class="product-card-price"><span class="price-current">₹999</span></div>
-              <div class="product-card-colors">
-                <span class="color-dot active" style="background:#F5DDD3" title="Blush" data-img="https://plus.unsplash.com/premium_photo-1664302034933-69eeafba6e18?w=600&h=800&fit=crop&q=85"></span>
-                <span class="color-dot" style="background:#E8B4A0" title="Peach" data-img="https://images.unsplash.com/photo-1755456785148-e567dbb6a034?w=600&h=800&fit=crop&q=85"></span>
-              </div>
-            </div>
-          </div>
-
-          <div class="product-card fade-in" data-category="nightsuit" style="transition-delay:.35s">
-            <div class="product-card-img-wrap">
-              <img src="https://images.pexels.com/photos/6963170/pexels-photo-6963170.jpeg?auto=compress&cs=tinysrgb&w=600&h=800&fit=crop?w=600&h=800&fit=crop&crop=faces,entropy&q=85" alt="Cotton Candy Stripe Nightsuit" class="product-card-img" loading="lazy">
-              <span class="product-card-badge new">New</span>
-              <div class="product-card-actions">
-                <a href="product.html?id=10" class="product-card-btn">Quick View</a>
-                <button class="product-card-btn primary" onclick="addToCart({id:'10',name:'Cotton Candy Stripe Nightsuit',price:1149,image:'https://images.pexels.com/photos/6963170/pexels-photo-6963170.jpeg?auto=compress&cs=tinysrgb&w=600&h=800&fit=crop?w=600&h=800&fit=crop',category:'Cute Nightsuit',size:'S'})">Add to Bag</button>
-              </div>
-            </div>
-            <div class="product-card-info">
-              <div class="product-card-category">Cute Nightsuit · XS–XL</div>
-              <div class="product-card-name"><a href="product.html?id=10">Cotton Candy Stripe Nightsuit</a></div>
-              <div class="product-card-price"><span class="price-current">₹1,149</span></div>
-              <div class="product-card-colors">
-                <span class="color-dot active" style="background:#FAF0E6" title="Cream Stripe"></span>
-                <span class="color-dot" style="background:#E8D5F0" title="Lavender Stripe"></span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Lounge Sets -->
-          <div class="product-card fade-in" data-category="lounge bestseller" style="transition-delay:.42s">
-            <div class="product-card-img-wrap">
-              <img src="https://images.unsplash.com/photo-1759229874709-a8d0de083b91?w=600&h=800&fit=crop&crop=faces,entropy&q=85" alt="Cocoa Lounge Co-ord" class="product-card-img" loading="lazy">
-              <div class="product-card-actions">
-                <a href="product.html?id=4" class="product-card-btn">Quick View</a>
-                <button class="product-card-btn primary" onclick="addToCart({id:'4',name:'Cocoa Lounge Co-ord',price:1499,image:'https://images.unsplash.com/photo-1759229874709-a8d0de083b91?w=600&h=800&fit=crop',category:'Lounge Set',size:'S'})">Add to Bag</button>
-              </div>
-            </div>
-            <div class="product-card-info">
-              <div class="product-card-category">Lounge Set · XS–XL</div>
-              <div class="product-card-name"><a href="product.html?id=4">Cocoa Lounge Co-ord</a></div>
-              <div class="product-card-price"><span class="price-current">₹1,499</span></div>
-              <div class="product-card-colors">
-                <span class="color-dot active" style="background:#D4B896" title="Cocoa" data-img="https://images.unsplash.com/photo-1759229874709-a8d0de083b91?w=600&h=800&fit=crop&q=85"></span>
-                <span class="color-dot" style="background:#8B6147" title="Mocha" data-img="https://images.unsplash.com/photo-1531353826977-0941b4779a1c?w=600&h=800&fit=crop&q=85"></span>
-              </div>
-            </div>
-          </div>
-
-          <div class="product-card fade-in" data-category="lounge" style="transition-delay:.49s">
-            <div class="product-card-img-wrap">
-              <img src="https://images.unsplash.com/photo-1531353826977-0941b4779a1c?w=600&h=800&fit=crop&crop=faces,entropy&q=85" alt="Dreamy Lounge Set" class="product-card-img" loading="lazy">
-              <span class="product-card-badge new">New</span>
-              <div class="product-card-actions">
-                <a href="product.html?id=5" class="product-card-btn">Quick View</a>
-                <button class="product-card-btn primary" onclick="addToCart({id:'5',name:'Dreamy Lounge Set',price:1349,image:'https://images.unsplash.com/photo-1531353826977-0941b4779a1c?w=600&h=800&fit=crop',category:'Lounge Set',size:'S'})">Add to Bag</button>
-              </div>
-            </div>
-            <div class="product-card-info">
-              <div class="product-card-category">Lounge Set · XS–XL</div>
-              <div class="product-card-name"><a href="product.html?id=5">Dreamy Lounge Set</a></div>
-              <div class="product-card-price"><span class="price-current">₹1,349</span></div>
-              <div class="product-card-colors">
-                <span class="color-dot active" style="background:#E8E2DC" title="Ivory"></span>
-                <span class="color-dot" style="background:#C8BFB6" title="Stone"></span>
-              </div>
-            </div>
-          </div>
-
-          <div class="product-card fade-in" data-category="nightsuit" style="transition-delay:.56s">
-            <div class="product-card-img-wrap">
-              <img src="https://images.pexels.com/photos/4473880/pexels-photo-4473880.jpeg?auto=compress&cs=tinysrgb&w=600&h=800&fit=crop?w=600&h=800&fit=crop&crop=faces,entropy&q=85" alt="Moonlit Dreams Nightsuit" class="product-card-img" loading="lazy">
-              <span class="product-card-badge new">New</span>
-              <div class="product-card-actions">
-                <a href="product.html?id=11" class="product-card-btn">Quick View</a>
-                <button class="product-card-btn primary" onclick="addToCart({id:'11',name:'Moonlit Dreams Nightsuit',price:1249,image:'https://images.pexels.com/photos/4473880/pexels-photo-4473880.jpeg?auto=compress&cs=tinysrgb&w=600&h=800&fit=crop?w=600&h=800&fit=crop',category:'Cute Nightsuit',size:'S'})">Add to Bag</button>
-              </div>
-            </div>
-            <div class="product-card-info">
-              <div class="product-card-category">Cute Nightsuit · XS–XL</div>
-              <div class="product-card-name"><a href="product.html?id=11">Moonlit Dreams Nightsuit</a></div>
-              <div class="product-card-price"><span class="price-current">₹1,249</span></div>
-              <div class="product-card-colors">
-                <span class="color-dot active" style="background:#D5E8F0" title="Sky"></span>
-                <span class="color-dot" style="background:#E8D5F0" title="Lavender"></span>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-        <!-- No results -->
-        <div id="noResults" style="display:none;text-align:center;padding:80px 0;">
-          <p style="font-family:var(--font-display);font-size:20px;color:var(--muted)">No pieces found in this category.</p>
-          <button onclick="filterProducts(document.querySelector('[data-filter=all]'),'all')" class="btn-secondary" style="margin-top:24px">View All</button>
+        <!-- No Results -->
+        <div class="hidden text-center py-16" id="noResults">
+          <p class="font-display text-lg text-gray-500 mb-4">No pieces found in this category.</p>
+          <button onclick="filterShop('all')" class="border border-gray-300 text-gray-700 text-xs font-medium tracking-wider uppercase px-6 py-3 rounded hover:border-gray-900 hover:text-gray-900 transition-colors">View All</button>
         </div>
       </div>
-    </div>
+    </section>
   </main>
 
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-top">
-        <div class="footer-brand">
-          <img src="brand_assets/Aniso_LOGO.png" alt="ANISO" class="footer-brand-logo">
-          <p class="footer-brand-text">Premium nightwear and loungewear for the modern woman.</p>
-          <div class="footer-newsletter">
-            <input type="email" class="footer-newsletter-input" placeholder="Your email address">
-            <button class="footer-newsletter-btn">Join</button>
-          </div>
-        </div>
-        <div>
-          <div class="footer-col-title">Shop</div>
-          <ul class="footer-links">
-            <li><a href="shop.html">All Products</a></li>
-            <li><a href="shop.html?cat=satin">Satin Sets</a></li>
-            <li><a href="shop.html?cat=nightsuit">Cute Nightsuits</a></li>
-            <li><a href="shop.html?cat=lounge">Lounge Sets</a></li>
-          </ul>
-        </div>
-        <div>
-          <div class="footer-col-title">Help</div>
-          <ul class="footer-links">
-            <li><a href="size-guide.html">Size Guide</a></li>
-            <li><a href="faq.html">FAQ</a></li>
-            <li><a href="contact.html">Contact Us</a></li>
-            <li><a href="#">Returns</a></li>
-          </ul>
-        </div>
-        <div>
-          <div class="footer-col-title">Brand</div>
-          <ul class="footer-links">
-            <li><a href="about.html">Our Story</a></li>
-            <li><a href="#">Privacy Policy</a></li>
-            <li><a href="#">Terms</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <div class="footer-bottom-left">© 2026 ANISO. All rights reserved.</div>
-        <div class="footer-social">
-          <a href="#" aria-label="Instagram"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
-          <a href="#" aria-label="WhatsApp"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></a>
-        </div>
-        <div class="footer-payment">
-          <span class="footer-payment-badge">UPI</span>
-          <span class="footer-payment-badge">Cards</span>
-          <span class="footer-payment-badge">COD</span>
-        </div>
-      </div>
-    </div>
-  </footer>
+  <div id="footer-mount"></div>
 
-  <script src="assets/js/main.js"></script>
-  <script src="assets/js/effects.js"></script>
+  <script src="js/product-data.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/components.js"></script>
   <script>
-    function filterProducts(btn, cat) {
-      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-      if (btn) btn.classList.add('active');
-      const cards = document.querySelectorAll('#shopGrid .product-card');
-      let visible = 0;
-      cards.forEach(card => {
-        const cats = card.dataset.category || '';
-        const show = cat === 'all' || cats.includes(cat);
-        card.style.display = show ? '' : 'none';
-        if (show) visible++;
-      });
+    const badgeMap = {
+      'new-arrival': { label: 'New', cls: 'bg-gray-900 text-white' },
+      'bestseller': { label: 'Bestseller', cls: 'bg-cocoa text-white' },
+      'luxe': { label: 'LUXE', cls: 'bg-black text-champagne' },
+      '100-cotton': { label: '100% Cotton', cls: 'bg-white/90 text-gray-900 backdrop-blur' },
+      'sold-out': { label: 'Sold Out', cls: 'bg-gray-500 text-white' },
+    };
+
+    function renderCard(p) {
+      const badges = p.tags.map(t => badgeMap[t] ? `<span class="text-[10px] font-medium tracking-wide px-2.5 py-1 rounded-sm ${badgeMap[t].cls}">${badgeMap[t].label}</span>` : '').filter(Boolean).slice(0, 2).join('');
+      const soldOut = !p.availableForSale;
+      return `
+      <div class="group">
+        <a href="product.html?id=${p.id}" class="block relative overflow-hidden rounded-lg bg-gray-100 mb-3">
+          <div class="aspect-[3/4] overflow-hidden">
+            <img src="${p.images[0].src}" alt="${p.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ${soldOut ? 'opacity-50 grayscale' : ''}" loading="lazy">
+          </div>
+          <div class="absolute top-3 left-3 flex flex-col gap-1.5">${badges}</div>
+          ${p.material ? `<span class="fabric-tag absolute bottom-3 right-3 text-[9px] font-medium bg-white/80 backdrop-blur text-gray-700 px-1.5 py-0.5 rounded-full cursor-default z-[2]" title="${p.material}">${p.material.includes('Satin') ? 'Satin' : p.material.includes('Cotton') ? 'Cotton' : 'Fabric'}</span>` : ''}
+          ${!soldOut ? `<div class="absolute inset-x-0 bottom-0 p-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <button class="w-full bg-white/95 backdrop-blur text-gray-900 text-xs font-medium py-2.5 rounded hover:bg-white transition-colors" onclick="event.preventDefault();addToCart({id:'${p.id}',name:'${p.title}',price:${p.price},image:'${p.images[0].src}',category:'${p.category}',size:'S'})">Add to Bag</button>
+          </div>` : ''}
+        </a>
+        <div class="px-0.5">
+          <p class="text-[11px] text-gray-500 uppercase tracking-wide">${p.category} &middot; XS–XL</p>
+          <p class="text-sm font-medium text-gray-900 mt-0.5"><a href="product.html?id=${p.id}" class="hover:underline">${p.title}</a></p>
+          <p class="text-sm text-gray-600 mt-0.5">₹${p.price.toLocaleString('en-IN')}</p>
+          ${p.colors && p.colors.length > 1 ? `<div class="flex gap-1.5 mt-2">${p.colors.map(c => `<span class="w-4 h-4 rounded-full border border-gray-200" style="background:${c.hex}" title="${c.name}"></span>`).join('')}</div>` : ''}
+        </div>
+      </div>`;
+    }
+
+    let currentCat = 'all';
+    let currentSort = 'featured';
+
+    function getFilteredProducts() {
+      let products = currentCat === 'all' ? [...PRODUCTS] : PRODUCTS.filter(p => p.categorySlug === currentCat);
+      if (currentSort === 'price-asc') products.sort((a, b) => a.price - b.price);
+      else if (currentSort === 'price-desc') products.sort((a, b) => b.price - a.price);
+      else if (currentSort === 'newest') products.sort((a, b) => (b.tags.includes('new-arrival') ? 1 : 0) - (a.tags.includes('new-arrival') ? 1 : 0));
+      return products;
+    }
+
+    function renderShop() {
+      const products = getFilteredProducts();
+      const grid = document.getElementById('shopGrid');
       const noResults = document.getElementById('noResults');
-      if (noResults) noResults.style.display = visible === 0 ? 'block' : 'none';
       const count = document.getElementById('shopCount');
-      if (count) count.textContent = `${visible} Piece${visible !== 1 ? 's' : ''}`;
+
+      if (grid) grid.innerHTML = products.map(renderCard).join('');
+      if (noResults) noResults.classList.toggle('hidden', products.length > 0);
+      if (count) count.textContent = `${products.length} Piece${products.length !== 1 ? 's' : ''}`;
     }
 
-    // Handle URL params
-    const params = new URLSearchParams(window.location.search);
-    const cat = params.get('cat');
-    if (cat) {
-      const btn = document.querySelector(`[data-filter="${cat}"]`);
-      if (btn) filterProducts(btn, cat);
-    }
-
-    // Collection card clicks
-    document.querySelectorAll('.filter-btn-card').forEach(card => {
-      card.addEventListener('click', e => {
-        e.preventDefault();
-        const cat = card.dataset.cat;
-        const filterBtn = document.querySelector(`[data-filter="${cat}"]`);
-        filterProducts(filterBtn, cat);
-        document.getElementById('shopGrid')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    function filterShop(cat) {
+      currentCat = cat;
+      document.querySelectorAll('.cat-tab').forEach(t => {
+        const isActive = t.dataset.cat === cat;
+        t.classList.toggle('bg-gray-900', isActive);
+        t.classList.toggle('text-white', isActive);
+        t.classList.toggle('border-gray-900', isActive);
+        t.classList.toggle('border-gray-200', !isActive);
+        t.classList.toggle('text-gray-700', !isActive);
+        t.classList.toggle('hover:border-gray-400', !isActive);
+        t.classList.toggle('active', isActive);
       });
+      renderShop();
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      // Tab clicks
+      document.querySelectorAll('.cat-tab').forEach(tab => {
+        tab.addEventListener('click', () => filterShop(tab.dataset.cat));
+      });
+
+      // Sort
+      document.getElementById('sortSelect')?.addEventListener('change', e => {
+        currentSort = e.target.value;
+        renderShop();
+      });
+
+      // URL param
+      const params = new URLSearchParams(window.location.search);
+      const cat = params.get('cat');
+      filterShop(cat || 'all');
     });
   </script>
-
-  <!-- Sign In / Register Modal -->
-  <div class="signin-overlay" id="signinOverlay">
-    <div class="signin-modal">
-      <button class="signin-modal-close" onclick="closeSignIn()">&#215;</button>
-      <div class="signin-logo">
-        <img src="brand_assets/Aniso_LOGO.png" alt="ANISO">
-      </div>
-      <h2 class="signin-title">My Account</h2>
-      <div class="signin-tabs">
-        <button class="signin-tab active" data-tab="signin">Sign In</button>
-        <button class="signin-tab" data-tab="register">Create Account</button>
-      </div>
-      <div id="signinFormWrap">
-        <form class="signin-form" id="signinForm">
-          <input class="signin-input" type="email" placeholder="Email address" required>
-          <input class="signin-input" type="password" placeholder="Password" required>
-          <button type="submit" class="signin-submit">Sign In</button>
-        </form>
-        <div class="signin-footer">Don't have an account? <a href="#" onclick="openSignIn('register');return false;">Create one</a></div>
-      </div>
-      <div id="registerFormWrap" style="display:none">
-        <form class="signin-form" id="registerForm">
-          <input class="signin-input" type="text" name="fullname" placeholder="Full name" required>
-          <input class="signin-input" type="email" placeholder="Email address" required>
-          <input class="signin-input" type="password" placeholder="Create password" required>
-          <button type="submit" class="signin-submit">Create Account</button>
-        </form>
-        <div class="signin-footer">Already have an account? <a href="#" onclick="openSignIn('signin');return false;">Sign in</a></div>
-      </div>
-    </div>
-  </div>
 </body>
 </html>

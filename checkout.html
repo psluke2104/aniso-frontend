@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="brand_assets/favicon.png" type="image/png">
+  <title>Checkout — ANISO</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: { extend: {
+        colors: { cocoa: '#8B6147', blush: '#E8B4A0', champagne: '#D4B896' },
+        fontFamily: { display: ['Playfair Display', 'Georgia', 'serif'], body: ['Montserrat', 'system-ui', 'sans-serif'] },
+      }}
+    }
+  </script>
+  <style>
+    @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+    .animate-scroll { animation: scroll 25s linear infinite; }
+  </style>
+</head>
+<body class="bg-white font-body text-gray-900">
+  <div id="nav-mount"></div>
+
+  <main class="py-8 md:py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <h1 class="font-display text-2xl sm:text-3xl mb-8">Checkout</h1>
+
+      <div class="grid md:grid-cols-3 gap-8 md:gap-12">
+        <!-- Shipping Form -->
+        <div class="md:col-span-2 space-y-6">
+
+          <!-- Contact -->
+          <div>
+            <h2 class="text-xs font-medium uppercase tracking-wider text-gray-500 mb-4">Contact Information</h2>
+            <div class="grid sm:grid-cols-2 gap-4">
+              <input id="ck-name" type="text" placeholder="Full name *" required class="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm placeholder-gray-400 outline-none focus:border-gray-400 transition-colors">
+              <input id="ck-email" type="email" placeholder="Email address *" required class="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm placeholder-gray-400 outline-none focus:border-gray-400 transition-colors">
+            </div>
+            <input id="ck-phone" type="tel" placeholder="Phone number *" required class="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm placeholder-gray-400 outline-none focus:border-gray-400 transition-colors mt-4">
+          </div>
+
+          <!-- Shipping Address -->
+          <div>
+            <h2 class="text-xs font-medium uppercase tracking-wider text-gray-500 mb-4">Shipping Address</h2>
+            <input id="ck-address1" type="text" placeholder="Address line 1 *" required class="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm placeholder-gray-400 outline-none focus:border-gray-400 transition-colors">
+            <input id="ck-address2" type="text" placeholder="Address line 2 (optional)" class="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm placeholder-gray-400 outline-none focus:border-gray-400 transition-colors mt-4">
+            <div class="grid sm:grid-cols-3 gap-4 mt-4">
+              <input id="ck-city" type="text" placeholder="City *" required class="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm placeholder-gray-400 outline-none focus:border-gray-400 transition-colors">
+              <input id="ck-state" type="text" placeholder="State *" required class="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm placeholder-gray-400 outline-none focus:border-gray-400 transition-colors">
+              <input id="ck-pincode" type="text" placeholder="Pincode *" required maxlength="6" class="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm placeholder-gray-400 outline-none focus:border-gray-400 transition-colors">
+            </div>
+          </div>
+
+          <!-- Payment Method -->
+          <div>
+            <h2 class="text-xs font-medium uppercase tracking-wider text-gray-500 mb-4">Payment Method</h2>
+            <div class="space-y-3">
+              <label class="flex items-center gap-3 border border-gray-200 rounded-lg px-4 py-3.5 cursor-pointer hover:border-gray-400 transition-colors has-[:checked]:border-gray-900 has-[:checked]:bg-gray-50">
+                <input type="radio" name="payment" value="online" checked class="accent-gray-900">
+                <div>
+                  <span class="text-sm font-medium">Pay Online</span>
+                  <p class="text-xs text-gray-500">UPI, Cards, Wallets, Netbanking via Razorpay</p>
+                </div>
+              </label>
+              <label class="flex items-center gap-3 border border-gray-200 rounded-lg px-4 py-3.5 cursor-pointer hover:border-gray-400 transition-colors has-[:checked]:border-gray-900 has-[:checked]:bg-gray-50">
+                <input type="radio" name="payment" value="cod" class="accent-gray-900">
+                <div>
+                  <span class="text-sm font-medium">Cash on Delivery</span>
+                  <p class="text-xs text-gray-500">Pay when your order arrives (up to ₹5,000)</p>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <button onclick="placeOrder()" id="ck-submit" class="w-full sm:w-auto bg-gray-900 text-white text-xs font-medium tracking-wider uppercase px-10 py-4 rounded hover:bg-gray-800 transition-colors">
+            Place Order
+            <svg class="inline ml-1" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </button>
+
+          <p id="ck-error" class="text-sm text-red-600 hidden mt-2"></p>
+        </div>
+
+        <!-- Order Summary -->
+        <div>
+          <div class="bg-gray-50 rounded-lg p-6 sticky top-24">
+            <h2 class="font-display text-lg mb-4">Order Summary</h2>
+            <div id="ck-items" class="space-y-4 mb-4"></div>
+            <div class="space-y-2 text-sm border-t border-gray-200 pt-4">
+              <div class="flex justify-between"><span class="text-gray-600">Subtotal</span><span class="font-medium" id="ck-subtotal">₹0</span></div>
+              <div class="flex justify-between"><span class="text-gray-600">Shipping</span><span class="font-medium" id="ck-shipping">—</span></div>
+              <div class="flex justify-between pt-2 border-t border-gray-200 text-base font-medium"><span>Total</span><span id="ck-total">₹0</span></div>
+            </div>
+            <a href="cart.html" class="block text-center text-xs text-gray-500 mt-4 hover:text-gray-900 transition-colors">&larr; Back to Cart</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Order Confirmation Overlay -->
+    <div id="ck-confirmation" class="fixed inset-0 bg-white z-50 flex items-center justify-center hidden">
+      <div class="text-center px-6 max-w-md">
+        <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <h2 class="font-display text-2xl mb-2">Order Placed!</h2>
+        <p class="text-sm text-gray-600 mb-1">Thank you for shopping with ANISO.</p>
+        <p class="text-sm text-gray-500 mb-6" id="ck-order-id"></p>
+        <a href="index.html" class="bg-gray-900 text-white text-xs font-medium tracking-wider uppercase px-8 py-3.5 rounded hover:bg-gray-800 transition-colors inline-block">Continue Shopping</a>
+      </div>
+    </div>
+  </main>
+
+  <div id="footer-mount"></div>
+
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  <script src="js/product-data.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/checkout.js"></script>
+  <script src="js/components.js"></script>
+</body>
+</html>

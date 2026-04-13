@@ -5,351 +5,99 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" href="brand_assets/favicon.png" type="image/png">
   <title>FAQ — ANISO</title>
-  <meta name="description" content="Answers to your most common questions about ANISO — shipping, returns, sizing, fabric, and more.">
+  <meta name="description" content="Frequently asked questions about ANISO nightwear — shipping, returns, sizing, and more.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/styles.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: { extend: {
+        colors: { cocoa: '#8B6147', blush: '#E8B4A0', champagne: '#D4B896' },
+        fontFamily: { display: ['Playfair Display', 'Georgia', 'serif'], body: ['Montserrat', 'system-ui', 'sans-serif'] },
+      }}
+    }
+  </script>
   <style>
-    .faq-category-title {
-      font-family: var(--font-display);
-      font-size: 22px; font-weight:400;
-      color: var(--black);
-      margin-bottom: 0;
-      padding-bottom: 20px;
-      border-bottom: 1.5px solid var(--black);
-      margin-bottom: 0;
-      display: flex; align-items: center; gap: 12px;
-    }
-    .faq-category-title span {
-      font-size: 9px; font-weight:500;
-      letter-spacing:0.12em; text-transform:uppercase;
-      background: var(--cream-deep); color: var(--cocoa);
-      padding: 4px 10px;
-    }
-    .faq-group { margin-bottom: 56px; }
+    @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+    .animate-scroll { animation: scroll 25s linear infinite; }
+    .faq-item .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+    .faq-item.open .faq-a { max-height: 300px; }
+    .faq-item.open .faq-icon { transform: rotate(45deg); }
+    .faq-icon { transition: transform 0.3s ease; }
   </style>
 </head>
-<body>
+<body class="bg-white font-body text-gray-900">
+  <div id="nav-mount"></div>
 
-  <div class="announcement-bar" id="announcementBar">
-    <div class="announcement-inner">
-      <div class="announcement-track">
-        <span>Complimentary shipping on all orders above ₹1,499</span><span class="sep">·</span>
-        <span>New Drop — Ivory Reverie Collection is now live</span><span class="sep">·</span>
-        <span>Easy 14-day returns &amp; exchanges</span><span class="sep">·</span>
-        <span>Complimentary shipping on all orders above ₹1,499</span><span class="sep">·</span>
-        <span>New Drop — Ivory Reverie Collection is now live</span><span class="sep">·</span>
-        <span>Easy 14-day returns &amp; exchanges</span>
+  <main class="py-16 md:py-24">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6">
+      <div class="text-center mb-12 fade-in">
+        <p class="text-xs font-medium uppercase tracking-[0.15em] text-cocoa mb-2">Help Centre</p>
+        <h1 class="font-display text-3xl sm:text-4xl mb-3">Frequently Asked Questions</h1>
+        <p class="text-sm text-gray-500">Everything you need to know about ANISO.</p>
       </div>
-    </div>
-    <button class="announcement-close" onclick="closeAnnouncement()">&#215;</button>
-  </div>
 
-  <nav class="navbar" id="navbar">
-    <div class="nav-inner">
-      <button class="nav-hamburger" id="hamburger" onclick="toggleMobileMenu()"><span></span><span></span><span></span></button>
-      <ul class="nav-links nav-left">
-        <li><a href="shop.html">Shop</a></li>
-        <li><a href="shop.html#collections">Collections</a></li>
-        <li><a href="about.html">Our Story</a></li>
-      </ul>
-      <a href="index.html" class="nav-logo"><img src="brand_assets/Aniso_LOGO.png" alt="ANISO" class="nav-logo-img"></a>
-      <div class="nav-right">
-        <ul class="nav-links">
-          <li><a href="size-guide.html">Size Guide</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-        <div class="nav-icons">
-          <button class="nav-icon-btn" aria-label="Search">
-            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.4-4.4"/></svg>
-          </button>
-          <div class="profile-dropdown-wrap" id="profileDropdownWrap">
-              <button class="nav-icon-btn" id="profileBtn" aria-label="Account">
-                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-              </button>
-              <div class="profile-dropdown" id="profileMenu">
-                <div id="profileSignedOut">
-                  <div class="profile-dropdown-header">Welcome to ANISO</div>
-                  <a href="#" class="profile-dropdown-link" onclick="openSignIn('signin');return false;">Sign In</a>
-                  <a href="#" class="profile-dropdown-link" onclick="openSignIn('register');return false;">Create Account</a>
-                </div>
-                <div id="profileSignedIn" style="display:none">
-                  <div class="profile-dropdown-header" id="profileGreeting">Hi, there</div>
-                  <a href="#" class="profile-dropdown-link">My Account</a>
-                  <a href="#" class="profile-dropdown-link">My Orders</a>
-                  <hr class="profile-dropdown-divider">
-                  <a href="#" class="profile-dropdown-link" onclick="signOut();return false;">Sign Out</a>
-                </div>
-              </div>
-            </div>
-          <a href="cart.html" class="nav-icon-btn" aria-label="Cart">
-            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-            <span class="cart-count" id="cartCount">0</span>
-          </a>
-        </div>
-      </div>
-    </div>
-    <div class="mobile-menu" id="mobileMenu">
-      <ul>
-        <li><a href="shop.html" onclick="toggleMobileMenu()">Shop All</a></li>
-        <li><a href="about.html" onclick="toggleMobileMenu()">Our Story</a></li>
-        <li><a href="size-guide.html" onclick="toggleMobileMenu()">Size Guide</a></li>
-        <li><a href="faq.html" onclick="toggleMobileMenu()">FAQ</a></li>
-        <li><a href="contact.html" onclick="toggleMobileMenu()">Contact</a></li>
-        <li><a href="cart.html" onclick="toggleMobileMenu()">Your Bag</a></li>
-      </ul>
-    </div>
-  </nav>
-
-  <main>
-    <div class="page-hero">
-      <div class="container">
-        <span class="section-label page-hero-label">Support</span>
-        <h1 class="page-hero-title">Frequently Asked Questions</h1>
-        <p class="page-hero-sub">Everything you need to know about ordering, shipping, returns, and care. Can't find what you're looking for? <a href="contact.html" style="color:var(--cocoa);text-decoration:underline;text-underline-offset:3px">Contact us.</a></p>
-      </div>
-    </div>
-
-    <div style="padding:80px 0 100px;background:var(--cream);">
-      <div class="container">
-        <div style="display:grid;grid-template-columns:240px 1fr;gap:72px;align-items:flex-start;">
-
-          <!-- Category nav (desktop) -->
-          <div style="position:sticky;top:96px;" class="faq-side-nav">
-            <div style="font-size:10px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);margin-bottom:20px;">Jump to</div>
-            <ul style="display:flex;flex-direction:column;gap:4px;">
-              <li><a href="#shipping" style="font-size:13px;font-weight:300;color:var(--charcoal);padding:8px 0;display:block;border-bottom:1px solid var(--border);transition:color var(--t-base);" onmouseover="this.style.color='var(--black)'" onmouseout="this.style.color='var(--charcoal)'">Shipping &amp; Delivery</a></li>
-              <li><a href="#returns" style="font-size:13px;font-weight:300;color:var(--charcoal);padding:8px 0;display:block;border-bottom:1px solid var(--border);transition:color var(--t-base);" onmouseover="this.style.color='var(--black)'" onmouseout="this.style.color='var(--charcoal)'">Returns &amp; Exchanges</a></li>
-              <li><a href="#sizing" style="font-size:13px;font-weight:300;color:var(--charcoal);padding:8px 0;display:block;border-bottom:1px solid var(--border);transition:color var(--t-base);" onmouseover="this.style.color='var(--black)'" onmouseout="this.style.color='var(--charcoal)'">Sizing</a></li>
-              <li><a href="#fabric" style="font-size:13px;font-weight:300;color:var(--charcoal);padding:8px 0;display:block;border-bottom:1px solid var(--border);transition:color var(--t-base);" onmouseover="this.style.color='var(--black)'" onmouseout="this.style.color='var(--charcoal)'">Fabric &amp; Care</a></li>
-              <li><a href="#orders" style="font-size:13px;font-weight:300;color:var(--charcoal);padding:8px 0;display:block;transition:color var(--t-base);" onmouseover="this.style.color='var(--black)'" onmouseout="this.style.color='var(--charcoal)'">Order Support</a></li>
-            </ul>
+      <div class="fade-in">
+        <h3 class="text-xs font-medium uppercase tracking-wider text-cocoa mb-4 mt-8">Shipping &amp; Delivery</h3>
+        <div class="space-y-0">
+          <div class="faq-item border-b border-gray-100">
+            <button class="faq-q w-full flex items-center justify-between py-5 text-left text-sm font-medium text-gray-900">How long does shipping take?<span class="faq-icon text-gray-400"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button>
+            <div class="faq-a"><div class="pb-5 text-sm text-gray-600 leading-relaxed">Standard shipping is 4–7 business days. Express delivery (2–3 days) is available for select pincodes. Orders above ₹1,499 ship free.</div></div>
           </div>
-
-          <!-- FAQ content -->
-          <div>
-
-            <!-- Shipping -->
-            <div class="faq-group" id="shipping">
-              <div class="faq-category-title fade-in">Shipping &amp; Delivery <span>5 questions</span></div>
-              <div class="faq-list">
-                <div class="faq-item fade-in">
-                  <button class="faq-question">How long does delivery take?<span class="faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button>
-                  <div class="faq-answer"><div class="faq-answer-inner">Standard delivery takes 4–7 business days across India. Express delivery (2–3 business days) is available at checkout for select pincodes. You'll receive a tracking link once your order has shipped.</div></div>
-                </div>
-                <div class="faq-item fade-in">
-                  <button class="faq-question">Is shipping free?<span class="faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button>
-                  <div class="faq-answer"><div class="faq-answer-inner">Yes! All orders above ₹1,499 qualify for complimentary standard shipping. Orders below ₹1,499 are charged a flat ₹149 shipping fee.</div></div>
-                </div>
-                <div class="faq-item fade-in">
-                  <button class="faq-question">Do you ship outside India?<span class="faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button>
-                  <div class="faq-answer"><div class="faq-answer-inner">Currently, we ship within India only. We're working on international shipping and will announce it soon. Sign up to our newsletter to be notified when international delivery launches.</div></div>
-                </div>
-                <div class="faq-item fade-in">
-                  <button class="faq-question">Can I track my order?<span class="faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button>
-                  <div class="faq-answer"><div class="faq-answer-inner">Yes. Once your order ships, we'll send you a confirmation email with a tracking link. You can also reach us at care@aniso.in for a live order update.</div></div>
-                </div>
-                <div class="faq-item fade-in">
-                  <button class="faq-question">What if my order is delayed?<span class="faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button>
-                  <div class="faq-answer"><div class="faq-answer-inner">If your order hasn't arrived within the estimated timeframe, please contact us at care@aniso.in and we'll resolve it promptly. We take delivery timelines seriously.</div></div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Returns -->
-            <div class="faq-group" id="returns">
-              <div class="faq-category-title fade-in">Returns &amp; Exchanges <span>4 questions</span></div>
-              <div class="faq-list">
-                <div class="faq-item fade-in">
-                  <button class="faq-question">What is your return policy?<span class="faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button>
-                  <div class="faq-answer"><div class="faq-answer-inner">We accept returns within 14 days of delivery. Items must be unused, unwashed, with original tags and packaging intact. Email us at care@aniso.in with your order number to initiate a return.</div></div>
-                </div>
-                <div class="faq-item fade-in">
-                  <button class="faq-question">Can I exchange for a different size?<span class="faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button>
-                  <div class="faq-answer"><div class="faq-answer-inner">Yes. Size exchanges are available within 7 days of delivery, subject to stock availability. Reach out to us and we'll arrange a replacement shipment at no extra cost.</div></div>
-                </div>
-                <div class="faq-item fade-in">
-                  <button class="faq-question">How long does a refund take?<span class="faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button>
-                  <div class="faq-answer"><div class="faq-answer-inner">Once we receive and verify your return, refunds are processed within 5–7 business days to your original payment method. UPI and card refunds typically appear within 3–5 days.</div></div>
-                </div>
-                <div class="faq-item fade-in">
-                  <button class="faq-question">Are sale items returnable?<span class="faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button>
-                  <div class="faq-answer"><div class="faq-answer-inner">Sale items are eligible for exchange only — not cash refunds. If you've purchased a discounted item and have an issue, please reach out and we'll do our best to help.</div></div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Sizing -->
-            <div class="faq-group" id="sizing">
-              <div class="faq-category-title fade-in">Sizing <span>3 questions</span></div>
-              <div class="faq-list">
-                <div class="faq-item fade-in">
-                  <button class="faq-question">Do your sets run true to size?<span class="faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button>
-                  <div class="faq-answer"><div class="faq-answer-inner">Yes — our sets run true to size with a relaxed, comfortable fit. If you prefer a more fluid, oversized feel, we recommend sizing up by one. Visit our <a href="size-guide.html" style="color:var(--cocoa);text-decoration:underline;text-underline-offset:3px">Size Guide</a> for full measurements.</div></div>
-                </div>
-                <div class="faq-item fade-in">
-                  <button class="faq-question">I'm between two sizes — what should I do?<span class="faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button>
-                  <div class="faq-answer"><div class="faq-answer-inner">We recommend sizing up for a more relaxed, lounge-friendly fit. If you prefer a closer fit, go with the smaller size. You can always DM or email us with your measurements and we'll guide you personally.</div></div>
-                </div>
-                <div class="faq-item fade-in">
-                  <button class="faq-question">Are the top and bottom sold as a set?<span class="faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button>
-                  <div class="faq-answer"><div class="faq-answer-inner">Yes — all ANISO sets are sold as a co-ordinated top and bottom pair, in the same size. The top and bottom are designed to work together as a matching set.</div></div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Fabric & Care -->
-            <div class="faq-group" id="fabric">
-              <div class="faq-category-title fade-in">Fabric &amp; Care <span>4 questions</span></div>
-              <div class="faq-list">
-                <div class="faq-item fade-in">
-                  <button class="faq-question">What fabrics do you use?<span class="faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button>
-                  <div class="faq-answer"><div class="faq-answer-inner">We use two fabric categories: premium pima cotton for our cotton sets (breathable, soft, skin-friendly) and charmeuse satin for our satin collection (lustrous, fluid, luxuriously smooth). All fabrics are OEKO-TEX certified.</div></div>
-                </div>
-                <div class="faq-item fade-in">
-                  <button class="faq-question">How do I wash my ANISO set?<span class="faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button>
-                  <div class="faq-answer"><div class="faq-answer-inner">
-                    <p>For <strong style="font-weight:500">satin sets</strong>: hand wash in cold water using a mild detergent. Do not tumble dry — lay flat in shade to dry. Iron on low heat with a pressing cloth.</p>
-                    <p>For <strong style="font-weight:500">cotton sets</strong>: machine wash on gentle cycle, cold water. Tumble dry low or air dry. Iron on medium heat if needed.</p>
-                  </div></div>
-                </div>
-                <div class="faq-item fade-in">
-                  <button class="faq-question">Will the fabric pill or fade over time?<span class="faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button>
-                  <div class="faq-answer"><div class="faq-answer-inner">Our fabrics are selected for their durability. Pilling is minimal when washed correctly. Colours may gently soften with time, which adds to the lived-in luxury feel. Always wash inside-out and avoid harsh detergents to preserve the colour and texture.</div></div>
-                </div>
-                <div class="faq-item fade-in">
-                  <button class="faq-question">Are ANISO fabrics skin-safe?<span class="faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button>
-                  <div class="faq-answer"><div class="faq-answer-inner">Yes. All fabrics used by ANISO are OEKO-TEX Standard 100 certified — meaning they've been tested and verified to be free from harmful substances. They're safe for sensitive skin.</div></div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Order Support -->
-            <div class="faq-group" id="orders">
-              <div class="faq-category-title fade-in">Order Support <span>3 questions</span></div>
-              <div class="faq-list">
-                <div class="faq-item fade-in">
-                  <button class="faq-question">Can I cancel or modify my order?<span class="faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button>
-                  <div class="faq-answer"><div class="faq-answer-inner">Orders can be cancelled or modified within 2 hours of placing them. Please email care@aniso.in with your order number immediately. After 2 hours, the order enters fulfilment and changes may not be possible.</div></div>
-                </div>
-                <div class="faq-item fade-in">
-                  <button class="faq-question">I received a wrong or damaged item — what do I do?<span class="faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button>
-                  <div class="faq-answer"><div class="faq-answer-inner">We're so sorry this happened. Please email care@aniso.in within 48 hours of receiving your order, with photos of the item and your order number. We'll send a replacement or issue a full refund — whichever you prefer, no questions asked.</div></div>
-                </div>
-                <div class="faq-item fade-in">
-                  <button class="faq-question">How can I get in touch with the team?<span class="faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button>
-                  <div class="faq-answer"><div class="faq-answer-inner">Email us at care@aniso.in or use our <a href="contact.html" style="color:var(--cocoa);text-decoration:underline;text-underline-offset:3px">contact form</a>. We aim to respond within 24 hours on business days. For urgent queries, reach us on WhatsApp.</div></div>
-                </div>
-              </div>
-            </div>
-
+          <div class="faq-item border-b border-gray-100">
+            <button class="faq-q w-full flex items-center justify-between py-5 text-left text-sm font-medium text-gray-900">Do you ship across India?<span class="faq-icon text-gray-400"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button>
+            <div class="faq-a"><div class="pb-5 text-sm text-gray-600 leading-relaxed">Yes! We deliver to all major cities and towns across India.</div></div>
+          </div>
+          <div class="faq-item border-b border-gray-100">
+            <button class="faq-q w-full flex items-center justify-between py-5 text-left text-sm font-medium text-gray-900">Is Cash on Delivery available?<span class="faq-icon text-gray-400"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button>
+            <div class="faq-a"><div class="pb-5 text-sm text-gray-600 leading-relaxed">Yes, COD is available for orders up to ₹5,000.</div></div>
           </div>
         </div>
 
-        <!-- Still need help -->
-        <div class="fade-in" style="margin-top:48px;padding:48px;background:var(--cream-warm);border:1px solid var(--border);display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;">
-          <div>
-            <span class="section-label">Still Need Help?</span>
-            <h3 style="font-family:var(--font-display);font-size:28px;font-weight:400;letter-spacing:var(--tracking-display);color:var(--black);line-height:1.2;margin-top:8px;">We're always here for you.</h3>
-            <p style="font-size:14px;font-weight:300;line-height:1.8;color:var(--muted);margin-top:14px;">Reach out and a real person from our team will respond — no bots, no scripts, just genuine support.</p>
+        <h3 class="text-xs font-medium uppercase tracking-wider text-cocoa mb-4 mt-10">Returns &amp; Exchanges</h3>
+        <div class="space-y-0">
+          <div class="faq-item border-b border-gray-100">
+            <button class="faq-q w-full flex items-center justify-between py-5 text-left text-sm font-medium text-gray-900">What is your return policy?<span class="faq-icon text-gray-400"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button>
+            <div class="faq-a"><div class="pb-5 text-sm text-gray-600 leading-relaxed">We accept returns within 14 days. Items must be unused, unwashed, and in original packaging.</div></div>
           </div>
-          <div style="display:flex;flex-direction:column;gap:12px;">
-            <a href="contact.html" class="btn-primary" style="text-align:center;justify-content:center;">Contact the Team</a>
-            <a href="mailto:care@aniso.in" class="btn-secondary" style="text-align:center;justify-content:center;">care@aniso.in</a>
+          <div class="faq-item border-b border-gray-100">
+            <button class="faq-q w-full flex items-center justify-between py-5 text-left text-sm font-medium text-gray-900">Can I exchange for a different size?<span class="faq-icon text-gray-400"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button>
+            <div class="faq-a"><div class="pb-5 text-sm text-gray-600 leading-relaxed">Yes, exchanges are available within 7 days of delivery for size-related issues.</div></div>
           </div>
         </div>
 
+        <h3 class="text-xs font-medium uppercase tracking-wider text-cocoa mb-4 mt-10">Sizing &amp; Fit</h3>
+        <div class="space-y-0">
+          <div class="faq-item border-b border-gray-100">
+            <button class="faq-q w-full flex items-center justify-between py-5 text-left text-sm font-medium text-gray-900">How do I find my size?<span class="faq-icon text-gray-400"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button>
+            <div class="faq-a"><div class="pb-5 text-sm text-gray-600 leading-relaxed">Visit our <a href="size-guide.html" class="text-cocoa underline underline-offset-2">Size Guide</a> for detailed measurements. Between sizes? Size up.</div></div>
+          </div>
+        </div>
+
+        <h3 class="text-xs font-medium uppercase tracking-wider text-cocoa mb-4 mt-10">Fabrics &amp; Care</h3>
+        <div class="space-y-0">
+          <div class="faq-item border-b border-gray-100">
+            <button class="faq-q w-full flex items-center justify-between py-5 text-left text-sm font-medium text-gray-900">What fabrics do you use?<span class="faq-icon text-gray-400"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button>
+            <div class="faq-a"><div class="pb-5 text-sm text-gray-600 leading-relaxed">Premium pima cotton and high-grade charmeuse satin. All OEKO-TEX certified.</div></div>
+          </div>
+          <div class="faq-item border-b border-gray-100">
+            <button class="faq-q w-full flex items-center justify-between py-5 text-left text-sm font-medium text-gray-900">How should I wash my ANISO sets?<span class="faq-icon text-gray-400"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button>
+            <div class="faq-a"><div class="pb-5 text-sm text-gray-600 leading-relaxed">Hand wash cold or gentle machine cycle. Do not tumble dry. Lay flat in shade. Iron on low.</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center mt-12 fade-in">
+        <p class="text-sm text-gray-500 mb-4">Still have questions?</p>
+        <a href="contact.html" class="bg-gray-900 text-white text-xs font-medium tracking-wider uppercase px-8 py-3.5 rounded hover:bg-gray-800 transition-colors inline-block">Contact Us</a>
       </div>
     </div>
   </main>
 
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-top">
-        <div class="footer-brand">
-          <img src="brand_assets/Aniso_LOGO.png" alt="ANISO" class="footer-brand-logo">
-          <p class="footer-brand-text">Premium nightwear and loungewear for the modern woman.</p>
-          <div class="footer-newsletter">
-            <input type="email" class="footer-newsletter-input" placeholder="Your email address">
-            <button class="footer-newsletter-btn">Join</button>
-          </div>
-        </div>
-        <div>
-          <div class="footer-col-title">Shop</div>
-          <ul class="footer-links">
-            <li><a href="shop.html">All Products</a></li>
-            <li><a href="shop.html?cat=satin">Satin Sets</a></li>
-            <li><a href="shop.html?cat=cotton">Cotton Sets</a></li>
-          </ul>
-        </div>
-        <div>
-          <div class="footer-col-title">Help</div>
-          <ul class="footer-links">
-            <li><a href="size-guide.html">Size Guide</a></li>
-            <li><a href="faq.html">FAQ</a></li>
-            <li><a href="contact.html">Contact Us</a></li>
-          </ul>
-        </div>
-        <div>
-          <div class="footer-col-title">Brand</div>
-          <ul class="footer-links">
-            <li><a href="about.html">Our Story</a></li>
-            <li><a href="#">Privacy Policy</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <div class="footer-bottom-left">© 2026 ANISO. All rights reserved.</div>
-        <div class="footer-payment">
-          <span class="footer-payment-badge">UPI</span>
-          <span class="footer-payment-badge">Cards</span>
-          <span class="footer-payment-badge">COD</span>
-        </div>
-      </div>
-    </div>
-  </footer>
-
-  <script src="assets/js/main.js"></script>
-  <script src="assets/js/effects.js"></script>
-  <style>
-    @media (max-width: 768px) {
-      .faq-side-nav { display: none; }
-      div[style*="grid-template-columns: 240px"] { grid-template-columns: 1fr !important; gap: 0 !important; }
-      div[style*="grid-template-columns: 1fr 1fr"][style*="border"] { grid-template-columns: 1fr !important; }
-    }
-  </style>
-
-  <!-- Sign In / Register Modal -->
-  <div class="signin-overlay" id="signinOverlay">
-    <div class="signin-modal">
-      <button class="signin-modal-close" onclick="closeSignIn()">&#215;</button>
-      <div class="signin-logo">
-        <img src="brand_assets/Aniso_LOGO.png" alt="ANISO">
-      </div>
-      <h2 class="signin-title">My Account</h2>
-      <div class="signin-tabs">
-        <button class="signin-tab active" data-tab="signin">Sign In</button>
-        <button class="signin-tab" data-tab="register">Create Account</button>
-      </div>
-      <div id="signinFormWrap">
-        <form class="signin-form" id="signinForm">
-          <input class="signin-input" type="email" placeholder="Email address" required>
-          <input class="signin-input" type="password" placeholder="Password" required>
-          <button type="submit" class="signin-submit">Sign In</button>
-        </form>
-        <div class="signin-footer">Don't have an account? <a href="#" onclick="openSignIn('register');return false;">Create one</a></div>
-      </div>
-      <div id="registerFormWrap" style="display:none">
-        <form class="signin-form" id="registerForm">
-          <input class="signin-input" type="text" name="fullname" placeholder="Full name" required>
-          <input class="signin-input" type="email" placeholder="Email address" required>
-          <input class="signin-input" type="password" placeholder="Create password" required>
-          <button type="submit" class="signin-submit">Create Account</button>
-        </form>
-        <div class="signin-footer">Already have an account? <a href="#" onclick="openSignIn('signin');return false;">Sign in</a></div>
-      </div>
-    </div>
-  </div>
+  <div id="footer-mount"></div>
+  <script src="js/product-data.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/components.js"></script>
 </body>
 </html>

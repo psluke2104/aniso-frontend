@@ -52,3 +52,80 @@
 - Do not stop after one screenshot pass
 - Do not use `transition-all`
 - Do not use default Tailwind blue/indigo as primary color
+
+---
+
+## Project Architecture
+
+ANISO is a headless e-commerce frontend for premium nightwear. The stack:
+
+- **Frontend:** Vanilla HTML + Tailwind CDN + modular JS (no framework, no build step)
+- **Backend CMS:** Shopify Storefront API (GraphQL) — Shopify admin IS the admin panel
+- **Payments:** Razorpay (UPI, cards, wallets, COD) via Vercel serverless functions
+- **Hosting:** Vercel free tier (static + serverless)
+
+### Directory Structure
+
+```
+ANISO/
+  brand_assets/              Logo, favicon, brand guidelines (do not modify)
+  js/
+    product-data.js          Hardcoded product array (fallback for Shopify API)
+    cart.js                  Cart state (localStorage), cart drawer, toast
+    components.js            Shared nav, footer, search overlay, auth modal (injected via JS)
+    shopify-client.js        Storefront API GraphQL client (with fallback to product-data.js)
+    checkout.js              Razorpay checkout flow
+    search.js                (future) Dedicated search module
+  api/                       Vercel serverless functions (Node.js)
+    create-order.js          Razorpay order creation + COD flow
+    verify-payment.js        Payment signature verification + Shopify order sync
+  index.html                 Home page — hero, features, collections, new arrivals, bestsellers
+  shop.html                  Shop page — category tabs (HOC-style), sort, dynamic grid
+  product.html               Product detail page — dynamic from URL param ?id=X
+  cart.html                  Cart page — items list + order summary
+  checkout.html              Checkout — shipping form + Razorpay payment
+  about.html                 Brand story
+  contact.html               Contact form + info
+  faq.html                   FAQ accordion
+  size-guide.html            Size tables
+  serve.mjs                  Local dev server (localhost:3000)
+  package.json               Dependencies (razorpay)
+  vercel.json                Vercel deployment routing
+  .env.example               API keys template (never commit .env)
+```
+
+### Shared Component System
+
+All pages use `<div id="nav-mount"></div>` and `<div id="footer-mount"></div>` — the nav and footer are injected by `js/components.js` at DOMContentLoaded. Do NOT duplicate nav/footer HTML across pages.
+
+### Product Data Flow
+
+1. `js/product-data.js` contains the hardcoded `PRODUCTS` array + helper functions
+2. `js/shopify-client.js` wraps Shopify Storefront API with automatic fallback to local data
+3. Pages render products dynamically from the JS data (not hardcoded HTML)
+4. When Shopify is configured, live data replaces the hardcoded array seamlessly
+
+### Brand Theme (Tailwind Config)
+
+All pages share this Tailwind config:
+- Colors: `cocoa: #8B6147`, `blush: #E8B4A0`, `champagne: #D4B896`
+- Fonts: `display: Playfair Display`, `body: Montserrat`
+- Base: white background, clean minimal aesthetic
+
+### Cart System
+
+- Storage: `localStorage` key `aniso_cart`
+- Cart drawer: slide-in panel from right (triggered by cart icon in nav)
+- Shipping: free above ₹1,499, else ₹149
+- COD: available for orders up to ₹5,000
+
+### Key Scripts Load Order
+
+Every page loads scripts in this order:
+1. `js/product-data.js` — product array + helpers
+2. `js/cart.js` — cart state management
+3. `js/components.js` — nav, footer, search, auth injection
+
+Checkout page additionally loads:
+- `https://checkout.razorpay.com/v1/checkout.js` (Razorpay SDK)
+- `js/checkout.js` — checkout flow

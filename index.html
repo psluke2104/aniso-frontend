@@ -9,615 +9,486 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/styles.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: { cocoa: '#8B6147', blush: '#E8B4A0', champagne: '#D4B896' },
+          fontFamily: { display: ['Playfair Display', 'Georgia', 'serif'], body: ['Montserrat', 'system-ui', 'sans-serif'] },
+        }
+      }
+    }
+  </script>
+  <style>
+    @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+    .animate-scroll { animation: scroll 25s linear infinite; }
+    .faq-item .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+    .faq-item.open .faq-a { max-height: 200px; }
+    .faq-item.open .faq-icon { transform: rotate(45deg); }
+    .faq-icon { transition: transform 0.3s ease; }
+
+    /* Hero animations */
+    @keyframes heroFadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes heroFadeIn { from { opacity: 0; transform: scale(1.05); } to { opacity: 1; transform: scale(1); } }
+    @keyframes heroSlideIn { from { opacity: 0; transform: translateX(40px); } to { opacity: 1; transform: translateX(0); } }
+    .hero-text { animation: heroFadeUp 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+    .hero-text-delay { animation: heroFadeUp 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.15s forwards; opacity: 0; }
+    .hero-text-delay-2 { animation: heroFadeUp 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.3s forwards; opacity: 0; }
+    .hero-text-delay-3 { animation: heroFadeUp 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.45s forwards; opacity: 0; }
+    .hero-img { animation: heroSlideIn 1s cubic-bezier(0.22, 1, 0.36, 1) 0.2s forwards; opacity: 0; }
+
+    /* Accent underline decoration */
+    .accent-line { position: relative; }
+    .accent-line::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 60px; height: 2px; background: #8B6147; }
+
+    /* Fabric swatch tooltip */
+    .fabric-tag { max-width: 60px; overflow: hidden; white-space: nowrap; transition: max-width 0.35s cubic-bezier(0.22,1,0.36,1), padding 0.35s ease; }
+    .fabric-tag:hover { max-width: 200px; padding-left: 8px; padding-right: 8px; }
+  </style>
 </head>
-<body>
+<body class="bg-white font-body text-gray-900">
 
-  <!-- Announcement Bar -->
-  <div class="announcement-bar" id="announcementBar">
-    <div class="announcement-inner">
-      <div class="announcement-track">
-        <span>Complimentary shipping on all orders above ₹1,499</span>
-        <span class="sep">·</span>
-        <span>New Drop — Cute Nightsuit Collection is now live ✨</span>
-        <span class="sep">·</span>
-        <span>Easy 14-day returns &amp; exchanges</span>
-        <span class="sep">·</span>
-        <span>Complimentary shipping on all orders above ₹1,499</span>
-        <span class="sep">·</span>
-        <span>New Drop — Cute Nightsuit Collection is now live ✨</span>
-        <span class="sep">·</span>
-        <span>Easy 14-day returns &amp; exchanges</span>
-      </div>
-    </div>
-    <button class="announcement-close" onclick="closeAnnouncement()" aria-label="Close">&#215;</button>
-  </div>
-
-  <!-- Navigation -->
-  <nav class="navbar" id="navbar">
-    <div class="nav-inner">
-      <button class="nav-hamburger" id="hamburger" onclick="toggleMobileMenu()" aria-label="Menu">
-        <span></span><span></span><span></span>
-      </button>
-      <ul class="nav-links nav-left">
-        <li><a href="shop.html">Shop</a></li>
-        <li><a href="shop.html#collections">Collections</a></li>
-        <li><a href="about.html">Our Story</a></li>
-      </ul>
-      <a href="index.html" class="nav-logo">
-        <img src="brand_assets/Aniso_LOGO.png" alt="ANISO" class="nav-logo-img">
-      </a>
-      <div class="nav-right">
-        <ul class="nav-links">
-          <li><a href="size-guide.html">Size Guide</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-        <div class="nav-icons">
-          <button class="nav-icon-btn" aria-label="Search">
-            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.4-4.4"/></svg>
-          </button>
-          <div class="profile-dropdown-wrap" id="profileDropdownWrap">
-              <button class="nav-icon-btn" id="profileBtn" aria-label="Account">
-                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-              </button>
-              <div class="profile-dropdown" id="profileMenu">
-                <div id="profileSignedOut">
-                  <div class="profile-dropdown-header">Welcome to ANISO</div>
-                  <a href="#" class="profile-dropdown-link" onclick="openSignIn('signin');return false;">Sign In</a>
-                  <a href="#" class="profile-dropdown-link" onclick="openSignIn('register');return false;">Create Account</a>
-                </div>
-                <div id="profileSignedIn" style="display:none">
-                  <div class="profile-dropdown-header" id="profileGreeting">Hi, there</div>
-                  <a href="#" class="profile-dropdown-link">My Account</a>
-                  <a href="#" class="profile-dropdown-link">My Orders</a>
-                  <hr class="profile-dropdown-divider">
-                  <a href="#" class="profile-dropdown-link" onclick="signOut();return false;">Sign Out</a>
-                </div>
-              </div>
-            </div>
-          <a href="cart.html" class="nav-icon-btn" aria-label="Cart">
-            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-            <span class="cart-count" id="cartCount">0</span>
-          </a>
-        </div>
-      </div>
-    </div>
-    <div class="mobile-menu" id="mobileMenu">
-      <ul>
-        <li><a href="shop.html" onclick="toggleMobileMenu()">Shop All</a></li>
-        <li><a href="shop.html#collections" onclick="toggleMobileMenu()">Collections</a></li>
-        <li><a href="about.html" onclick="toggleMobileMenu()">Our Story</a></li>
-        <li><a href="size-guide.html" onclick="toggleMobileMenu()">Size Guide</a></li>
-        <li><a href="faq.html" onclick="toggleMobileMenu()">FAQ</a></li>
-        <li><a href="contact.html" onclick="toggleMobileMenu()">Contact</a></li>
-        <li><a href="cart.html" onclick="toggleMobileMenu()">Your Bag</a></li>
-      </ul>
-    </div>
-  </nav>
+  <div id="nav-mount"></div>
 
   <main>
-    <!-- ══ HERO ══════════════════════════════════════════════ -->
-    <section class="hero">
-      <div class="hero-content">
-        <p class="hero-eyebrow">New Collection — Spring '26</p>
-        <h1 class="hero-title">
-          Cute nights,<br>
-          <em>dreamt right.</em>
-        </h1>
-        <p class="hero-sub">
-          Premium nightwear &amp; cute nightsuits for the woman<br>
-          who makes bedtime her most beautiful hour.
-        </p>
-        <div class="hero-actions">
-          <a href="shop.html" class="btn-hero">Shop the Collection</a>
-          <a href="about.html" class="btn-hero-ghost">Our Story</a>
-        </div>
-      </div>
-      <div class="hero-image-wrap">
-        <img src="https://images.unsplash.com/photo-1755456785148-e567dbb6a034?w=900&h=1200&fit=crop&q=85" alt="ANISO Spring Collection">
-        <div class="hero-image-overlay"></div>
-      </div>
-      <div class="hero-number">No. 01 — Spring '26</div>
-    </section>
-
-    <!-- ══ COLLECTIONS ════════════════════════════════════════ -->
-    <section class="collections-section" id="collections">
-      <div class="container">
-        <div class="section-header centered fade-in">
-          <span class="section-label">Curated for You</span>
-          <h2 class="section-title">Shop by Collection</h2>
-        </div>
-        <div class="collections-grid">
-          <a href="shop.html?cat=satin" class="collection-card fade-in">
-            <div class="collection-img-wrap">
-              <img src="https://images.unsplash.com/photo-1750064139819-da3bf362e7b3?w=600&h=800&fit=crop&crop=faces,entropy&q=85" alt="Satin Sets" class="collection-img" loading="lazy">
-              <div class="collection-overlay"></div>
-            </div>
-            <div class="collection-info">
-              <h3>Satin Sets</h3>
-              <span>3 Pieces · From ₹1,799</span>
-            </div>
-          </a>
-          <a href="shop.html?cat=nightsuit" class="collection-card fade-in" style="transition-delay:0.1s">
-            <div class="collection-img-wrap">
-              <img src="https://images.unsplash.com/photo-1755456785148-e567dbb6a034?w=600&h=800&fit=crop&crop=faces,entropy&q=85" alt="Cute Nightsuits" class="collection-img" loading="lazy">
-              <div class="collection-overlay"></div>
-            </div>
-            <div class="collection-info">
-              <h3>Cute Nightsuits</h3>
-              <span>4 Pieces · From ₹999</span>
-            </div>
-          </a>
-          <a href="shop.html?cat=lounge" class="collection-card fade-in" style="transition-delay:0.2s">
-            <div class="collection-img-wrap">
-              <img src="https://images.unsplash.com/photo-1759229874709-a8d0de083b91?w=600&h=800&fit=crop&crop=faces,entropy&q=85" alt="Lounge Sets" class="collection-img" loading="lazy">
-              <div class="collection-overlay"></div>
-            </div>
-            <div class="collection-info">
-              <h3>Lounge Sets</h3>
-              <span>2 Pieces · From ₹1,299</span>
-            </div>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- ══ SHOP THE DROP ══════════════════════════════════════ -->
-    <section class="products-section">
-      <div class="container">
-        <div class="section-header fade-in">
-          <div>
-            <span class="section-label">New Arrivals</span>
-            <h2 class="section-title">Shop the Drop</h2>
-          </div>
-          <a href="shop.html" class="see-all">View All Pieces →</a>
-        </div>
-        <div class="products-grid">
-
-          <!-- Product 1 -->
-          <div class="product-card fade-in">
-            <div class="product-card-img-wrap">
-              <img src="https://images.pexels.com/photos/920385/pexels-photo-920385.jpeg?auto=compress&cs=tinysrgb&w=600&h=800&fit=crop?w=600&h=800&fit=crop&crop=faces,entropy&q=85" alt="Ivory Reverie Set" class="product-card-img" loading="lazy">
-              <span class="product-card-badge new">New</span>
-              <div class="product-card-actions">
-                <a href="product.html?id=1" class="product-card-btn">View Details</a>
-                <button class="product-card-btn primary" onclick="addToCart({id:'1',name:'Ivory Reverie Set',price:1799,image:'https://images.pexels.com/photos/920385/pexels-photo-920385.jpeg?auto=compress&cs=tinysrgb&w=600&h=800&fit=crop?w=600&h=800&fit=crop',category:'Satin Set',size:'S'})">Quick Add</button>
-              </div>
-            </div>
-            <div class="product-card-info">
-              <div class="product-card-category">Satin Set</div>
-              <div class="product-card-name"><a href="product.html?id=1">Ivory Reverie Set</a></div>
-              <div class="product-card-price">
-                <span class="price-current">₹1,799</span>
-              </div>
-              <div class="product-card-colors">
-                <span class="color-dot active" style="background:#F5EDD8;" title="Ivory" data-img="https://images.pexels.com/photos/920385/pexels-photo-920385.jpeg?auto=compress&cs=tinysrgb&w=600&h=800&fit=crop"></span>
-                <span class="color-dot" style="background:#D4B896;" title="Champagne" data-img="https://images.pexels.com/photos/3807543/pexels-photo-3807543.jpeg?auto=compress&cs=tinysrgb&w=600&h=800&fit=crop"></span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Product 2 -->
-          <div class="product-card fade-in" style="transition-delay:0.08s">
-            <div class="product-card-img-wrap">
-              <img src="https://images.unsplash.com/photo-1755456785148-e567dbb6a034?w=600&h=800&fit=crop&crop=faces,entropy&q=85" alt="Star Dreamer Nightsuit" class="product-card-img" loading="lazy">
-              <span class="product-card-badge new">New</span>
-              <div class="product-card-actions">
-                <a href="product.html?id=7" class="product-card-btn">View Details</a>
-                <button class="product-card-btn primary" onclick="addToCart({id:'7',name:'Star Dreamer Nightsuit',price:1199,image:'https://images.unsplash.com/photo-1755456785148-e567dbb6a034?w=600&h=800&fit=crop',category:'Cute Nightsuit',size:'S'})">Quick Add</button>
-              </div>
-            </div>
-            <div class="product-card-info">
-              <div class="product-card-category">Cute Nightsuit</div>
-              <div class="product-card-name"><a href="product.html?id=7">Star Dreamer Nightsuit</a></div>
-              <div class="product-card-price">
-                <span class="price-current">₹1,199</span>
-              </div>
-              <div class="product-card-colors">
-                <span class="color-dot active" style="background:#E8D5F0;" title="Lavender" data-img="https://images.unsplash.com/photo-1755456785148-e567dbb6a034?w=600&h=800&fit=crop&q=85"></span>
-                <span class="color-dot" style="background:#F5DDD3;" title="Blush" data-img="https://images.pexels.com/photos/6963182/pexels-photo-6963182.jpeg?auto=compress&cs=tinysrgb&w=600&h=800&fit=crop"></span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Product 3 -->
-          <div class="product-card fade-in" style="transition-delay:0.16s">
-            <div class="product-card-img-wrap">
-              <img src="https://plus.unsplash.com/premium_photo-1663040451691-0c89005ce5cc?w=600&h=800&fit=crop&crop=faces,entropy&q=85" alt="Cloud Soft Nightsuit" class="product-card-img" loading="lazy">
-              <span class="product-card-badge bestseller">Bestseller</span>
-              <div class="product-card-actions">
-                <a href="product.html?id=8" class="product-card-btn">View Details</a>
-                <button class="product-card-btn primary" onclick="addToCart({id:'8',name:'Cloud Soft Nightsuit',price:1099,image:'https://plus.unsplash.com/premium_photo-1663040451691-0c89005ce5cc?w=600&h=800&fit=crop',category:'Cute Nightsuit',size:'S'})">Quick Add</button>
-              </div>
-            </div>
-            <div class="product-card-info">
-              <div class="product-card-category">Cute Nightsuit</div>
-              <div class="product-card-name"><a href="product.html?id=8">Cloud Soft Nightsuit</a></div>
-              <div class="product-card-price">
-                <span class="price-current">₹1,099</span>
-              </div>
-              <div class="product-card-colors">
-                <span class="color-dot active" style="background:#FAF0E6;" title="Cream" data-img="https://plus.unsplash.com/premium_photo-1663040451691-0c89005ce5cc?w=600&h=800&fit=crop&q=85"></span>
-                <span class="color-dot" style="background:#C8BFB6;" title="Stone" data-img="https://images.pexels.com/photos/3807982/pexels-photo-3807982.jpeg?auto=compress&cs=tinysrgb&w=600&h=800&fit=crop"></span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Product 4 -->
-          <div class="product-card fade-in" style="transition-delay:0.24s">
-            <div class="product-card-img-wrap">
-              <img src="https://images.unsplash.com/photo-1759229874709-a8d0de083b91?w=600&h=800&fit=crop&crop=faces,entropy&q=85" alt="Cocoa Lounge Co-ord" class="product-card-img" loading="lazy">
-              <div class="product-card-actions">
-                <a href="product.html?id=4" class="product-card-btn">View Details</a>
-                <button class="product-card-btn primary" onclick="addToCart({id:'4',name:'Cocoa Lounge Co-ord',price:1499,image:'https://images.unsplash.com/photo-1759229874709-a8d0de083b91?w=600&h=800&fit=crop',category:'Lounge Set',size:'S'})">Quick Add</button>
-              </div>
-            </div>
-            <div class="product-card-info">
-              <div class="product-card-category">Lounge Set</div>
-              <div class="product-card-name"><a href="product.html?id=4">Cocoa Lounge Co-ord</a></div>
-              <div class="product-card-price">
-                <span class="price-current">₹1,499</span>
-              </div>
-              <div class="product-card-colors">
-                <span class="color-dot active" style="background:#D4B896;" title="Cocoa" data-img="https://images.unsplash.com/photo-1759229874709-a8d0de083b91?w=600&h=800&fit=crop&q=85"></span>
-                <span class="color-dot" style="background:#8B6147;" title="Mocha" data-img="https://images.unsplash.com/photo-1531353826977-0941b4779a1c?w=600&h=800&fit=crop&q=85"></span>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- ══ BRAND VALUES ════════════════════════════════════════ -->
-    <section class="values-section">
-      <div class="container">
-        <div class="values-grid">
-          <div class="value-item fade-in">
-            <div class="value-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
-                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/>
-              </svg>
-            </div>
-            <h3 class="value-title">Cloud-Soft Fabrics</h3>
-            <p class="value-text">Sourced for their exceptional softness — our fabrics feel like a second skin, all night long.</p>
-          </div>
-          <div class="value-item fade-in" style="transition-delay:0.12s">
-            <div class="value-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
-                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
-              </svg>
-            </div>
-            <h3 class="value-title">Designed with Care</h3>
-            <p class="value-text">Every seam, every silhouette — considered. ANISO is crafted for how women actually want to feel at home.</p>
-          </div>
-          <div class="value-item fade-in" style="transition-delay:0.24s">
-            <div class="value-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
-                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-              </svg>
-            </div>
-            <h3 class="value-title">Premium, Always</h3>
-            <p class="value-text">No compromises on quality. From packaging to product, ANISO is built to feel as elevated as it looks.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ══ CAMPAIGN BANNER ════════════════════════════════════ -->
-    <section class="campaign-section">
-      <div class="campaign-bg">
-        <img src="https://plus.unsplash.com/premium_photo-1682097516454-8a200b947cfc?w=1600&h=800&fit=crop&q=80" alt="ANISO Campaign" loading="lazy">
-      </div>
-      <div class="campaign-overlay"></div>
-      <div class="campaign-content">
-        <p class="campaign-eyebrow">The ANISO Philosophy</p>
-        <h2 class="campaign-title">
-          Dreamy nights,<br>
-          <em>cute mornings</em> and<br>
-          everything in between.
-        </h2>
-        <p class="campaign-sub">Nightsuits &amp; nightwear that feel as good as they look. Quietly luxurious, effortlessly you.</p>
-        <a href="about.html" class="btn-hero-ghost">Read Our Story</a>
-      </div>
-    </section>
-
-    <!-- ══ BESTSELLERS ════════════════════════════════════════ -->
-    <section class="products-section" style="background: var(--cream);">
-      <div class="container">
-        <div class="section-header fade-in">
-          <div>
-            <span class="section-label">Most Loved</span>
-            <h2 class="section-title">The Bestsellers</h2>
-          </div>
-          <a href="shop.html" class="see-all">Shop All →</a>
-        </div>
-        <div class="products-grid cols-3">
-
-          <!-- Product 5 -->
-          <div class="product-card fade-in">
-            <div class="product-card-img-wrap">
-              <img src="https://plus.unsplash.com/premium_photo-1664302034933-69eeafba6e18?w=600&h=800&fit=crop&crop=faces,entropy&q=85" alt="Blush Floral Nightsuit" class="product-card-img" loading="lazy">
-              <span class="product-card-badge bestseller">Bestseller</span>
-              <div class="product-card-actions">
-                <a href="product.html?id=9" class="product-card-btn">View Details</a>
-                <button class="product-card-btn primary" onclick="addToCart({id:'9',name:'Blush Floral Nightsuit',price:999,image:'https://plus.unsplash.com/premium_photo-1664302034933-69eeafba6e18?w=600&h=800&fit=crop',category:'Cute Nightsuit',size:'S'})">Quick Add</button>
-              </div>
-            </div>
-            <div class="product-card-info">
-              <div class="product-card-category">Cute Nightsuit</div>
-              <div class="product-card-name"><a href="product.html?id=9">Blush Floral Nightsuit</a></div>
-              <div class="product-card-price">
-                <span class="price-current">₹999</span>
-              </div>
-              <div class="product-card-colors">
-                <span class="color-dot active" style="background:#F5DDD3;" title="Blush" data-img="https://plus.unsplash.com/premium_photo-1664302034933-69eeafba6e18?w=600&h=800&fit=crop&q=85"></span>
-                <span class="color-dot" style="background:#E8B4A0;" title="Peach" data-img="https://images.unsplash.com/photo-1755456785148-e567dbb6a034?w=600&h=800&fit=crop&q=85"></span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Product 6 -->
-          <div class="product-card fade-in" style="transition-delay:0.1s">
-            <div class="product-card-img-wrap">
-              <img src="https://images.unsplash.com/photo-1750064139819-da3bf362e7b3?w=600&h=800&fit=crop&crop=faces,entropy&q=85" alt="Ivory Reverie Set" class="product-card-img" loading="lazy">
-              <span class="product-card-badge new">New</span>
-              <div class="product-card-actions">
-                <a href="product.html?id=1" class="product-card-btn">View Details</a>
-                <button class="product-card-btn primary" onclick="addToCart({id:'1',name:'Ivory Reverie Set',price:1799,image:'https://images.unsplash.com/photo-1750064139819-da3bf362e7b3?w=600&h=800&fit=crop',category:'Satin Set',size:'S'})">Quick Add</button>
-              </div>
-            </div>
-            <div class="product-card-info">
-              <div class="product-card-category">Satin Set</div>
-              <div class="product-card-name"><a href="product.html?id=1">Ivory Reverie Set</a></div>
-              <div class="product-card-price">
-                <span class="price-current">₹1,799</span>
-              </div>
-              <div class="product-card-colors">
-                <span class="color-dot active" style="background:#F5EDD8;" title="Ivory" data-img="https://images.pexels.com/photos/920385/pexels-photo-920385.jpeg?auto=compress&cs=tinysrgb&w=600&h=800&fit=crop"></span>
-                <span class="color-dot" style="background:#D4B896;" title="Champagne" data-img="https://images.pexels.com/photos/3807543/pexels-photo-3807543.jpeg?auto=compress&cs=tinysrgb&w=600&h=800&fit=crop"></span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Product nightsuit -->
-          <div class="product-card fade-in" style="transition-delay:0.2s">
-            <div class="product-card-img-wrap">
-              <img src="https://images.pexels.com/photos/6963170/pexels-photo-6963170.jpeg?auto=compress&cs=tinysrgb&w=600&h=800&fit=crop?w=600&h=800&fit=crop&crop=faces,entropy&q=85" alt="Cotton Candy Stripe Nightsuit" class="product-card-img" loading="lazy">
-              <span class="product-card-badge bestseller">Bestseller</span>
-              <div class="product-card-actions">
-                <a href="product.html?id=10" class="product-card-btn">View Details</a>
-                <button class="product-card-btn primary" onclick="addToCart({id:'10',name:'Cotton Candy Stripe Nightsuit',price:1149,image:'https://images.pexels.com/photos/6963170/pexels-photo-6963170.jpeg?auto=compress&cs=tinysrgb&w=600&h=800&fit=crop?w=600&h=800&fit=crop',category:'Cute Nightsuit',size:'S'})">Quick Add</button>
-              </div>
-            </div>
-            <div class="product-card-info">
-              <div class="product-card-category">Cute Nightsuit</div>
-              <div class="product-card-name"><a href="product.html?id=10">Cotton Candy Stripe Nightsuit</a></div>
-              <div class="product-card-price">
-                <span class="price-current">₹1,149</span>
-              </div>
-              <div class="product-card-colors">
-                <span class="color-dot active" style="background:#FAF0E6;" title="Cream Stripe"></span>
-                <span class="color-dot" style="background:#E8D5F0;" title="Lavender Stripe"></span>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- ══ REASSURANCE ════════════════════════════════════════ -->
-    <section class="reassurance-section">
-      <div class="container">
-        <div class="reassurance-grid">
-          <div class="reassurance-item fade-in">
-            <div class="reassurance-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M20 7H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
-            </div>
-            <div class="reassurance-title">Premium Fabrics</div>
-            <div class="reassurance-text">Carefully sourced satin and cotton that feel luxurious against your skin</div>
-          </div>
-          <div class="reassurance-item fade-in" style="transition-delay:0.08s">
-            <div class="reassurance-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 4v3h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
-            </div>
-            <div class="reassurance-title">Free Shipping</div>
-            <div class="reassurance-text">Complimentary delivery on all orders over ₹1,499 across India</div>
-          </div>
-          <div class="reassurance-item fade-in" style="transition-delay:0.16s">
-            <div class="reassurance-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><polyline points="1,4 1,10 7,10"/><path d="M3.51 15a9 9 0 1 0 .49-4.02"/></svg>
-            </div>
-            <div class="reassurance-title">Easy Returns</div>
-            <div class="reassurance-text">Hassle-free 14-day returns. No questions asked, always.</div>
-          </div>
-          <div class="reassurance-item fade-in" style="transition-delay:0.24s">
-            <div class="reassurance-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
-            </div>
-            <div class="reassurance-title">Gift Packaging</div>
-            <div class="reassurance-text">Every order arrives in our signature keepsake packaging</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ══ BRAND STORY PREVIEW ════════════════════════════════ -->
-    <section class="story-preview">
-      <div class="story-preview-inner container">
-        <div class="story-preview-img-wrap fade-in">
-          <img src="https://images.pexels.com/photos/4473880/pexels-photo-4473880.jpeg?auto=compress&cs=tinysrgb&w=600&h=800&fit=crop?w=600&h=800&fit=crop&crop=faces,entropy&q=85" alt="ANISO Brand Story" class="story-preview-img" loading="lazy">
-        </div>
-        <div class="story-preview-content fade-in" style="transition-delay:0.15s">
-          <span class="section-label">The Brand</span>
-          <h2 class="story-preview-title">
-            Born from the belief that<br>
-            <em>evenings deserve elegance.</em>
-          </h2>
-          <p class="story-preview-text">
-            ANISO began with a simple question: why should the hours at home be any less beautiful than the hours outside? We believe in nightwear that carries a woman through her softest moments — styled, intentional, and quietly luxurious.
+    <!-- Hero Section -->
+    <section class="relative bg-white overflow-hidden">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 py-16 md:py-28 grid md:grid-cols-2 gap-12 items-center">
+        <div class="relative z-10">
+          <p class="text-xs font-medium uppercase tracking-[0.2em] text-cocoa mb-5 hero-text">New Collection — Spring '26</p>
+          <h1 class="font-display text-4xl sm:text-5xl lg:text-6xl font-normal leading-[1.08] tracking-tight mb-6 hero-text-delay">
+            Cute nights,<br><em class="text-cocoa italic">dreamt right.</em>
+          </h1>
+          <p class="text-sm sm:text-base font-light text-gray-500 leading-relaxed max-w-md mb-8 hero-text-delay-2">
+            Premium nightwear &amp; cute nightsuits for the woman who makes bedtime her most beautiful hour.
           </p>
-          <p class="story-preview-text">
-            Designed for the Gen Z woman who knows her own worth, our collections blend timeless silhouettes with premium fabrics and a palette that feels effortlessly refined.
-          </p>
-          <a href="about.html" class="btn-secondary">Read Our Story</a>
+          <div class="flex gap-3 flex-wrap hero-text-delay-3">
+            <a href="shop.html" class="bg-gray-900 text-white text-xs font-medium tracking-wider uppercase px-8 py-3.5 rounded-sm hover:bg-cocoa transition-colors duration-300">Shop the Collection</a>
+            <a href="about.html" class="border border-gray-900 text-gray-900 text-xs font-medium tracking-wider uppercase px-8 py-3.5 rounded-sm hover:bg-gray-900 hover:text-white transition-colors duration-300">Our Story</a>
+          </div>
+        </div>
+        <div class="relative hero-img" style="perspective:800px" id="heroImgWrap">
+          <div class="absolute -top-6 -right-6 w-32 h-32 bg-blush/20 rounded-full blur-2xl"></div>
+          <div class="absolute -bottom-4 -left-4 w-24 h-24 bg-champagne/30 rounded-full blur-xl"></div>
+          <img src="https://images.unsplash.com/photo-1755456785148-e567dbb6a034?w=700&h=900&fit=crop&q=85" alt="ANISO Spring Collection" class="w-full aspect-[3/4] object-cover rounded-lg shadow-[0_20px_60px_-12px_rgba(139,97,71,0.15)]" id="heroImg" style="will-change:transform;transition:transform 0.15s ease-out">
+          <canvas id="sakuraCanvas" class="absolute inset-0 w-full h-full pointer-events-none rounded-lg" style="z-index:10"></canvas>
         </div>
       </div>
     </section>
 
-    <!-- ══ FAQ PREVIEW ════════════════════════════════════════ -->
-    <section class="faq-section">
-      <div class="container">
-        <div class="section-header centered fade-in" style="margin-bottom:52px">
-          <span class="section-label">Common Questions</span>
-          <h2 class="section-title">We're here to help</h2>
+    <!-- Feature Strip -->
+    <section class="bg-gray-50 border-y border-gray-100">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 py-5">
+        <div class="flex flex-wrap justify-center gap-10 sm:gap-16 text-[11px] text-gray-500 font-medium tracking-[0.08em] uppercase">
+          <div class="flex items-center gap-2.5">
+            <svg class="text-cocoa" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 4v3h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+            Express Delivery
+          </div>
+          <div class="flex items-center gap-2.5">
+            <svg class="text-cocoa" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+            COD Available
+          </div>
+          <div class="flex items-center gap-2.5">
+            <svg class="text-cocoa" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            Free Prepaid Delivery
+          </div>
         </div>
-        <div class="faq-list">
-          <div class="faq-item fade-in">
-            <button class="faq-question">
+      </div>
+    </section>
+
+    <!-- Collections -->
+    <section class="py-16 md:py-24 bg-white" id="collections">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6">
+        <div class="text-center mb-10 fade-in">
+          <p class="text-[11px] font-medium uppercase tracking-[0.2em] text-cocoa mb-2">Curated for You</p>
+          <h2 class="font-display text-2xl sm:text-3xl">Shop by Collection</h2>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-4 fade-in">
+          <a href="shop.html?cat=satin" class="group relative overflow-hidden rounded-lg">
+            <div class="aspect-[4/5] overflow-hidden">
+              <img src="https://images.unsplash.com/photo-1750064139819-da3bf362e7b3?w=600&h=800&fit=crop&crop=faces,entropy&q=85" alt="Satin Sets" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+            </div>
+            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+            <div class="absolute bottom-0 left-0 p-4 text-white">
+              <h3 class="font-display text-lg">Satin Sets</h3>
+              <span class="text-xs text-white/80">From ₹1,799</span>
+            </div>
+          </a>
+          <a href="shop.html?cat=nightsuit" class="group relative overflow-hidden rounded-lg">
+            <div class="aspect-[4/5] overflow-hidden">
+              <img src="https://images.unsplash.com/photo-1755456785148-e567dbb6a034?w=600&h=800&fit=crop&crop=faces,entropy&q=85" alt="Cute Nightsuits" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+            </div>
+            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+            <div class="absolute bottom-0 left-0 p-4 text-white">
+              <h3 class="font-display text-lg">Cute Nightsuits</h3>
+              <span class="text-xs text-white/80">From ₹999</span>
+            </div>
+          </a>
+          <a href="shop.html?cat=lounge" class="group relative overflow-hidden rounded-lg col-span-2 md:col-span-1">
+            <div class="aspect-[4/5] overflow-hidden">
+              <img src="https://images.unsplash.com/photo-1759229874709-a8d0de083b91?w=600&h=800&fit=crop&crop=faces,entropy&q=85" alt="Lounge Sets" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+            </div>
+            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+            <div class="absolute bottom-0 left-0 p-4 text-white">
+              <h3 class="font-display text-lg">Lounge Sets</h3>
+              <span class="text-xs text-white/80">From ₹1,299</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- New Arrivals -->
+    <section class="py-16 md:py-24 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6">
+        <div class="flex items-end justify-between mb-10 fade-in">
+          <div>
+            <p class="text-[11px] font-medium uppercase tracking-[0.2em] text-cocoa mb-2">Just Dropped</p>
+            <h2 class="font-display text-2xl sm:text-3xl">New Arrivals</h2>
+          </div>
+          <a href="shop.html" class="text-xs font-medium text-gray-500 hover:text-gray-900 tracking-wide transition-colors duration-300 border-b border-gray-300 pb-0.5">View All</a>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6" id="newArrivalsGrid"></div>
+      </div>
+    </section>
+
+    <!-- Brand Values -->
+    <section class="py-16 md:py-20 bg-gray-50 border-y border-gray-100">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+          <div class="fade-in">
+            <div class="w-10 h-10 mx-auto mb-3 text-cocoa">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M20 7H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+            </div>
+            <h3 class="font-display text-base mb-1">Premium Fabrics</h3>
+            <p class="text-xs text-gray-500 leading-relaxed">Carefully sourced satin and cotton for luxurious comfort</p>
+          </div>
+          <div class="fade-in">
+            <div class="w-10 h-10 mx-auto mb-3 text-cocoa">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 4v3h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+            </div>
+            <h3 class="font-display text-base mb-1">Free Shipping</h3>
+            <p class="text-xs text-gray-500 leading-relaxed">Complimentary on orders over ₹1,499</p>
+          </div>
+          <div class="fade-in">
+            <div class="w-10 h-10 mx-auto mb-3 text-cocoa">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><polyline points="1,4 1,10 7,10"/><path d="M3.51 15a9 9 0 1 0 .49-4.02"/></svg>
+            </div>
+            <h3 class="font-display text-base mb-1">Easy Returns</h3>
+            <p class="text-xs text-gray-500 leading-relaxed">14-day hassle-free returns, no questions asked</p>
+          </div>
+          <div class="fade-in">
+            <div class="w-10 h-10 mx-auto mb-3 text-cocoa">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+            </div>
+            <h3 class="font-display text-base mb-1">Gift Packaging</h3>
+            <p class="text-xs text-gray-500 leading-relaxed">Every order in signature keepsake packaging</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bestsellers -->
+    <section class="py-16 md:py-24 bg-gray-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6">
+        <div class="flex items-end justify-between mb-10 fade-in">
+          <div>
+            <p class="text-[11px] font-medium uppercase tracking-[0.2em] text-cocoa mb-2">Most Loved</p>
+            <h2 class="font-display text-2xl sm:text-3xl">The Bestsellers</h2>
+          </div>
+          <a href="shop.html" class="text-xs font-medium text-gray-500 hover:text-gray-900 tracking-wide transition-colors duration-300 border-b border-gray-300 pb-0.5">Shop All</a>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6" id="bestsellersGrid"></div>
+      </div>
+    </section>
+
+    <!-- Brand Story Preview -->
+    <section class="py-16 md:py-24 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6">
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+          <div class="fade-in">
+            <img src="https://images.pexels.com/photos/4473880/pexels-photo-4473880.jpeg?auto=compress&cs=tinysrgb&w=600&h=800&fit=crop" alt="ANISO Brand Story" class="w-full aspect-[4/5] object-cover rounded-lg" loading="lazy">
+          </div>
+          <div class="fade-in">
+            <p class="text-xs font-medium uppercase tracking-[0.15em] text-cocoa mb-3">The Brand</p>
+            <h2 class="font-display text-2xl sm:text-3xl leading-snug mb-6">
+              Born from the belief that<br><em class="text-cocoa">evenings deserve elegance.</em>
+            </h2>
+            <p class="text-sm text-gray-600 leading-relaxed mb-4">
+              ANISO began with a simple question: why should the hours at home be any less beautiful than the hours outside? We believe in nightwear that carries a woman through her softest moments — styled, intentional, and quietly luxurious.
+            </p>
+            <p class="text-sm text-gray-600 leading-relaxed mb-6">
+              Designed for the modern woman who knows her own worth, our collections blend timeless silhouettes with premium fabrics and a palette that feels effortlessly refined.
+            </p>
+            <a href="about.html" class="border border-gray-300 text-gray-700 text-xs font-medium tracking-wider uppercase px-6 py-3 rounded hover:border-gray-900 hover:text-gray-900 transition-colors inline-block">Read Our Story</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Preview -->
+    <section class="py-16 md:py-24 bg-white">
+      <div class="max-w-3xl mx-auto px-4 sm:px-6">
+        <div class="text-center mb-10 fade-in">
+          <p class="text-xs font-medium uppercase tracking-[0.15em] text-cocoa mb-2">Common Questions</p>
+          <h2 class="font-display text-2xl sm:text-3xl">We're here to help</h2>
+        </div>
+        <div class="space-y-0 fade-in">
+          <div class="faq-item border-b border-gray-100">
+            <button class="faq-q w-full flex items-center justify-between py-5 text-left text-sm font-medium text-gray-900">
               How long does shipping take?
-              <span class="faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+              <span class="faq-icon text-gray-400"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
             </button>
-            <div class="faq-answer">
-              <div class="faq-answer-inner">Standard shipping is 4–7 business days. Express delivery (2–3 days) is available at checkout for select pincodes. Orders above ₹1,499 ship free.</div>
-            </div>
+            <div class="faq-a"><div class="pb-5 text-sm text-gray-600 leading-relaxed">Standard shipping is 4–7 business days. Express delivery (2–3 days) is available at checkout for select pincodes. Orders above ₹1,499 ship free.</div></div>
           </div>
-          <div class="faq-item fade-in">
-            <button class="faq-question">
+          <div class="faq-item border-b border-gray-100">
+            <button class="faq-q w-full flex items-center justify-between py-5 text-left text-sm font-medium text-gray-900">
               What is your return policy?
-              <span class="faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+              <span class="faq-icon text-gray-400"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
             </button>
-            <div class="faq-answer">
-              <div class="faq-answer-inner">We accept returns within 14 days of delivery. Items must be unused, unwashed, and in original packaging. Reach out to us at care@aniso.in to initiate your return.</div>
-            </div>
+            <div class="faq-a"><div class="pb-5 text-sm text-gray-600 leading-relaxed">We accept returns within 14 days of delivery. Items must be unused, unwashed, and in original packaging. Reach out to care@aniso.in to initiate.</div></div>
           </div>
-          <div class="faq-item fade-in">
-            <button class="faq-question">
+          <div class="faq-item border-b border-gray-100">
+            <button class="faq-q w-full flex items-center justify-between py-5 text-left text-sm font-medium text-gray-900">
               How do I find my size?
-              <span class="faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+              <span class="faq-icon text-gray-400"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
             </button>
-            <div class="faq-answer">
-              <div class="faq-answer-inner">Visit our <a href="size-guide.html" style="color:var(--cocoa);text-decoration:underline;text-underline-offset:3px">Size Guide</a> for detailed measurements. Our sets run true to size. If you're between sizes, we recommend sizing up for a relaxed, lounge-ready fit.</div>
-            </div>
+            <div class="faq-a"><div class="pb-5 text-sm text-gray-600 leading-relaxed">Visit our <a href="size-guide.html" class="text-cocoa underline underline-offset-2">Size Guide</a> for detailed measurements. Our sets run true to size. Between sizes? Size up for a relaxed fit.</div></div>
           </div>
-          <div class="faq-item fade-in">
-            <button class="faq-question">
+          <div class="faq-item border-b border-gray-100">
+            <button class="faq-q w-full flex items-center justify-between py-5 text-left text-sm font-medium text-gray-900">
               What fabrics do you use?
-              <span class="faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+              <span class="faq-icon text-gray-400"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
             </button>
-            <div class="faq-answer">
-              <div class="faq-answer-inner">We use premium pima cotton for our cotton sets and high-grade charmeuse satin for our satin collection. All fabrics are OEKO-TEX certified, skin-friendly, and breathable. Detailed fabric notes are listed on each product page.</div>
-            </div>
+            <div class="faq-a"><div class="pb-5 text-sm text-gray-600 leading-relaxed">Premium pima cotton for cotton sets and high-grade charmeuse satin for our satin collection. All OEKO-TEX certified, skin-friendly, and breathable.</div></div>
           </div>
         </div>
-        <div style="text-align:center; margin-top:48px;" class="fade-in">
-          <a href="faq.html" class="btn-secondary">View All FAQs</a>
+        <div class="text-center mt-8 fade-in">
+          <a href="faq.html" class="border border-gray-300 text-gray-700 text-xs font-medium tracking-wider uppercase px-6 py-3 rounded hover:border-gray-900 hover:text-gray-900 transition-colors inline-block">View All FAQs</a>
         </div>
       </div>
     </section>
-
   </main>
 
-  <!-- ══ FOOTER ════════════════════════════════════════════════ -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-top">
-        <div class="footer-brand">
-          <img src="brand_assets/Aniso_LOGO.png" alt="ANISO" class="footer-brand-logo">
-          <p class="footer-brand-text">Premium nightwear and loungewear for the modern woman. Soft fabrics, refined silhouettes, and quiet luxury — every evening.</p>
-          <div class="footer-newsletter">
-            <input type="email" class="footer-newsletter-input" placeholder="Your email address">
-            <button class="footer-newsletter-btn">Join</button>
+  <div id="footer-mount"></div>
+
+  <script src="js/product-data.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/components.js"></script>
+  <script>
+    // Render product grids after DOM ready
+    document.addEventListener('DOMContentLoaded', () => {
+      const badgeMap = {
+        'new-arrival': { label: 'New', cls: 'bg-gray-900 text-white' },
+        'bestseller': { label: 'Bestseller', cls: 'bg-cocoa text-white' },
+        'luxe': { label: 'LUXE', cls: 'bg-black text-champagne' },
+        '100-cotton': { label: '100% Cotton', cls: 'bg-white/90 text-gray-900 backdrop-blur' },
+        'sold-out': { label: 'Sold Out', cls: 'bg-gray-500 text-white' },
+      };
+
+      function renderCard(p) {
+        const badges = p.tags.map(t => badgeMap[t] ? `<span class="text-[10px] font-medium tracking-wide px-2.5 py-1 rounded-sm ${badgeMap[t].cls}">${badgeMap[t].label}</span>` : '').filter(Boolean).slice(0, 2).join('');
+        const soldOut = !p.availableForSale;
+        return `
+        <div class="group fade-in">
+          <a href="product.html?id=${p.id}" class="block relative overflow-hidden rounded-lg bg-gray-100 mb-3">
+            <div class="aspect-[3/4] overflow-hidden">
+              <img src="${p.images[0].src}" alt="${p.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ${soldOut ? 'opacity-50 grayscale' : ''}" loading="lazy">
+            </div>
+            <div class="absolute top-3 left-3 flex flex-col gap-1.5">${badges}</div>
+            ${p.material ? `<span class="fabric-tag absolute bottom-3 right-3 text-[9px] font-medium bg-white/80 backdrop-blur text-gray-700 px-1.5 py-0.5 rounded-full cursor-default z-[2]" title="${p.material}">${p.material.includes('Satin') ? 'Satin' : p.material.includes('Cotton') ? 'Cotton' : 'Fabric'}</span>` : ''}
+            ${!soldOut ? `<div class="absolute inset-x-0 bottom-0 p-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <button class="w-full bg-white/95 backdrop-blur text-gray-900 text-xs font-medium py-2.5 rounded hover:bg-white transition-colors" onclick="event.preventDefault();addToCart({id:'${p.id}',name:'${p.title}',price:${p.price},image:'${p.images[0].src}',category:'${p.category}',size:'S'})">Add to Bag</button>
+            </div>` : ''}
+          </a>
+          <div class="px-0.5">
+            <p class="text-[11px] text-gray-500 uppercase tracking-wide">${p.category}</p>
+            <p class="text-sm font-medium text-gray-900 mt-0.5"><a href="product.html?id=${p.id}" class="hover:underline">${p.title}</a></p>
+            <p class="text-sm text-gray-600 mt-0.5">${soldOut ? '<span class="text-red-500">Sold Out</span>' : '₹' + p.price.toLocaleString('en-IN')}</p>
           </div>
-        </div>
-        <div>
-          <div class="footer-col-title">Shop</div>
-          <ul class="footer-links">
-            <li><a href="shop.html">All Products</a></li>
-            <li><a href="shop.html?cat=satin">Satin Sets</a></li>
-            <li><a href="shop.html?cat=nightsuit">Cute Nightsuits</a></li>
-            <li><a href="shop.html?cat=lounge">Lounge Sets</a></li>
-            <li><a href="shop.html?cat=bestseller">Bestsellers</a></li>
-          </ul>
-        </div>
-        <div>
-          <div class="footer-col-title">Help</div>
-          <ul class="footer-links">
-            <li><a href="size-guide.html">Size Guide</a></li>
-            <li><a href="faq.html">FAQ</a></li>
-            <li><a href="contact.html">Contact Us</a></li>
-            <li><a href="#">Shipping & Delivery</a></li>
-            <li><a href="#">Returns & Exchanges</a></li>
-          </ul>
-        </div>
-        <div>
-          <div class="footer-col-title">Brand</div>
-          <ul class="footer-links">
-            <li><a href="about.html">Our Story</a></li>
-            <li><a href="#">Sustainability</a></li>
-            <li><a href="#">Press</a></li>
-            <li><a href="#">Terms of Service</a></li>
-            <li><a href="#">Privacy Policy</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <div class="footer-bottom-left">© 2026 ANISO. All rights reserved. Made with care in India.</div>
-        <div class="footer-social">
-          <a href="#" aria-label="Instagram">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
-          </a>
-          <a href="#" aria-label="Pinterest">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.24 2.65 7.86 6.39 9.29-.09-.78-.17-1.98.04-2.83.18-.77 1.24-5.26 1.24-5.26s-.32-.63-.32-1.57c0-1.47.86-2.57 1.92-2.57.91 0 1.35.68 1.35 1.5 0 .91-.58 2.27-.88 3.54-.25 1.06.52 1.91 1.55 1.91 1.86 0 3.1-2.38 3.1-5.21 0-2.15-1.46-3.77-4.09-3.77-2.99 0-4.86 2.24-4.86 4.75 0 .86.25 1.47.64 1.94.18.21.2.3.14.54-.05.17-.15.59-.19.75-.06.24-.25.33-.46.24-1.3-.53-1.9-1.97-1.9-3.58 0-2.65 2.24-5.84 6.7-5.84 3.57 0 5.95 2.6 5.95 5.39 0 3.7-2.06 6.46-5.1 6.46-1.02 0-1.98-.55-2.31-1.17l-.63 2.42c-.23.87-.84 1.96-1.25 2.62.94.29 1.94.45 2.97.45 5.52 0 10-4.48 10-10S17.52 2 12 2z"/></svg>
-          </a>
-          <a href="#" aria-label="WhatsApp">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
-          </a>
-        </div>
-        <div class="footer-payment">
-          <span class="footer-payment-badge">UPI</span>
-          <span class="footer-payment-badge">Cards</span>
-          <span class="footer-payment-badge">COD</span>
-          <span class="footer-payment-badge">EMI</span>
-        </div>
-      </div>
-    </div>
-  </footer>
+        </div>`;
+      }
 
-  <script src="assets/js/main.js"></script>
-  <script src="assets/js/effects.js"></script>
+      // New Arrivals
+      const newArrivals = PRODUCTS.filter(p => p.tags.includes('new-arrival')).slice(0, 4);
+      const newGrid = document.getElementById('newArrivalsGrid');
+      if (newGrid) newGrid.innerHTML = newArrivals.map(renderCard).join('');
 
-  <!-- Sign In / Register Modal -->
-  <div class="signin-overlay" id="signinOverlay">
-    <div class="signin-modal">
-      <button class="signin-modal-close" onclick="closeSignIn()">&#215;</button>
-      <div class="signin-logo">
-        <img src="brand_assets/Aniso_LOGO.png" alt="ANISO">
-      </div>
-      <h2 class="signin-title">My Account</h2>
-      <div class="signin-tabs">
-        <button class="signin-tab active" data-tab="signin">Sign In</button>
-        <button class="signin-tab" data-tab="register">Create Account</button>
-      </div>
-      <div id="signinFormWrap">
-        <form class="signin-form" id="signinForm">
-          <input class="signin-input" type="email" placeholder="Email address" required>
-          <input class="signin-input" type="password" placeholder="Password" required>
-          <button type="submit" class="signin-submit">Sign In</button>
-        </form>
-        <div class="signin-footer">Don't have an account? <a href="#" onclick="openSignIn('register');return false;">Create one</a></div>
-      </div>
-      <div id="registerFormWrap" style="display:none">
-        <form class="signin-form" id="registerForm">
-          <input class="signin-input" type="text" name="fullname" placeholder="Full name" required>
-          <input class="signin-input" type="email" placeholder="Email address" required>
-          <input class="signin-input" type="password" placeholder="Create password" required>
-          <button type="submit" class="signin-submit">Create Account</button>
-        </form>
-        <div class="signin-footer">Already have an account? <a href="#" onclick="openSignIn('signin');return false;">Sign in</a></div>
-      </div>
-    </div>
-  </div>
+      // Bestsellers
+      const bestsellers = PRODUCTS.filter(p => p.tags.includes('bestseller')).slice(0, 3);
+      const bestGrid = document.getElementById('bestsellersGrid');
+      if (bestGrid) bestGrid.innerHTML = bestsellers.map(renderCard).join('');
+
+      // Re-init fade-in for dynamically added elements
+      setTimeout(() => initFadeIn(), 100);
+    });
+  </script>
+
+  <!-- Sakura Petals + Hero Tilt -->
+  <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    const wrap = document.getElementById('heroImgWrap');
+    const heroImg = document.getElementById('heroImg');
+    const canvas = document.getElementById('sakuraCanvas');
+    if (!wrap || !canvas) { console.warn('Sakura: missing elements'); return; }
+    const ctx = canvas.getContext('2d');
+    const dpr = window.devicePixelRatio || 1;
+    let cw = 0, ch = 0; // logical dimensions
+
+    // Resize canvas to match container — reset transform each time
+    function resize() {
+      const r = wrap.getBoundingClientRect();
+      cw = r.width;
+      ch = r.height;
+      canvas.width = cw * dpr;
+      canvas.height = ch * dpr;
+      canvas.style.width = cw + 'px';
+      canvas.style.height = ch + 'px';
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+    resize();
+    new ResizeObserver(resize).observe(wrap);
+
+    // Petal colors (brand palette)
+    var COLORS = [
+      'rgba(232,180,160,0.75)',  // blush
+      'rgba(212,184,150,0.65)',  // champagne
+      'rgba(244,200,186,0.7)',   // soft pink
+      'rgba(255,220,210,0.6)',   // warm white
+      'rgba(219,160,140,0.65)',  // deeper blush
+    ];
+
+    function Petal(x, y) {
+      this.x = x + (Math.random() - 0.5) * 80;
+      this.y = y + (Math.random() - 0.5) * 40;
+      this.size = 8 + Math.random() * 10;
+      this.rotation = Math.random() * Math.PI * 2;
+      this.rotationSpeed = (Math.random() - 0.5) * 0.05;
+      this.fallSpeed = 0.5 + Math.random() * 1.0;
+      this.swayAmp = 20 + Math.random() * 30;
+      this.swayFreq = 0.01 + Math.random() * 0.015;
+      this.swayOffset = Math.random() * Math.PI * 2;
+      this.opacity = 0.8 + Math.random() * 0.2;
+      this.color = COLORS[Math.floor(Math.random() * COLORS.length)];
+      this.life = 0;
+    }
+
+    Petal.prototype.update = function() {
+      this.life++;
+      this.y += this.fallSpeed;
+      this.x += Math.sin(this.life * this.swayFreq + this.swayOffset) * this.swayAmp * 0.025;
+      this.rotation += this.rotationSpeed;
+      if (this.y > ch * 0.65) this.opacity *= 0.96;
+      return this.y < ch + 20 && this.opacity > 0.03;
+    };
+
+    Petal.prototype.draw = function(c) {
+      c.save();
+      c.translate(this.x, this.y);
+      c.rotate(this.rotation);
+      c.globalAlpha = this.opacity;
+      c.fillStyle = this.color;
+      // Draw a petal shape
+      var s = this.size;
+      c.beginPath();
+      c.moveTo(0, 0);
+      c.bezierCurveTo(s * 0.5, -s * 0.35, s, s * 0.4, 0, s);
+      c.bezierCurveTo(-s, s * 0.4, -s * 0.5, -s * 0.35, 0, 0);
+      c.fill();
+      // Add a second smaller petal rotated for a more natural look
+      c.rotate(Math.PI * 0.6);
+      c.globalAlpha = this.opacity * 0.6;
+      c.beginPath();
+      var s2 = s * 0.7;
+      c.moveTo(0, 0);
+      c.bezierCurveTo(s2 * 0.5, -s2 * 0.35, s2, s2 * 0.4, 0, s2);
+      c.bezierCurveTo(-s2, s2 * 0.4, -s2 * 0.5, -s2 * 0.35, 0, 0);
+      c.fill();
+      c.restore();
+    };
+
+    var petals = [];
+    var spawning = false;
+    var mouseX = 0, mouseY = 0;
+    var rafId = null;
+    var MAX_PETALS = 80;
+
+    function spawnNear(x, y, count) {
+      for (var i = 0; i < count && petals.length < MAX_PETALS; i++) {
+        petals.push(new Petal(x, y));
+      }
+    }
+
+    function loop() {
+      ctx.clearRect(0, 0, cw, ch);
+
+      if (spawning) spawnNear(mouseX, mouseY, 2);
+
+      var alive = [];
+      for (var i = 0; i < petals.length; i++) {
+        if (petals[i].update()) {
+          petals[i].draw(ctx);
+          alive.push(petals[i]);
+        }
+      }
+      petals = alive;
+
+      if (petals.length > 0) {
+        rafId = requestAnimationFrame(loop);
+      } else {
+        rafId = null;
+      }
+    }
+
+    function startLoop() {
+      if (!rafId) { rafId = requestAnimationFrame(loop); }
+    }
+
+    wrap.addEventListener('mouseenter', function(e) {
+      var r = wrap.getBoundingClientRect();
+      mouseX = e.clientX - r.left;
+      mouseY = e.clientY - r.top;
+      spawning = true;
+      spawnNear(mouseX, mouseY, 8);
+      startLoop();
+    });
+
+    wrap.addEventListener('mousemove', function(e) {
+      var r = wrap.getBoundingClientRect();
+      mouseX = e.clientX - r.left;
+      mouseY = e.clientY - r.top;
+
+      // Parallax tilt on image
+      if (heroImg) {
+        var cx = r.width / 2, cy = r.height / 2;
+        var rx = -((mouseY - cy) / r.height) * 4;
+        var ry = ((mouseX - cx) / r.width) * 4;
+        heroImg.style.transform = 'rotateX(' + rx + 'deg) rotateY(' + ry + 'deg)';
+      }
+    });
+
+    wrap.addEventListener('mouseleave', function() {
+      spawning = false;
+      if (heroImg) heroImg.style.transform = 'rotateX(0) rotateY(0)';
+    });
+
+    // Touch support
+    wrap.addEventListener('touchmove', function(e) {
+      var t = e.touches[0];
+      var r = wrap.getBoundingClientRect();
+      mouseX = t.clientX - r.left;
+      mouseY = t.clientY - r.top;
+      spawning = true;
+      startLoop();
+    }, { passive: true });
+
+    wrap.addEventListener('touchend', function() { spawning = false; });
+
+    console.log('Sakura petals initialized on hero image');
+  });
+  </script>
 </body>
 </html>

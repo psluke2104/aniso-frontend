@@ -1,0 +1,16 @@
+{
+  "name": "aniso-nightwear",
+  "version": "1.0.0",
+  "description": "ANISO — Premium nightwear e-commerce frontend",
+  "private": true,
+  "scripts": {
+    "dev": "node serve.mjs",
+    "start": "node serve.mjs"
+  },
+  "dependencies": {
+    "razorpay": "^2.9.4"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

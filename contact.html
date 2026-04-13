@@ -5,325 +5,75 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" href="brand_assets/favicon.png" type="image/png">
   <title>Contact — ANISO</title>
-  <meta name="description" content="Get in touch with the ANISO team. We're here to help with sizing, orders, returns, and anything else.">
+  <meta name="description" content="Get in touch with ANISO. We're here to help with orders, sizing, returns, or anything else.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/styles.css">
-</head>
-<body>
-
-  <div class="announcement-bar" id="announcementBar">
-    <div class="announcement-inner">
-      <div class="announcement-track">
-        <span>Complimentary shipping on all orders above ₹1,499</span><span class="sep">·</span>
-        <span>New Drop — Ivory Reverie Collection is now live</span><span class="sep">·</span>
-        <span>Easy 14-day returns &amp; exchanges</span><span class="sep">·</span>
-        <span>Complimentary shipping on all orders above ₹1,499</span><span class="sep">·</span>
-        <span>New Drop — Ivory Reverie Collection is now live</span><span class="sep">·</span>
-        <span>Easy 14-day returns &amp; exchanges</span>
-      </div>
-    </div>
-    <button class="announcement-close" onclick="closeAnnouncement()">&#215;</button>
-  </div>
-
-  <nav class="navbar" id="navbar">
-    <div class="nav-inner">
-      <button class="nav-hamburger" id="hamburger" onclick="toggleMobileMenu()"><span></span><span></span><span></span></button>
-      <ul class="nav-links nav-left">
-        <li><a href="shop.html">Shop</a></li>
-        <li><a href="shop.html#collections">Collections</a></li>
-        <li><a href="about.html">Our Story</a></li>
-      </ul>
-      <a href="index.html" class="nav-logo"><img src="brand_assets/Aniso_LOGO.png" alt="ANISO" class="nav-logo-img"></a>
-      <div class="nav-right">
-        <ul class="nav-links">
-          <li><a href="size-guide.html">Size Guide</a></li>
-          <li><a href="contact.html" class="active">Contact</a></li>
-        </ul>
-        <div class="nav-icons">
-          <button class="nav-icon-btn" aria-label="Search">
-            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.4-4.4"/></svg>
-          </button>
-          <div class="profile-dropdown-wrap" id="profileDropdownWrap">
-              <button class="nav-icon-btn" id="profileBtn" aria-label="Account">
-                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-              </button>
-              <div class="profile-dropdown" id="profileMenu">
-                <div id="profileSignedOut">
-                  <div class="profile-dropdown-header">Welcome to ANISO</div>
-                  <a href="#" class="profile-dropdown-link" onclick="openSignIn('signin');return false;">Sign In</a>
-                  <a href="#" class="profile-dropdown-link" onclick="openSignIn('register');return false;">Create Account</a>
-                </div>
-                <div id="profileSignedIn" style="display:none">
-                  <div class="profile-dropdown-header" id="profileGreeting">Hi, there</div>
-                  <a href="#" class="profile-dropdown-link">My Account</a>
-                  <a href="#" class="profile-dropdown-link">My Orders</a>
-                  <hr class="profile-dropdown-divider">
-                  <a href="#" class="profile-dropdown-link" onclick="signOut();return false;">Sign Out</a>
-                </div>
-              </div>
-            </div>
-          <a href="cart.html" class="nav-icon-btn" aria-label="Cart">
-            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-            <span class="cart-count" id="cartCount">0</span>
-          </a>
-        </div>
-      </div>
-    </div>
-    <div class="mobile-menu" id="mobileMenu">
-      <ul>
-        <li><a href="shop.html" onclick="toggleMobileMenu()">Shop All</a></li>
-        <li><a href="about.html" onclick="toggleMobileMenu()">Our Story</a></li>
-        <li><a href="size-guide.html" onclick="toggleMobileMenu()">Size Guide</a></li>
-        <li><a href="faq.html" onclick="toggleMobileMenu()">FAQ</a></li>
-        <li><a href="contact.html" onclick="toggleMobileMenu()">Contact</a></li>
-        <li><a href="cart.html" onclick="toggleMobileMenu()">Your Bag</a></li>
-      </ul>
-    </div>
-  </nav>
-
-  <main>
-    <!-- Page Hero -->
-    <div class="page-hero">
-      <div class="container">
-        <span class="section-label page-hero-label">Get in Touch</span>
-        <h1 class="page-hero-title">We're Here for You</h1>
-        <p class="page-hero-sub">A real person from our team will respond to every message. No bots, no scripts — just genuine support.</p>
-      </div>
-    </div>
-
-    <div style="padding:80px 0 100px;background:var(--cream);">
-      <div class="container">
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:flex-start;" class="contact-grid">
-
-          <!-- Contact Form -->
-          <div class="fade-in">
-            <h2 style="font-family:var(--font-display);font-size:28px;font-weight:400;letter-spacing:var(--tracking-display);color:var(--black);margin-bottom:8px;">Send a Message</h2>
-            <p style="font-size:13.5px;font-weight:300;color:var(--muted);margin-bottom:40px;line-height:1.8;">We typically respond within 24 hours on business days.</p>
-
-            <form id="contactForm" onsubmit="handleContactSubmit(event)">
-              <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
-                <div class="form-field">
-                  <label class="form-label" for="firstName">First Name</label>
-                  <input type="text" id="firstName" class="form-input" placeholder="Priya" required>
-                </div>
-                <div class="form-field">
-                  <label class="form-label" for="lastName">Last Name</label>
-                  <input type="text" id="lastName" class="form-input" placeholder="Sharma">
-                </div>
-              </div>
-              <div class="form-field">
-                <label class="form-label" for="email">Email Address</label>
-                <input type="email" id="email" class="form-input" placeholder="you@example.com" required>
-              </div>
-              <div class="form-field">
-                <label class="form-label" for="phone">Phone Number (optional)</label>
-                <input type="tel" id="phone" class="form-input" placeholder="+91 98765 43210">
-              </div>
-              <div class="form-field">
-                <label class="form-label" for="subject">Subject</label>
-                <select id="subject" class="form-input form-select">
-                  <option value="">Select a topic</option>
-                  <option>Order enquiry</option>
-                  <option>Sizing help</option>
-                  <option>Returns &amp; exchanges</option>
-                  <option>Product question</option>
-                  <option>Feedback</option>
-                  <option>Something else</option>
-                </select>
-              </div>
-              <div class="form-field">
-                <label class="form-label" for="message">Your Message</label>
-                <textarea id="message" class="form-textarea" placeholder="Tell us how we can help..." required></textarea>
-              </div>
-              <button type="submit" class="btn-primary" style="width:100%;padding:16px;font-size:11px;justify-content:center;">
-                Send Message →
-              </button>
-            </form>
-
-            <!-- Success state -->
-            <div id="formSuccess" style="display:none;padding:40px;text-align:center;background:var(--cream-warm);border:1px solid var(--border-strong);">
-              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--cocoa)" stroke-width="1.5" style="margin:0 auto 16px"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9,12 11,14 15,10" stroke-width="1.5"/></svg>
-              <h3 style="font-family:var(--font-display);font-size:22px;font-weight:400;color:var(--black);margin-bottom:10px;">Message received.</h3>
-              <p style="font-size:13.5px;font-weight:300;color:var(--muted);line-height:1.8;">We'll be in touch within 24 hours. Thank you for reaching out to ANISO.</p>
-            </div>
-          </div>
-
-          <!-- Contact Info -->
-          <div class="fade-in" style="transition-delay:0.15s;">
-
-            <!-- Contact channels -->
-            <div style="margin-bottom:48px;">
-              <h3 style="font-family:var(--font-display);font-size:22px;font-weight:400;color:var(--black);margin-bottom:28px;">Other Ways to Reach Us</h3>
-
-              <div style="display:flex;flex-direction:column;gap:0;">
-                <a href="mailto:care@aniso.in" style="display:flex;align-items:center;gap:20px;padding:24px 0;border-bottom:1px solid var(--border);transition:background var(--t-base);">
-                  <div style="width:44px;height:44px;background:var(--cream-warm);display:flex;align-items:center;justify-content:center;flex-shrink:0;border:1px solid var(--border);">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--cocoa)" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                  </div>
-                  <div>
-                    <div style="font-size:10px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:4px">Email</div>
-                    <div style="font-size:14px;font-weight:300;color:var(--black)">care@aniso.in</div>
-                    <div style="font-size:11.5px;font-weight:300;color:var(--taupe)">Replies within 24 business hours</div>
-                  </div>
-                </a>
-
-                <a href="#" style="display:flex;align-items:center;gap:20px;padding:24px 0;border-bottom:1px solid var(--border);">
-                  <div style="width:44px;height:44px;background:var(--cream-warm);display:flex;align-items:center;justify-content:center;flex-shrink:0;border:1px solid var(--border);">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--cocoa)" stroke-width="1.5"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
-                  </div>
-                  <div>
-                    <div style="font-size:10px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:4px">WhatsApp</div>
-                    <div style="font-size:14px;font-weight:300;color:var(--black)">+91 98765 43210</div>
-                    <div style="font-size:11.5px;font-weight:300;color:var(--taupe)">Mon–Sat, 10am–6pm IST</div>
-                  </div>
-                </a>
-
-                <a href="#" style="display:flex;align-items:center;gap:20px;padding:24px 0;border-bottom:1px solid var(--border);">
-                  <div style="width:44px;height:44px;background:var(--cream-warm);display:flex;align-items:center;justify-content:center;flex-shrink:0;border:1px solid var(--border);">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--cocoa)" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="var(--cocoa)" stroke="none"/></svg>
-                  </div>
-                  <div>
-                    <div style="font-size:10px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:4px">Instagram</div>
-                    <div style="font-size:14px;font-weight:300;color:var(--black)">@aniso.in</div>
-                    <div style="font-size:11.5px;font-weight:300;color:var(--taupe)">DMs open</div>
-                  </div>
-                </a>
-
-                <div style="display:flex;align-items:center;gap:20px;padding:24px 0;">
-                  <div style="width:44px;height:44px;background:var(--cream-warm);display:flex;align-items:center;justify-content:center;flex-shrink:0;border:1px solid var(--border);">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--cocoa)" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                  </div>
-                  <div>
-                    <div style="font-size:10px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:4px">Studio</div>
-                    <div style="font-size:14px;font-weight:300;color:var(--black)">Mumbai, India</div>
-                    <div style="font-size:11.5px;font-weight:300;color:var(--taupe)">By appointment only</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Reassurance block -->
-            <div style="background:var(--black);padding:36px 32px;">
-              <div style="font-size:10px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:rgba(250,248,245,0.35);margin-bottom:20px;">Quick Answers</div>
-              <ul style="display:flex;flex-direction:column;gap:12px;">
-                <li style="display:flex;align-items:center;gap:12px;">
-                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--blush)" stroke-width="2"><polyline points="20,6 9,17 4,12"/></svg>
-                  <a href="faq.html#shipping" style="font-size:13px;font-weight:300;color:rgba(250,248,245,0.6);transition:color var(--t-base);" onmouseover="this.style.color='var(--cream)'" onmouseout="this.style.color='rgba(250,248,245,0.6)'">Shipping &amp; delivery info</a>
-                </li>
-                <li style="display:flex;align-items:center;gap:12px;">
-                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--blush)" stroke-width="2"><polyline points="20,6 9,17 4,12"/></svg>
-                  <a href="faq.html#returns" style="font-size:13px;font-weight:300;color:rgba(250,248,245,0.6);transition:color var(--t-base);" onmouseover="this.style.color='var(--cream)'" onmouseout="this.style.color='rgba(250,248,245,0.6)'">Returns &amp; exchange policy</a>
-                </li>
-                <li style="display:flex;align-items:center;gap:12px;">
-                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--blush)" stroke-width="2"><polyline points="20,6 9,17 4,12"/></svg>
-                  <a href="size-guide.html" style="font-size:13px;font-weight:300;color:rgba(250,248,245,0.6);transition:color var(--t-base);" onmouseover="this.style.color='var(--cream)'" onmouseout="this.style.color='rgba(250,248,245,0.6)'">Size guide &amp; measurements</a>
-                </li>
-                <li style="display:flex;align-items:center;gap:12px;">
-                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--blush)" stroke-width="2"><polyline points="20,6 9,17 4,12"/></svg>
-                  <a href="faq.html#fabric" style="font-size:13px;font-weight:300;color:rgba(250,248,245,0.6);transition:color var(--t-base);" onmouseover="this.style.color='var(--cream)'" onmouseout="this.style.color='rgba(250,248,245,0.6)'">Fabric &amp; care instructions</a>
-                </li>
-              </ul>
-            </div>
-
-          </div>
-        </div>
-      </div>
-    </div>
-  </main>
-
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-top">
-        <div class="footer-brand">
-          <img src="brand_assets/Aniso_LOGO.png" alt="ANISO" class="footer-brand-logo">
-          <p class="footer-brand-text">Premium nightwear and loungewear for the modern woman.</p>
-          <div class="footer-newsletter">
-            <input type="email" class="footer-newsletter-input" placeholder="Your email address">
-            <button class="footer-newsletter-btn">Join</button>
-          </div>
-        </div>
-        <div>
-          <div class="footer-col-title">Shop</div>
-          <ul class="footer-links">
-            <li><a href="shop.html">All Products</a></li>
-            <li><a href="shop.html?cat=satin">Satin Sets</a></li>
-            <li><a href="shop.html?cat=cotton">Cotton Sets</a></li>
-          </ul>
-        </div>
-        <div>
-          <div class="footer-col-title">Help</div>
-          <ul class="footer-links">
-            <li><a href="size-guide.html">Size Guide</a></li>
-            <li><a href="faq.html">FAQ</a></li>
-            <li><a href="contact.html">Contact Us</a></li>
-          </ul>
-        </div>
-        <div>
-          <div class="footer-col-title">Brand</div>
-          <ul class="footer-links">
-            <li><a href="about.html">Our Story</a></li>
-            <li><a href="#">Privacy Policy</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <div class="footer-bottom-left">© 2026 ANISO. All rights reserved.</div>
-        <div class="footer-payment">
-          <span class="footer-payment-badge">UPI</span>
-          <span class="footer-payment-badge">Cards</span>
-          <span class="footer-payment-badge">COD</span>
-        </div>
-      </div>
-    </div>
-  </footer>
-
-  <script src="assets/js/main.js"></script>
-  <script src="assets/js/effects.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
   <script>
-    function handleContactSubmit(e) {
-      e.preventDefault();
-      document.getElementById('contactForm').style.display = 'none';
-      document.getElementById('formSuccess').style.display = 'block';
+    tailwind.config = {
+      theme: { extend: {
+        colors: { cocoa: '#8B6147', blush: '#E8B4A0', champagne: '#D4B896' },
+        fontFamily: { display: ['Playfair Display', 'Georgia', 'serif'], body: ['Montserrat', 'system-ui', 'sans-serif'] },
+      }}
     }
   </script>
   <style>
-    @media (max-width:768px) {
-      .contact-grid { grid-template-columns: 1fr !important; gap: 48px !important; }
-    }
+    @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+    .animate-scroll { animation: scroll 25s linear infinite; }
   </style>
+</head>
+<body class="bg-white font-body text-gray-900">
+  <div id="nav-mount"></div>
 
-  <!-- Sign In / Register Modal -->
-  <div class="signin-overlay" id="signinOverlay">
-    <div class="signin-modal">
-      <button class="signin-modal-close" onclick="closeSignIn()">&#215;</button>
-      <div class="signin-logo">
-        <img src="brand_assets/Aniso_LOGO.png" alt="ANISO">
+  <main class="py-16 md:py-24">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6">
+      <div class="text-center mb-12 fade-in">
+        <p class="text-xs font-medium uppercase tracking-[0.15em] text-cocoa mb-2">Get In Touch</p>
+        <h1 class="font-display text-3xl sm:text-4xl mb-3">We'd love to hear from you</h1>
+        <p class="text-sm text-gray-500">Questions about an order, sizing help, or just want to say hello? Drop us a note below.</p>
       </div>
-      <h2 class="signin-title">My Account</h2>
-      <div class="signin-tabs">
-        <button class="signin-tab active" data-tab="signin">Sign In</button>
-        <button class="signin-tab" data-tab="register">Create Account</button>
+
+      <div class="grid md:grid-cols-3 gap-6 mb-12 fade-in">
+        <div class="bg-gray-50 rounded-lg p-6 text-center">
+          <svg class="mx-auto mb-3 text-cocoa" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          <h3 class="font-display text-sm mb-1">Email</h3>
+          <p class="text-xs text-gray-500">care@aniso.in</p>
+        </div>
+        <div class="bg-gray-50 rounded-lg p-6 text-center">
+          <svg class="mx-auto mb-3 text-cocoa" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+          <h3 class="font-display text-sm mb-1">WhatsApp</h3>
+          <p class="text-xs text-gray-500">+91 98765 43210</p>
+        </div>
+        <div class="bg-gray-50 rounded-lg p-6 text-center">
+          <svg class="mx-auto mb-3 text-cocoa" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="10" r="3"/><path d="M12 21.7C17.3 17 20 13 20 10a8 8 0 1 0-16 0c0 3 2.7 7 8 11.7z"/></svg>
+          <h3 class="font-display text-sm mb-1">Hours</h3>
+          <p class="text-xs text-gray-500">Mon–Sat, 10am–7pm IST</p>
+        </div>
       </div>
-      <div id="signinFormWrap">
-        <form class="signin-form" id="signinForm">
-          <input class="signin-input" type="email" placeholder="Email address" required>
-          <input class="signin-input" type="password" placeholder="Password" required>
-          <button type="submit" class="signin-submit">Sign In</button>
-        </form>
-        <div class="signin-footer">Don't have an account? <a href="#" onclick="openSignIn('register');return false;">Create one</a></div>
-      </div>
-      <div id="registerFormWrap" style="display:none">
-        <form class="signin-form" id="registerForm">
-          <input class="signin-input" type="text" name="fullname" placeholder="Full name" required>
-          <input class="signin-input" type="email" placeholder="Email address" required>
-          <input class="signin-input" type="password" placeholder="Create password" required>
-          <button type="submit" class="signin-submit">Create Account</button>
-        </form>
-        <div class="signin-footer">Already have an account? <a href="#" onclick="openSignIn('signin');return false;">Sign in</a></div>
-      </div>
+
+      <form class="space-y-4 fade-in" onsubmit="event.preventDefault();alert('Thank you! We\'ll get back to you soon.');">
+        <div class="grid sm:grid-cols-2 gap-4">
+          <input type="text" placeholder="Your name" required class="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm placeholder-gray-400 outline-none focus:border-gray-400 transition-colors">
+          <input type="email" placeholder="Email address" required class="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm placeholder-gray-400 outline-none focus:border-gray-400 transition-colors">
+        </div>
+        <select class="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm text-gray-500 outline-none focus:border-gray-400 transition-colors bg-white">
+          <option>Select a topic</option>
+          <option>Order enquiry</option>
+          <option>Sizing help</option>
+          <option>Returns & exchanges</option>
+          <option>Collaboration</option>
+          <option>Other</option>
+        </select>
+        <textarea rows="5" placeholder="Your message" required class="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm placeholder-gray-400 outline-none focus:border-gray-400 transition-colors resize-none"></textarea>
+        <button type="submit" class="bg-gray-900 text-white text-xs font-medium tracking-wider uppercase px-8 py-3.5 rounded hover:bg-gray-800 transition-colors">Send Message</button>
+      </form>
     </div>
-  </div>
+  </main>
+
+  <div id="footer-mount"></div>
+  <script src="js/product-data.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/components.js"></script>
 </body>
 </html>

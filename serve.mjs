@@ -22,8 +22,9 @@ const MIME = {
 };
 
 createServer(async (req, res) => {
+  const root = resolve(__dirname);
   const safePath = resolve(__dirname, '.' + req.url.split('?')[0]);
-  if (!safePath.startsWith(__dirname)) {
+  if (!safePath.startsWith(root)) {
     res.writeHead(403); res.end('Forbidden'); return;
   }
 
